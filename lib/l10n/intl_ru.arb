@@ -1,1 +1,14 @@
-{}
+{
+  "home": "Главная",
+  "categories": "Категории",
+  "map": "Карта",
+  "favorites": "Избранные",
+  "profile": "Профиль",
+  "showAll": "Показать все",
+  "push_notification": "Push-уведомления",
+  "app_language": "Язык приложения",
+  "my_tours": "Мои туры",
+  "emerge_contacts": "Контакты в чрезвычайных ситуациях",
+  "call_center": "Туристический call-центр",
+  "privat_policy": "Политика конфиденциальности"
+}

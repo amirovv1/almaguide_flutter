@@ -21,5 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'kk';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_language": MessageLookupByLibrary.simpleMessage("Қолданба тілі"),
+        "call_center":
+            MessageLookupByLibrary.simpleMessage("Туристтік call-орталық"),
+        "categories": MessageLookupByLibrary.simpleMessage("Санаттар"),
+        "emerge_contacts":
+            MessageLookupByLibrary.simpleMessage("Алды алатын байланыстар"),
+        "favorites": MessageLookupByLibrary.simpleMessage("Таңдаулылар"),
+        "home": MessageLookupByLibrary.simpleMessage("Басты бет"),
+        "map": MessageLookupByLibrary.simpleMessage("Карта"),
+        "my_tours": MessageLookupByLibrary.simpleMessage("Менің турларым"),
+        "privat_policy":
+            MessageLookupByLibrary.simpleMessage("Құпиялылық саясаты"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "push_notification":
+            MessageLookupByLibrary.simpleMessage("Push-хабарландырулар"),
+        "showAll": MessageLookupByLibrary.simpleMessage("Барлығын көрсету")
+      };
 }

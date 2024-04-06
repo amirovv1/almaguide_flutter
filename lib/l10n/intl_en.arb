@@ -1,1 +1,14 @@
-{}
+{
+  "home": "Home",
+  "categories": "Categories",
+  "map": "Map",
+  "favorites": "Favorites",
+  "profile": "Profile",
+  "showAll": "Show All",
+  "push_notification": "Push Notifications",
+  "app_language": "App Language",
+  "my_tours": "My Tours",
+  "emerge_contacts": "Emergency Contacts",
+  "call_center": "Tourist Call Center",
+  "privat_policy": "Privacy Policy"
+}

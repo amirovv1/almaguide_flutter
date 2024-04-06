@@ -21,5 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_language": MessageLookupByLibrary.simpleMessage("Язык приложения"),
+        "call_center":
+            MessageLookupByLibrary.simpleMessage("Туристический call-центр"),
+        "categories": MessageLookupByLibrary.simpleMessage("Категории"),
+        "emerge_contacts": MessageLookupByLibrary.simpleMessage(
+            "Контакты в чрезвычайных ситуациях"),
+        "favorites": MessageLookupByLibrary.simpleMessage("Избранные"),
+        "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "map": MessageLookupByLibrary.simpleMessage("Карта"),
+        "my_tours": MessageLookupByLibrary.simpleMessage("Мои туры"),
+        "privat_policy":
+            MessageLookupByLibrary.simpleMessage("Политика конфиденциальности"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "push_notification":
+            MessageLookupByLibrary.simpleMessage("Push-уведомления"),
+        "showAll": MessageLookupByLibrary.simpleMessage("Показать все")
+      };
 }

@@ -3,10 +3,9 @@ import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/custom_nav_bar_item.dart';
+import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class LauncherAppScreen extends StatefulWidget {
@@ -48,27 +47,27 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
               currentIndex: tabsRouter.activeIndex,
               items: [
                 CustomNavBarItem(
-                  label: 'Главная',
+                  label: S.of(context).home,
                   iconAsset: Assets.svg.homeGoods24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
                 CustomNavBarItem(
-                  label: 'Категории',
+                  label: S.of(context).categories,
                   iconAsset: Assets.svg.category24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
                 CustomNavBarItem(
-                  label: 'Карта',
+                  label: S.of(context).map,
                   iconAsset: Assets.svg.navigationOutline24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
                 CustomNavBarItem(
-                  label: 'Избранные',
+                  label: S.of(context).favorites,
                   iconAsset: Assets.svg.likeOutline24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
                 CustomNavBarItem(
-                  label: 'Профиль',
+                  label: S.of(context).profile,
                   iconAsset: Assets.svg.user24,
                   activeColor: AppColors.mainGreen,
                 ).build(),

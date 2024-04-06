@@ -49,6 +49,126 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categories {
+    return Intl.message(
+      'Categories',
+      name: 'categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Map`
+  String get map {
+    return Intl.message(
+      'Map',
+      name: 'map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites`
+  String get favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show All`
+  String get showAll {
+    return Intl.message(
+      'Show All',
+      name: 'showAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Push Notifications`
+  String get push_notification {
+    return Intl.message(
+      'Push Notifications',
+      name: 'push_notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App Language`
+  String get app_language {
+    return Intl.message(
+      'App Language',
+      name: 'app_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Tours`
+  String get my_tours {
+    return Intl.message(
+      'My Tours',
+      name: 'my_tours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Emergency Contacts`
+  String get emerge_contacts {
+    return Intl.message(
+      'Emergency Contacts',
+      name: 'emerge_contacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tourist Call Center`
+  String get call_center {
+    return Intl.message(
+      'Tourist Call Center',
+      name: 'call_center',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privat_policy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privat_policy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

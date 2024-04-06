@@ -1,3 +1,4 @@
+import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +11,7 @@ class CustomNavBarItem {
   CustomNavBarItem({
     required this.label,
     required this.iconAsset,
-    this.activeColor = Colors.green, // Default active color
+    this.activeColor = AppColors.mainGreen, // Default active color
   });
 
   BottomNavigationBarItem build() {
@@ -19,6 +20,7 @@ class CustomNavBarItem {
         padding: const EdgeInsets.only(bottom: 5).r,
         child: SvgPicture.asset(
           iconAsset,
+          // ignore: deprecated_member_use
           color: activeColor,
         ),
       ),

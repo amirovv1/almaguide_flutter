@@ -78,7 +78,8 @@ flutter:
     - assets/png/
     - assets/svg/
     - assets/fonts/
-   
+    - assets/example/
+
 
   fonts:
     - family: Inter

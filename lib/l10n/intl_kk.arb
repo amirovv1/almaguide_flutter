@@ -1,1 +1,14 @@
-{}
+{
+  "home": "Басты бет",
+  "categories": "Санаттар",
+  "map": "Карта",
+  "favorites": "Таңдаулылар",
+  "profile": "Профиль",
+  "showAll": "Барлығын көрсету",
+  "push_notification": "Push-хабарландырулар",
+  "app_language": "Қолданба тілі",
+  "my_tours": "Менің турларым",
+  "emerge_contacts": "Алды алатын байланыстар",
+  "call_center": "Туристтік call-орталық",
+  "privat_policy": "Құпиялылық саясаты"
+}

@@ -14,6 +14,8 @@ enum TS {
   s15w400,
   s8w700,
   s10w400,
+    s11w500,
+
   s12w200,
   s12w400,
   s12w500,
@@ -33,6 +35,8 @@ enum TS {
   s17w500,
   s18w400,
   s18w500,
+    s18w600,
+
   s36w500,
   s36w700,
   s20w500,
@@ -63,6 +67,31 @@ TextStyle ts(
   FontTypes fontFamily = FontTypes.Inter,
 }) {
   switch (textStyle) {
+    case TS.s24w700:
+      return TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 24.sp,
+          fontFamily: fontFamily.name,
+          color: color);
+     case TS.s11w500:
+      return TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 11.sp,
+          fontFamily: fontFamily.name,
+          color: color);
+          
+     case TS.s18w600:
+      return TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.sp,
+          fontFamily: fontFamily.name,
+          color: color);
+    case TS.s14w600:
+      return TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 14.sp,
+          fontFamily: fontFamily.name,
+          color: color);
     case TS.s100w500:
       return TextStyle(
           fontWeight: FontWeight.w900,
