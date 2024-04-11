@@ -26,17 +26,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "call_center":
             MessageLookupByLibrary.simpleMessage("Туристический call-центр"),
         "categories": MessageLookupByLibrary.simpleMessage("Категории"),
+        "dont_have_account":
+            MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
         "emerge_contacts": MessageLookupByLibrary.simpleMessage(
             "Контакты в чрезвычайных ситуациях"),
+        "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
         "favorites": MessageLookupByLibrary.simpleMessage("Избранные"),
+        "have_account":
+            MessageLookupByLibrary.simpleMessage("Уже есть аккаунт? "),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "mail": MessageLookupByLibrary.simpleMessage("Почта"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
         "my_tours": MessageLookupByLibrary.simpleMessage("Мои туры"),
+        "name": MessageLookupByLibrary.simpleMessage("ФИО"),
+        "number": MessageLookupByLibrary.simpleMessage("Номер"),
+        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "privat_policy":
             MessageLookupByLibrary.simpleMessage("Политика конфиденциальности"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "profile_photo_upload": MessageLookupByLibrary.simpleMessage(
+            "Фото профиля (необязательно)"),
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push-уведомления"),
-        "showAll": MessageLookupByLibrary.simpleMessage("Показать все")
+        "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
+        "showAll": MessageLookupByLibrary.simpleMessage("Показать все"),
+        "sign_in": MessageLookupByLibrary.simpleMessage("Войти"),
+        "success": MessageLookupByLibrary.simpleMessage("Успешно")
       };
 }

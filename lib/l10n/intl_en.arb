@@ -10,5 +10,16 @@
   "my_tours": "My Tours",
   "emerge_contacts": "Emergency Contacts",
   "call_center": "Tourist Call Center",
-  "privat_policy": "Privacy Policy"
+  "privat_policy": "Privacy Policy",
+  "registration": "Registration",
+  "have_account": "Already have an account?",
+  "sign_in": "Sign In",
+  "name": "Name",
+  "number": "Phone Number",
+  "mail": "Email",
+  "password": "Password",
+  "profile_photo_upload": "Profile Photo Upload (optional)",
+  "dont_have_account": "Don't have an account?",
+  "success": "Успешно",
+  "error": "Ошибка"
 }

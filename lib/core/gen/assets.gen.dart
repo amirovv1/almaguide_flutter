@@ -93,11 +93,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/navigation-outline-24.svg
   String get navigationOutline24 => 'assets/svg/navigation-outline-24.svg';
 
+  /// File path: assets/svg/phone-24.svg
+  String get phone24 => 'assets/svg/phone-24.svg';
+
   /// File path: assets/svg/user-24.svg
   String get user24 => 'assets/svg/user-24.svg';
 
   /// List of all assets
-  List<String> get values => [ou, catCurort, catFood, catHome, catHotels, catLocation, catNews, catSport, catTransport, category24, homeGoods24, likeOutline24, navigationOutline24, user24];
+  List<String> get values => [ou, catCurort, catFood, catHome, catHotels, catLocation, catNews, catSport, catTransport, category24, homeGoods24, likeOutline24, navigationOutline24, phone24, user24];
 }
 
 class Assets {

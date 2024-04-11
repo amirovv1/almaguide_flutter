@@ -3,7 +3,9 @@ import 'package:almaguide_flutter/features/favorites/presentation/screens/favori
 import 'package:almaguide_flutter/features/home/presentation/screens/home_page.dart';
 import 'package:almaguide_flutter/features/home/presentation/screens/launcher_app.dart';
 import 'package:almaguide_flutter/features/map/presentation/screens/map_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/auth_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/profile_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/sign_up_page.dart';
 import 'package:auto_route/auto_route.dart';
 part 'app_router.gr.dart';
 
@@ -27,6 +29,10 @@ class AppRouter extends _$AppRouter {
             
             
             
-            ])
+            ]),
+                            AutoRoute(page: SignUpRoute.page),
+                                                        AutoRoute(page: AuthRoute.page)
+
+
       ];
 }

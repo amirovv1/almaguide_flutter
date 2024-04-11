@@ -169,6 +169,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Registration`
+  String get registration {
+    return Intl.message(
+      'Registration',
+      name: 'registration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get have_account {
+    return Intl.message(
+      'Already have an account?',
+      name: 'have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get sign_in {
+    return Intl.message(
+      'Sign In',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get number {
+    return Intl.message(
+      'Phone Number',
+      name: 'number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get mail {
+    return Intl.message(
+      'Email',
+      name: 'mail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Photo Upload (optional)`
+  String get profile_photo_upload {
+    return Intl.message(
+      'Profile Photo Upload (optional)',
+      name: 'profile_photo_upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account?`
+  String get dont_have_account {
+    return Intl.message(
+      'Don\'t have an account?',
+      name: 'dont_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Успешно`
+  String get success {
+    return Intl.message(
+      'Успешно',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ошибка`
+  String get error {
+    return Intl.message(
+      'Ошибка',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

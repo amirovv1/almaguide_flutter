@@ -34,6 +34,7 @@ class AlmaGuideApp extends StatelessWidget {
           child: BlocBuilder<LanguageCubit, LanguageState>(
             builder: (context, state) {
               return MaterialApp.router(
+                themeMode: ThemeMode.dark,
                 locale: Locale(state.langCode),
                 localizationsDelegates: const [
                   S.delegate,
@@ -42,7 +43,7 @@ class AlmaGuideApp extends StatelessWidget {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                title: 'Flutter Demo',
+                title: 'Almaguide',
                 routeInformationParser: _appRouter.defaultRouteParser(),
                 routerDelegate: _appRouter.delegate(),
                 debugShowCheckedModeBanner: false,

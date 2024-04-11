@@ -10,5 +10,16 @@
   "my_tours": "Мои туры",
   "emerge_contacts": "Контакты в чрезвычайных ситуациях",
   "call_center": "Туристический call-центр",
-  "privat_policy": "Политика конфиденциальности"
+  "privat_policy": "Политика конфиденциальности",
+  "registration": "Регистрация",
+  "have_account": "Уже есть аккаунт? ",
+  "sign_in": "Войти",
+  "name": "ФИО",
+  "number": "Номер",
+  "mail": "Почта",
+  "password": "Пароль",
+  "profile_photo_upload": "Фото профиля (необязательно)",
+  "dont_have_account": "Нет аккаунта?",
+  "success": "Успешно",
+  "error": "Ошибка"
 }

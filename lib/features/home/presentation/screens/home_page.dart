@@ -20,12 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                color: Colors.black,
-              ))
+          Padding(
+            padding: const EdgeInsets.only(right: 10).r,
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                )),
+          )
         ],
         backgroundColor: Colors.white,
         elevation: 0,

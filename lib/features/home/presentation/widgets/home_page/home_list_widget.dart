@@ -1,3 +1,4 @@
+import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +19,15 @@ class HomeListWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
+              Expanded(
+                child: Text(
+                  title,
+                  style: ts(TS.s18w600).copyWith(color: Colors.black),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
+              SizedBox(width: 10.r,),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),

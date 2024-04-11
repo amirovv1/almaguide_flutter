@@ -24,19 +24,31 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_language": MessageLookupByLibrary.simpleMessage("Қолданба тілі"),
         "call_center":
-            MessageLookupByLibrary.simpleMessage("Туристтік call-орталық"),
+            MessageLookupByLibrary.simpleMessage("Туристік Call Center"),
         "categories": MessageLookupByLibrary.simpleMessage("Санаттар"),
+        "dont_have_account":
+            MessageLookupByLibrary.simpleMessage("Аккаунт жоқ па?"),
         "emerge_contacts":
-            MessageLookupByLibrary.simpleMessage("Алды алатын байланыстар"),
+            MessageLookupByLibrary.simpleMessage("Төтенше байланыс"),
+        "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
         "favorites": MessageLookupByLibrary.simpleMessage("Таңдаулылар"),
+        "have_account": MessageLookupByLibrary.simpleMessage("Аккаунт бар ма?"),
         "home": MessageLookupByLibrary.simpleMessage("Басты бет"),
+        "mail": MessageLookupByLibrary.simpleMessage("Пошта"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
         "my_tours": MessageLookupByLibrary.simpleMessage("Менің турларым"),
-        "privat_policy":
-            MessageLookupByLibrary.simpleMessage("Құпиялылық саясаты"),
+        "name": MessageLookupByLibrary.simpleMessage("Аты-жөні"),
+        "number": MessageLookupByLibrary.simpleMessage("Телефон нөмірі"),
+        "password": MessageLookupByLibrary.simpleMessage("Құпия сөз"),
+        "privat_policy": MessageLookupByLibrary.simpleMessage("Жеке саясат"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "profile_photo_upload": MessageLookupByLibrary.simpleMessage(
+            "Профиль фотосуреті (міндетті емес)"),
         "push_notification":
-            MessageLookupByLibrary.simpleMessage("Push-хабарландырулар"),
-        "showAll": MessageLookupByLibrary.simpleMessage("Барлығын көрсету")
+            MessageLookupByLibrary.simpleMessage("Хабарландырулар"),
+        "registration": MessageLookupByLibrary.simpleMessage("Тіркеу"),
+        "showAll": MessageLookupByLibrary.simpleMessage("Барлығын көрсету"),
+        "sign_in": MessageLookupByLibrary.simpleMessage("Кіру"),
+        "success": MessageLookupByLibrary.simpleMessage("Успешно")
       };
 }

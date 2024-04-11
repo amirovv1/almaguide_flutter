@@ -123,7 +123,7 @@ class __$$InitialPageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialPageImpl implements _InitialPage {
+class _$InitialPageImpl with DiagnosticableTreeMixin implements _InitialPage {
   const _$InitialPageImpl({this.langCode = ''});
 
   @override
@@ -131,8 +131,16 @@ class _$InitialPageImpl implements _InitialPage {
   final String langCode;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LanguageState.initialState(langCode: $langCode)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LanguageState.initialState'))
+      ..add(DiagnosticsProperty('langCode', langCode));
   }
 
   @override

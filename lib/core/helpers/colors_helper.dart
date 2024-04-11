@@ -9,4 +9,6 @@ class AppColors {
   static const Color buttonText = Color(0xFF2885F1);
   static const Color greenCard = Color(0xFF338C5B);
   static const Color selectGrey = Color(0xFFF1F1F1);
+    static const Color buttonBlue = Color(0xFF2885F1);
+
 }
