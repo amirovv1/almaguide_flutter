@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_cubit.freezed.dart';
 
@@ -16,10 +17,15 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await repo.createJTW(email: email, password: password);
     result.fold((l) {
       emit(_AuthError(message: mapFailureToMessage(l)));
-    }, (r) {
+          emit(const _InitialPage());
+
+    }, (r) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('access', r.access);
       emit(const _AuthSuccess());
+      emit(const _InitialPage());
+
     });
-    emit(const _InitialPage());
   }
 }
 

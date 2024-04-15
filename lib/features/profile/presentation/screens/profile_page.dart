@@ -1,9 +1,11 @@
+// ignore_for_file: deprecated_member_use
 
-import 'package:almaguide_flutter/core/gen/assets.gen.dart';
-import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
-import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
-import 'package:almaguide_flutter/features/profile/bloc/language_cubit/language_cubit.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
+import 'package:almaguide_flutter/features/profile/presentation/widgets/call_center_modal.dart';
+import 'package:almaguide_flutter/features/profile/presentation/widgets/emerge_contacts_modal.dart';
+import 'package:almaguide_flutter/features/profile/presentation/widgets/language_modal.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_item_card.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
@@ -11,8 +13,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {
@@ -22,12 +22,21 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
+bool isAuth = true;
+
 class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    context.read<ProfileCubit>().initProfile();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const ProfileBottomSheet(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: isAuth ? null : const ProfileBottomSheet(),
+      floatingActionButtonLocation:
+          isAuth ? null : FloatingActionButtonLocation.centerDocked,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -41,204 +50,176 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      body: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 10.r),
-          children: [
-            //ProfileItemCard(title: S.of(context).push_notification),
-            ProfileItemCard(
-              title: S.of(context).app_language,
-              onTap: () => showLanguageModal(context),
-            ),
-            ProfileItemCard(title: S.of(context).my_tours),
-            ProfileItemCard(
-              title: S.of(context).emerge_contacts,
-              onTap: () => showContactsModal(context),
-            ),
-            ProfileItemCard(title: S.of(context).call_center),
-            ProfileItemCard(title: S.of(context).privat_policy),
-          ]),
-    );
-  }
-}
-
-void showContactsModal(BuildContext context) {
-  showModalBottomSheet(
-    isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: const Radius.circular(16).r),
-      ),
-      backgroundColor: Colors.white,
-      context: context,
-      builder: (context) {
-        final List<String> contacts = ['101', '102', '103', '104'];
-        return Container(
-          height: 1.sh / 1.8,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12).r),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16).r,
-            child:
-                SingleChildScrollView(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                SizedBox(
-                  height: 10.r,
-                                ),
-                                Center(
-                  child: Container(
-                    width: 40.w,
-                    height: 4.h,
-                    decoration: BoxDecoration(
-                        color: AppColors.textGrey,
-                        borderRadius: BorderRadius.circular(16.r)),
-                  ),
-                                ),
-                                SizedBox(
-                  height: 20.r,
-                                ),
-                                Text(
-                  'Контакты в чрезвычайных ситуациях',
-                  style: ts(TS.s24w700).copyWith(color: Colors.black),
-                                ),
-                                SizedBox(
-                  height: 20.r,
-                                ),
-                                ...contacts
-                    .map((e) => ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          enableFeedback: true,
-                          title: Text(
-                            Formatter.getServiceName(e, context),
-                            style: ts(TS.s12w400)
-                                .copyWith(color: AppColors.textGrey),
+      body: BlocConsumer<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          return state.maybeWhen(initialState: ((isAuthorized, user) {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (isAuthorized)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 27.r),
+                          child: Text(
+                            S.of(context).your_info,
+                            style: ts(TS.s16w700).copyWith(color: Colors.black),
                           ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 5).r,
-                            child: Text(
-                              e,
-                              style: ts(TS.s14w400).copyWith(color: Colors.black),
-                            ),
-                          ),
-                          trailing: IconButton(
-                              onPressed: () async{
-                              await  _makePhoneCall(e);
-                              },
-                              icon: SvgPicture.asset(Assets.svg.phone24)),
-                        ))
-                    .toList(),
-                    SizedBox(height: 50.r)
-                              ]),
-                ),
-          ),
-        );
-      });
-
-  
-}
-
-Future<void> _makePhoneCall(String phoneNumber) async {
-  canLaunchUrl(Uri.parse('tel:$phoneNumber')).then((bool result) {
-                if (result) {
-                  launchUrl(Uri.parse('tel:$phoneNumber'), mode: LaunchMode.platformDefault);
-                }
-                else{
-
-                }
-              });
-            }
-          
-    
-  
-
-void showLanguageModal(BuildContext context) {
-  showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: const Radius.circular(16).r),
-      ),
-      backgroundColor: Colors.white,
-      context: context,
-      builder: (context) {
-        return BlocBuilder<LanguageCubit, LanguageState>(
-          builder: (context, state) {
-            return Container(
-              height: 1.sh / 2.5,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(12).r),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16).r,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 10.r,
-                      ),
-                      Center(
-                        child: Container(
-                          width: 40.w,
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                              color: AppColors.textGrey,
-                              borderRadius: BorderRadius.circular(16.r)),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.r,
-                      ),
-                      Text(
-                        S.of(context).app_language,
-                        style: ts(TS.s24w700).copyWith(color: Colors.black),
-                      ),
-                      SizedBox(
-                        height: 20.r,
-                      ),
-                      ...S.delegate.supportedLocales
-                          .map((e) => Container(
-                                margin: const EdgeInsets.only(bottom: 30).r,
-                                child: Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        context
-                                            .read<LanguageCubit>()
-                                            .changeLang(e.languageCode);
-                                      },
-                                      child: Container(
-                                        width: 24.r,
-                                        height: 24.r,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppColors.selectGrey),
-                                        child: state.langCode == e.languageCode
-                                            ? Center(
-                                                child: Container(
-                                                  width: 14.r,
-                                                  height: 14.r,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color: AppColors
-                                                              .mainGreen),
-                                                ),
-                                              )
-                                            : null,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 20.r,
-                                    ),
-                                    Text(
-                                      Formatter.getLanguageName(e.languageCode),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 27.r),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  S.of(context).name,
+                                  style: ts(TS.s12w400),
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    user?.fullName ?? '',
+                                    style: ts(TS.s14w400)
+                                        .copyWith(color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                              if (user?.phone != null)
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  title: Text(
+                                    S.of(context).number,
+                                    style: ts(TS.s12w400),
+                                  ),
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      user?.phone ?? '',
                                       style: ts(TS.s14w400)
                                           .copyWith(color: Colors.black),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ))
-                          .toList()
-                    ]),
+                              if (user?.email != null)
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  title: Text(
+                                    S.of(context).mail,
+                                    style: ts(TS.s12w400),
+                                  ),
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      user?.email ?? '',
+                                      style: ts(TS.s14w400)
+                                          .copyWith(color: Colors.black),
+                                    ),
+                                  ),
+                                )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                                  horizontal: 27, vertical: 15)
+                              .r,
+                          child: Text(
+                            S.of(context).addit_info,
+                            style: ts(TS.s16w700).copyWith(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 10.r),
+                      children: [
+                        //ProfileItemCard(title: S.of(context).push_notification),
+                        ProfileItemCard(
+                          title: S.of(context).app_language,
+                          onTap: () => showLanguageModal(context),
+                        ),
+                        ProfileItemCard(title: S.of(context).my_tours),
+                        ProfileItemCard(
+                          title: S.of(context).emerge_contacts,
+                          onTap: () => showContactsModal(context),
+                        ),
+                        ProfileItemCard(
+                          title: S.of(context).call_center,
+                          onTap: () => showCallCentersModal(context),
+                        ),
+                        ProfileItemCard(title: S.of(context).privat_policy, 
+                        
+                       onTap: () => context.router.push(const PrivatPolicyRoute())),
+                      ]),
+                  if (isAuthorized)
+                    InkWell(
+                      onTap: () {
+                        showAdaptiveDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog.adaptive(
+                                title: Center(
+                                  child: Text(S.of(context).exit_from_app),
+                                ),
+                                actions: <Widget>[
+                                  // Cancel button
+                                  TextButton(
+                                    onPressed: () {
+                                      context.router.pop();
+                                    },
+                                    child: Text(S.of(context).cancel),
+                                  ),
+                                  // Exit button
+                                  TextButton(
+                                    onPressed: () async {
+                                      context
+                                          .read<ProfileCubit>()
+                                          .exit()
+                                          .whenComplete(() {
+                                        context.router.pop();
+                                      });
+                                    },
+                                    child: Text(
+                                      S.of(context).exit,
+                                      style: ts(TS.s14w400)
+                                          .copyWith(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 25.r, vertical: 20.r),
+                        child: Text(
+                          S.of(context).exit,
+                          style: ts(TS.s14w400).copyWith(color: Colors.red),
+                        ),
+                      ),
+                    )
+                ],
               ),
             );
-          },
-        );
-      });
+          }), orElse: () {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          });
+        },
+        listener: (BuildContext context, ProfileState state) {
+          state.maybeWhen(
+            orElse: () {},
+            initialState: (isAuthorized, user) {
+              isAuth = isAuthorized;
+              setState(() {});
+            },
+          );
+        },
+      ),
+    );
+  }
 }

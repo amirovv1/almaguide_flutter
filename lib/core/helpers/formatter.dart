@@ -28,4 +28,16 @@ class Formatter {
         return 'Unknown Language';
     }
   }
+
+
+ static String convertMetersToKilometers(String metersString) {
+    // Преобразуем строку в число
+    double meters = double.parse(metersString);
+
+    // Переводим метры в километры
+    double kilometers = meters / 1000;
+
+    // Возвращаем результат как строку
+    return kilometers.toInt().toString();
+  }
 }

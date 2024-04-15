@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_up_cubit.freezed.dart';
 
@@ -23,7 +24,9 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: email, password: password, fullName: name, phone: phone, image: image);
     result.fold((l) {
       emit(_AuthError(message: mapFailureToMessage(l)));
-    }, (r) {
+    }, (r) async {
+       final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('access', r.access);
       emit(const _AuthSuccess());
     });
     emit(const _InitialPage());

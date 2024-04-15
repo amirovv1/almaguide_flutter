@@ -260,21 +260,141 @@ class S {
     );
   }
 
-  /// `Успешно`
+  /// `Success`
   String get success {
     return Intl.message(
-      'Успешно',
+      'Success',
       name: 'success',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ошибка`
+  /// `Error`
   String get error {
     return Intl.message(
-      'Ошибка',
+      'Error',
       name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message(
+      'Location',
+      name: 'location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Route`
+  String get make_route {
+    return Intl.message(
+      'Create Route',
+      name: 'make_route',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message(
+      'Details',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message(
+      'Reviews',
+      name: 'reviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave a Comment`
+  String get make_comment {
+    return Intl.message(
+      'Leave a Comment',
+      name: 'make_comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Information`
+  String get your_info {
+    return Intl.message(
+      'Your Information',
+      name: 'your_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit`
+  String get exit {
+    return Intl.message(
+      'Exit',
+      name: 'exit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to log out of the account?`
+  String get exit_from_app {
+    return Intl.message(
+      'Are you sure you want to log out of the account?',
+      name: 'exit_from_app',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Information`
+  String get addit_info {
+    return Intl.message(
+      'Additional Information',
+      name: 'addit_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Маршрут`
+  String get route {
+    return Intl.message(
+      'Маршрут',
+      name: 'route',
       desc: '',
       args: [],
     );

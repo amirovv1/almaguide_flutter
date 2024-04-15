@@ -84,6 +84,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/category-24.svg
   String get category24 => 'assets/svg/category-24.svg';
 
+  /// File path: assets/svg/filter-24.svg
+  String get filter24 => 'assets/svg/filter-24.svg';
+
   /// File path: assets/svg/home-goods-24.svg
   String get homeGoods24 => 'assets/svg/home-goods-24.svg';
 
@@ -96,11 +99,15 @@ class $AssetsSvgGen {
   /// File path: assets/svg/phone-24.svg
   String get phone24 => 'assets/svg/phone-24.svg';
 
+  /// File path: assets/svg/sort-24.svg
+  String get sort24 => 'assets/svg/sort-24.svg';
+
   /// File path: assets/svg/user-24.svg
   String get user24 => 'assets/svg/user-24.svg';
 
   /// List of all assets
-  List<String> get values => [ou, catCurort, catFood, catHome, catHotels, catLocation, catNews, catSport, catTransport, category24, homeGoods24, likeOutline24, navigationOutline24, phone24, user24];
+  List<String> get values =>
+      [ou, catCurort, catFood, catHome, catHotels, catLocation, catNews, catSport, catTransport, category24, filter24, homeGoods24, likeOutline24, navigationOutline24, phone24, sort24, user24];
 }
 
 class Assets {

@@ -1,12 +1,14 @@
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeListWidget extends StatelessWidget {
-  const HomeListWidget({Key? key, required this.title}) : super(key: key);
+  const HomeListWidget({Key? key, required this.title, required this.attracts}) : super(key: key);
   final String title;
+  final List<AttractionDto> attracts;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ class HomeListWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              SizedBox(width: 10.r,),
+              SizedBox(
+                width: 10.r,
+              ),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
@@ -56,9 +60,9 @@ class HomeListWidget extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16).r,
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: attracts.length,
             itemBuilder: (context, index) {
-              return CustomCard(index: index);
+              return CustomCard(index: index, attract: attracts[index],);
             },
             separatorBuilder: (context, index) => SizedBox(width: 20.r),
           ),

@@ -2,6 +2,7 @@ import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/core/errors/server_errors.dart';
 import 'package:almaguide_flutter/features/profile/data/auth_remote_ds.dart';
 import 'package:almaguide_flutter/features/profile/domain/models/token_dto.dart';
+import 'package:almaguide_flutter/features/profile/domain/models/user_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -15,6 +16,7 @@ abstract class AuthRepository {
       required String fullName,
       String? phone,
       XFile? image});
+      Future<Either<Failure, UserDto>> getUser();
 }
 
 @LazySingleton(as: AuthRepository)
@@ -52,6 +54,18 @@ class AuthRepositoryImpl extends AuthRepository {
           fullName: fullName,
           phone: phone,
           image: image);
+
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, UserDto>> getUser() async{
+    try {
+      final UserDto result =
+          await remoteDS.getUser();
 
       return Right(result);
     } on ServerException catch (e) {

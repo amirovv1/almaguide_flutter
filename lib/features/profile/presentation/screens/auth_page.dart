@@ -1,8 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/masks_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/auth_cubit/auth_cubit.dart';
+import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/app_form_field.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';
@@ -55,6 +58,7 @@ class _AuthScreenState extends State<AuthScreen> {
             sucess: () {
               SnackBarNotifier().showSuccess(context, S.of(context).success);
               context.router.pop();
+              context.read<ProfileCubit>().initProfile();
             },
             errorState: (message) {
               SnackBarNotifier().showError(context, S.of(context).error);

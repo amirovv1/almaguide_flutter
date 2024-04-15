@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_import
+// ignore_for_file: unnecessary_import, deprecated_member_use
 
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/masks_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
 import 'package:almaguide_flutter/features/profile/bloc/sign_up_cubit/sign_up_cubit.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/app_form_field.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
@@ -54,6 +55,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             sucess: () {
               SnackBarNotifier().showSuccess(context, S.of(context).success);
               context.router.pop();
+                  context.read<ProfileCubit>().initProfile();
+
             },
             errorState: (message) {
               SnackBarNotifier().showError(context, S.of(context).error);

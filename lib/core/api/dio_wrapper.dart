@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:almaguide_flutter/core/api/api_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DioWrapper {
   Dio dio = Dio(BaseOptions(baseUrl: SERVER_));
@@ -29,20 +30,17 @@ class DioWrapper {
           InterceptorsWrapper(
             onRequest: (options, handler) async {
               try {
-                // SharedPreferences prefs = await SharedPreferences.getInstance();
-                // String locale = prefs.getString('lang') ?? 'ru';
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String locale = prefs.getString('langCode') ?? 'ru';
 
-                // String? token = await tokenSaver.getAccessToken();
-                // String? typeToken = await tokenSaver.getTypeToken();
-                // log('TOKEN-----${token ?? 'TOKEN NULL'}');
-                // log(' TYPE-----${typeToken ?? 'TYPE NULL'}');
-                // if (token != null) {
-                //   options.headers = {
-                //     "Accept-Language": locale,
-                //     "Authorization": "$typeToken $token"
-                //   };
-                // }
-                //   options.contentType = '';
+                String? token =  prefs.getString('access');
+               
+                if (token != null) {
+                  options.headers = {
+                    "Accept-Language": locale,
+                    "Authorization": "Bearer $token"
+                  };
+                }
                 return handler.next(options);
               } catch (e) {
                 log('error-${e.toString()}');

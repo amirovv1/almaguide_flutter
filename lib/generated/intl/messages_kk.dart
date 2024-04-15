@@ -22,19 +22,30 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addit_info":
+            MessageLookupByLibrary.simpleMessage("Қосымша мәліметтер"),
         "app_language": MessageLookupByLibrary.simpleMessage("Қолданба тілі"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Туристік Call Center"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Бас тарту"),
         "categories": MessageLookupByLibrary.simpleMessage("Санаттар"),
+        "description": MessageLookupByLibrary.simpleMessage("Сипаттама"),
+        "details": MessageLookupByLibrary.simpleMessage("Мәліметтер"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Аккаунт жоқ па?"),
         "emerge_contacts":
             MessageLookupByLibrary.simpleMessage("Төтенше байланыс"),
-        "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
+        "error": MessageLookupByLibrary.simpleMessage("Қате"),
+        "exit": MessageLookupByLibrary.simpleMessage("Шығу"),
+        "exit_from_app": MessageLookupByLibrary.simpleMessage(
+            "Аккаунттан шығып кеткіңіз келеді ме?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Таңдаулылар"),
         "have_account": MessageLookupByLibrary.simpleMessage("Аккаунт бар ма?"),
         "home": MessageLookupByLibrary.simpleMessage("Басты бет"),
+        "location": MessageLookupByLibrary.simpleMessage("Орналасқан жері"),
         "mail": MessageLookupByLibrary.simpleMessage("Пошта"),
+        "make_comment": MessageLookupByLibrary.simpleMessage("Пікір қалдыру"),
+        "make_route": MessageLookupByLibrary.simpleMessage("Маршрут құру"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
         "my_tours": MessageLookupByLibrary.simpleMessage("Менің турларым"),
         "name": MessageLookupByLibrary.simpleMessage("Аты-жөні"),
@@ -47,8 +58,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Хабарландырулар"),
         "registration": MessageLookupByLibrary.simpleMessage("Тіркеу"),
+        "reviews": MessageLookupByLibrary.simpleMessage("Пікірлер"),
+        "route": MessageLookupByLibrary.simpleMessage("Маршрут"),
         "showAll": MessageLookupByLibrary.simpleMessage("Барлығын көрсету"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Кіру"),
-        "success": MessageLookupByLibrary.simpleMessage("Успешно")
+        "success": MessageLookupByLibrary.simpleMessage("Сәтті"),
+        "your_info": MessageLookupByLibrary.simpleMessage("Сіздің деректеріңіз")
       };
 }

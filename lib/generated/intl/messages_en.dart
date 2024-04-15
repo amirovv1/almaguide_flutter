@@ -22,20 +22,31 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addit_info":
+            MessageLookupByLibrary.simpleMessage("Additional Information"),
         "app_language": MessageLookupByLibrary.simpleMessage("App Language"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Tourist Call Center"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "details": MessageLookupByLibrary.simpleMessage("Details"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "emerge_contacts":
             MessageLookupByLibrary.simpleMessage("Emergency Contacts"),
-        "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "exit_from_app": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to log out of the account?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "location": MessageLookupByLibrary.simpleMessage("Location"),
         "mail": MessageLookupByLibrary.simpleMessage("Email"),
+        "make_comment": MessageLookupByLibrary.simpleMessage("Leave a Comment"),
+        "make_route": MessageLookupByLibrary.simpleMessage("Create Route"),
         "map": MessageLookupByLibrary.simpleMessage("Map"),
         "my_tours": MessageLookupByLibrary.simpleMessage("My Tours"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -48,8 +59,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push Notifications"),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
+        "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
+        "route": MessageLookupByLibrary.simpleMessage("Маршрут"),
         "showAll": MessageLookupByLibrary.simpleMessage("Show All"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
-        "success": MessageLookupByLibrary.simpleMessage("Успешно")
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
+        "your_info": MessageLookupByLibrary.simpleMessage("Your Information")
       };
 }

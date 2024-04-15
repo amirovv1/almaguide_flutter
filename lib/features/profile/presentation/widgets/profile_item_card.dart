@@ -14,7 +14,7 @@ class ProfileItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap, // Передача функции при нажатии
+      onTap: onTap, 
       child: ListTile(
         leading: Text(
           title,

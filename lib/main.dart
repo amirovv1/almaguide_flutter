@@ -1,6 +1,7 @@
 import 'package:almaguide_flutter/core/global_bloc_provider.dart';
 import 'package:almaguide_flutter/core/injection/get_it.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/profile/bloc/language_cubit/language_cubit.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await initLocator();
+  await LocationService().requestPermission();
   runApp(AlmaGuideApp());
 }
 
@@ -22,7 +24,6 @@ class AlmaGuideApp extends StatelessWidget {
   AlmaGuideApp({super.key});
   final AppRouter _appRouter = AppRouter();
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

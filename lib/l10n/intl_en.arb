@@ -20,6 +20,18 @@
   "password": "Password",
   "profile_photo_upload": "Profile Photo Upload (optional)",
   "dont_have_account": "Don't have an account?",
-  "success": "Успешно",
-  "error": "Ошибка"
+  "success": "Success",
+  "error": "Error",
+  "location": "Location",
+  "make_route": "Create Route",
+  "details": "Details",
+  "description": "Description",
+  "reviews": "Reviews",
+  "make_comment": "Leave a Comment",
+  "your_info": "Your Information",
+  "exit": "Exit",
+  "cancel": "Cancel",
+  "exit_from_app": "Are you sure you want to log out of the account?",
+  "addit_info": "Additional Information",
+  "route": "Маршрут"
 }

@@ -20,6 +20,19 @@
   "password": "Құпия сөз",
   "profile_photo_upload": "Профиль фотосуреті (міндетті емес)",
   "dont_have_account": "Аккаунт жоқ па?",
-  "success": "Успешно",
-  "error": "Ошибка"
+  "success": "Сәтті",
+  "error": "Қате",
+  "location": "Орналасқан жері",
+  "make_route": "Маршрут құру",
+  "details": "Мәліметтер",
+  "description": "Сипаттама",
+  "reviews": "Пікірлер",
+  "make_comment": "Пікір қалдыру",
+  "your_info": "Сіздің деректеріңіз",
+  "exit": "Шығу",
+  "cancel": "Бас тарту",
+  "exit_from_app": "Аккаунттан шығып кеткіңіз келеді ме?",
+  "addit_info": "Қосымша мәліметтер",
+  "touristic_call_center": "Туристік call-орталық",
+  "route": "Маршрут"
 }

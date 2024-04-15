@@ -3,6 +3,7 @@
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 enum TS {
   s8w400,
   s9w400,
@@ -14,7 +15,7 @@ enum TS {
   s15w400,
   s8w700,
   s10w400,
-    s11w500,
+  s11w500,
 
   s12w200,
   s12w400,
@@ -35,7 +36,7 @@ enum TS {
   s17w500,
   s18w400,
   s18w500,
-    s18w600,
+  s18w600,
 
   s36w500,
   s36w700,
@@ -73,14 +74,14 @@ TextStyle ts(
           fontSize: 24.sp,
           fontFamily: fontFamily.name,
           color: color);
-     case TS.s11w500:
+    case TS.s11w500:
       return TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 11.sp,
           fontFamily: fontFamily.name,
           color: color);
-          
-     case TS.s18w600:
+
+    case TS.s18w600:
       return TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 18.sp,
@@ -98,13 +99,13 @@ TextStyle ts(
           fontSize: 100.sp,
           fontFamily: fontFamily.name,
           color: color);
-     case TS.s8w400:
+    case TS.s8w400:
       return TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 8.sp,
           fontFamily: fontFamily.name,
           color: color);
-     case TS.s14w700:
+    case TS.s14w700:
       return TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 14.sp,
@@ -315,7 +316,7 @@ TextStyle ts(
           fontSize: 50.sp,
           fontFamily: fontFamily.name,
           color: color);
-          case TS.s70w600:
+    case TS.s70w600:
       return TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 70.sp,
@@ -327,7 +328,7 @@ TextStyle ts(
           fontSize: 60.sp,
           fontFamily: fontFamily.name,
           color: color);
-          
+
     default:
       return const TextStyle();
   }

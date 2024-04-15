@@ -21,5 +21,18 @@
   "profile_photo_upload": "Фото профиля (необязательно)",
   "dont_have_account": "Нет аккаунта?",
   "success": "Успешно",
-  "error": "Ошибка"
+  "error": "Ошибка",
+  "location": "Расположение",
+  "make_route": "Построить маршрут",
+  "details": "Детали",
+  "description": "Описание",
+  "reviews": "Отзывы",
+  "make_comment": "Оставить комментарий",
+  "your_info": "Ваши данные",
+  "exit": "Выйти",
+  "cancel": "Отмена",
+  "exit_from_app": "Вы действительно хотите выйти с аккаунта?",
+  "addit_info": "Дополнительные данные",
+  "touristic_call_center": "Туристический call-центр",
+  "route": "Маршрут"
 }

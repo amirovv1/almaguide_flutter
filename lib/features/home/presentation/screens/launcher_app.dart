@@ -26,7 +26,7 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
         CategoriesMainRoute(),
         MapRoute(),
         FavoritesRoute(),
-        ProfileRoute()
+        ProfileRoute(),
 
         // FoodRoute(),
         // ChartsMainRoute(),
@@ -71,6 +71,7 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
                   iconAsset: Assets.svg.user24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
+             
               ]),
         );
       },

@@ -22,20 +22,32 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addit_info":
+            MessageLookupByLibrary.simpleMessage("Дополнительные данные"),
         "app_language": MessageLookupByLibrary.simpleMessage("Язык приложения"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Туристический call-центр"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "categories": MessageLookupByLibrary.simpleMessage("Категории"),
+        "description": MessageLookupByLibrary.simpleMessage("Описание"),
+        "details": MessageLookupByLibrary.simpleMessage("Детали"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
         "emerge_contacts": MessageLookupByLibrary.simpleMessage(
             "Контакты в чрезвычайных ситуациях"),
         "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
+        "exit": MessageLookupByLibrary.simpleMessage("Выйти"),
+        "exit_from_app": MessageLookupByLibrary.simpleMessage(
+            "Вы действительно хотите выйти с аккаунта?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Избранные"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Уже есть аккаунт? "),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "location": MessageLookupByLibrary.simpleMessage("Расположение"),
         "mail": MessageLookupByLibrary.simpleMessage("Почта"),
+        "make_comment":
+            MessageLookupByLibrary.simpleMessage("Оставить комментарий"),
+        "make_route": MessageLookupByLibrary.simpleMessage("Построить маршрут"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
         "my_tours": MessageLookupByLibrary.simpleMessage("Мои туры"),
         "name": MessageLookupByLibrary.simpleMessage("ФИО"),
@@ -49,8 +61,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push-уведомления"),
         "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
+        "reviews": MessageLookupByLibrary.simpleMessage("Отзывы"),
+        "route": MessageLookupByLibrary.simpleMessage("Маршрут"),
         "showAll": MessageLookupByLibrary.simpleMessage("Показать все"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Войти"),
-        "success": MessageLookupByLibrary.simpleMessage("Успешно")
+        "success": MessageLookupByLibrary.simpleMessage("Успешно"),
+        "your_info": MessageLookupByLibrary.simpleMessage("Ваши данные")
       };
 }

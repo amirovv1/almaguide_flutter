@@ -15,6 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AttractionDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<AttractionDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AttractionDetailScreen(
+          key: args.key,
+          attractId: args.attractId,
+        ),
+      );
+    },
     AuthRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +35,16 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CategoriesMainScreen(),
+      );
+    },
+    CategoryDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<CategoryDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CategoryDetailScreen(
+          key: args.key,
+          title: args.title,
+        ),
       );
     },
     FavoritesRoute.name: (routeData) {
@@ -51,10 +71,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MapScreen(),
       );
     },
+    PrivatPolicyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PrivatPolicyScreen(),
+      );
+    },
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ProfileScreen(),
+      );
+    },
+    SearchRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SearchScreen(),
       );
     },
     SignUpRoute.name: (routeData) {
@@ -63,7 +95,55 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignUpScreen(),
       );
     },
+    WebViewRoute.name: (routeData) {
+      final args = routeData.argsAs<WebViewRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WebViewScreen(
+          key: args.key,
+          url: args.url,
+        ),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [AttractionDetailScreen]
+class AttractionDetailRoute extends PageRouteInfo<AttractionDetailRouteArgs> {
+  AttractionDetailRoute({
+    Key? key,
+    required int attractId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AttractionDetailRoute.name,
+          args: AttractionDetailRouteArgs(
+            key: key,
+            attractId: attractId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AttractionDetailRoute';
+
+  static const PageInfo<AttractionDetailRouteArgs> page =
+      PageInfo<AttractionDetailRouteArgs>(name);
+}
+
+class AttractionDetailRouteArgs {
+  const AttractionDetailRouteArgs({
+    this.key,
+    required this.attractId,
+  });
+
+  final Key? key;
+
+  final int attractId;
+
+  @override
+  String toString() {
+    return 'AttractionDetailRouteArgs{key: $key, attractId: $attractId}';
+  }
 }
 
 /// generated route for
@@ -92,6 +172,44 @@ class CategoriesMainRoute extends PageRouteInfo<void> {
   static const String name = 'CategoriesMainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CategoryDetailScreen]
+class CategoryDetailRoute extends PageRouteInfo<CategoryDetailRouteArgs> {
+  CategoryDetailRoute({
+    Key? key,
+    required String title,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryDetailRoute.name,
+          args: CategoryDetailRouteArgs(
+            key: key,
+            title: title,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryDetailRoute';
+
+  static const PageInfo<CategoryDetailRouteArgs> page =
+      PageInfo<CategoryDetailRouteArgs>(name);
+}
+
+class CategoryDetailRouteArgs {
+  const CategoryDetailRouteArgs({
+    this.key,
+    required this.title,
+  });
+
+  final Key? key;
+
+  final String title;
+
+  @override
+  String toString() {
+    return 'CategoryDetailRouteArgs{key: $key, title: $title}';
+  }
 }
 
 /// generated route for
@@ -151,6 +269,20 @@ class MapRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PrivatPolicyScreen]
+class PrivatPolicyRoute extends PageRouteInfo<void> {
+  const PrivatPolicyRoute({List<PageRouteInfo>? children})
+      : super(
+          PrivatPolicyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PrivatPolicyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
@@ -160,6 +292,20 @@ class ProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SearchScreen]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute({List<PageRouteInfo>? children})
+      : super(
+          SearchRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -176,4 +322,42 @@ class SignUpRoute extends PageRouteInfo<void> {
   static const String name = 'SignUpRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WebViewScreen]
+class WebViewRoute extends PageRouteInfo<WebViewRouteArgs> {
+  WebViewRoute({
+    Key? key,
+    required String url,
+    List<PageRouteInfo>? children,
+  }) : super(
+          WebViewRoute.name,
+          args: WebViewRouteArgs(
+            key: key,
+            url: url,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WebViewRoute';
+
+  static const PageInfo<WebViewRouteArgs> page =
+      PageInfo<WebViewRouteArgs>(name);
+}
+
+class WebViewRouteArgs {
+  const WebViewRouteArgs({
+    this.key,
+    required this.url,
+  });
+
+  final Key? key;
+
+  final String url;
+
+  @override
+  String toString() {
+    return 'WebViewRouteArgs{key: $key, url: $url}';
+  }
 }

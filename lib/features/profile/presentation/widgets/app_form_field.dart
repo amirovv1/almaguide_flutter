@@ -50,14 +50,9 @@ class AppFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(16).r,
           borderSide: const BorderSide(color: AppColors.textGrey),
         ),
-        // focusedBorder: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(borderRadius),
-        //   borderSide: BorderSide(color: borderColor),
-        //),
+        
       ),
-      // inputFormatters: [
-      //   MaskedTextInputFormatter(mask: mask),
-      // ],
+     
     );
   }
 }
