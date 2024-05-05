@@ -12,16 +12,24 @@ import 'package:injectable/injectable.dart';
 abstract class HomeRemoteDS {
   Future<AttractionDto> getAttractionById(
       {required String longitude, required String latitude, required int id});
+
   Future<AttractionDto> getMainAttraction(
       {required String longitude, required String latitude});
+
   Future<List<SubcategoryDto>> getSubcategories(
       {required String longitude, required String latitude});
+
   Future<List<ReviewDto>> getAttractReviews({required int id});
 
-  Future<String> makeAttractRoute(
-      {required String longitude,
-      required String latitude,
-      required int attractId});
+  Future<void> addAttractionToFavorites({required int attraction});
+
+  Future<String> makeAttractRoute({required String longitude,
+    required String latitude,
+    required int attractId});
+
+  Future<List<AttractionDto>> searchAttraction(
+      {required String keyword, required int lat, required int lng});
+
 }
 
 @LazySingleton(as: HomeRemoteDS)
@@ -151,6 +159,46 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
 
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<void> addAttractionToFavorites({required int attraction}) async{
+    try {
+      final response = await dio.post(
+        '${EndPoints.attractions}/favourite/choose/',
+        data: {
+          "attraction": attraction
+        },
+      );
+      // final Map<String, dynamic> responseBody =
+      // response.data as Map<String, dynamic>;
+      // print('-${responseBody['url']}');
+      // return responseBody['url'];
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<AttractionDto>> searchAttraction({required String keyword, required int lat, required int lng}) async {
+    try{
+      final response = await dio.get(
+        '${EndPoints.attractions}?lat=$lat&lng=$lng&search=$keyword',
+      );
+      final Map<String, dynamic> responseBody =
+      response.data as Map<String, dynamic>;
+      print('resp ${response.data}');
+      final res = (responseBody['results'] as List).map((e) => AttractionDto.fromJson(e)).toList();
+      return res;
+    }on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
       throw ServerException(
         message: error['detail'].toString(),
       );

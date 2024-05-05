@@ -2,6 +2,7 @@ import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,8 +18,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-                context.router.push(AttractionDetailRoute(attractId: attract.id));
-
+        context.router.push(AttractionDetailRoute(attractId: attract.id));
       },
       child: Container(
         width: 150.w,
@@ -49,14 +49,17 @@ class CustomCard extends StatelessWidget {
                     height: 100.h,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12).r,
-                      child: 
-                      CachedNetworkImage(imageUrl: attract.image ?? '',     
+                      child: CachedNetworkImage(
+                        errorWidget: (context, url, error) {
+                          return Container(
+                            color: Colors.grey,
+                          );
+                        },
+                        imageUrl: attract.image ?? '',
                         width: 1.sw,
-                        height: 100.h,                  fit: BoxFit.cover,
-      ),
-                      
-                      
-                      
+                        height: 100.h,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(height: 10.r),
@@ -69,6 +72,7 @@ class CustomCard extends StatelessWidget {
                 ],
               ),
             ),
+             Positioned(right: 5, top: 5, child: LikeButton(attractionId: attract.id,)),
           ],
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/auth_cubit/auth_cubit.dart';
 import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/forgot_password_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/app_form_field.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';
@@ -72,6 +73,7 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(16).r,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppFormField(
                       controller: mailController,
@@ -91,6 +93,19 @@ class _AuthScreenState extends State<AuthScreen> {
                       inputType: TextInputType.visiblePassword,
                       inputFormatters: [passwordMaskFormatter],
                       isPassword: true,
+                    ),
+                    SizedBox(
+                      height: 20.r,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.router.push(const ForgotPasswordRoute());
+                      },
+                      child: Text(
+                        'Забыли пароль?',
+                        style: ts(TS.s14w400)
+                            .copyWith(color: AppColors.buttonBlue),
+                      ),
                     ),
                     const Spacer(),
                     Padding(
@@ -135,7 +150,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

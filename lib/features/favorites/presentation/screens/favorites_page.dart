@@ -1,9 +1,11 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
@@ -47,18 +49,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12).r,
-                        
-                          child: Image.asset(
-                            Assets.example.example1.path,
-                            fit: BoxFit
-                                .cover, // Растягивание изображения на весь контейнер
-                          ),
-                        
+                        child: Image.asset(
+                          Assets.example.example1.path,
+                          fit: BoxFit
+                              .cover, // Растягивание изображения на весь контейнер
+                        ),
                       ),
-                      const Positioned(
-                        top: 0,
-                        right: 0,
-                        child: LikeButton())
+                      const Positioned(top: 0, right: 0, child: LikeButton(attractionId: 0,))
                     ],
                   ),
                 ),
@@ -74,7 +71,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ),
                 Text(
                   '12 км',
-                  style: ts(TS.s14w500).copyWith(color: const Color(0xFF1F1F1F)),
+                  style:
+                      ts(TS.s14w500).copyWith(color: const Color(0xFF1F1F1F)),
                 ),
               ],
             );
@@ -88,9 +86,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 }
 
 class LikeButton extends StatefulWidget {
-  const LikeButton({
-    super.key,
-  });
+  const LikeButton({super.key, required this.attractionId});
+
+  final int attractionId;
 
   @override
   State<LikeButton> createState() => _LikeButtonState();
@@ -106,6 +104,11 @@ class _LikeButtonState extends State<LikeButton> {
         setState(() {
           isFav = !isFav;
         });
+        if (isFav) {
+          context
+              .read<HomeCubit>()
+              .addAttractionToFavorite(widget.attractionId, context);
+        }
       },
       child: Container(
         margin: const EdgeInsets.all(10).r,
@@ -113,13 +116,11 @@ class _LikeButtonState extends State<LikeButton> {
         height: 32.r,
         decoration:
             const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-        child: 
-           Center(
-              child: Icon(
-            Icons.favorite,
-            color: isFav ? Colors.red : AppColors.textGrey,
-          )),
-        
+        child: Center(
+            child: Icon(
+          Icons.favorite,
+          color: isFav ? Colors.red : AppColors.textGrey,
+        )),
       ),
     );
   }

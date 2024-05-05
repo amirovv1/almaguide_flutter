@@ -18,6 +18,8 @@ abstract class HomeRepository {
       {required int id});
       Future<Either<Failure, String>> makeAttractRoute(
       {required String lng, required String lat, required int id});
+      Future<Either<Failure, void>> addAttractionToFavorites({required int attraction});
+  Future<Either<Failure, List<AttractionDto>>> searchAttraction({required String keyword, required int lat, required int lng});
 }
 
 @LazySingleton(as: HomeRepository)
@@ -85,6 +87,28 @@ class HomeRepositoryImpl extends HomeRepository {
       final result =
           await remoteDS.makeAttractRoute(longitude: lng, latitude: lat, attractId: id);
 
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addAttractionToFavorites({required int attraction})async {
+    try {
+      final result =
+          await remoteDS.addAttractionToFavorites(attraction: attraction);
+        return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<AttractionDto>>> searchAttraction({required String keyword, required int lat, required int lng}) async {
+    try {
+      final result = await remoteDS.searchAttraction(
+          keyword: keyword, lat: lat, lng: lng);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

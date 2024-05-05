@@ -17,8 +17,9 @@ abstract class AuthRemoteDs {
       required String fullName,
       String? phone,
       XFile? image});
-
-       Future<UserDto> getUser();
+  Future<UserDto> getUser();
+  Future<void> forgotPassword(String email);
+  Future<void> requestNewPassword(String password);
 }
 
 @LazySingleton(as: AuthRemoteDs)
@@ -86,13 +87,12 @@ class AuthRemoteDsImpl extends AuthRemoteDs {
       );
     }
   }
-  
+
   @override
-  Future<UserDto> getUser()async {
-     try {
+  Future<UserDto> getUser() async {
+    try {
       final response = await dio.get(
         EndPoints.user,
-       
       );
       return UserDto.fromJson(
         (response.data as Map<String, dynamic>),
@@ -100,6 +100,40 @@ class AuthRemoteDsImpl extends AuthRemoteDs {
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
 
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    try {
+      await dio.post(
+        EndPoints.forgotPassword,
+        data: {
+          "email": email,
+        },
+      );
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<void> requestNewPassword(String password) async {
+    try {
+      await dio.post(
+        EndPoints.requestNewPassword,
+        data: {
+          "password": password,
+        },
+      );
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
       throw ServerException(
         message: error['detail'].toString(),
       );

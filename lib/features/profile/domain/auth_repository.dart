@@ -16,7 +16,10 @@ abstract class AuthRepository {
       required String fullName,
       String? phone,
       XFile? image});
-      Future<Either<Failure, UserDto>> getUser();
+  Future<Either<Failure, UserDto>> getUser();
+  Future<Either<Failure, void>> forgotPassword(String email);
+  Future<Either<Failure, void>> requestNewPassword(String password);
+
 }
 
 @LazySingleton(as: AuthRepository)
@@ -60,13 +63,32 @@ class AuthRepositoryImpl extends AuthRepository {
       return Left(ServerFailure(message: e.message));
     }
   }
-  
-  @override
-  Future<Either<Failure, UserDto>> getUser() async{
-    try {
-      final UserDto result =
-          await remoteDS.getUser();
 
+  @override
+  Future<Either<Failure, UserDto>> getUser() async {
+    try {
+      final UserDto result = await remoteDS.getUser();
+
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> forgotPassword(String email) async {
+    try {
+      final result = await remoteDS.forgotPassword(email);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> requestNewPassword(String password) async {
+    try {
+      final result = await remoteDS.requestNewPassword(password);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

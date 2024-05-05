@@ -38,7 +38,7 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
               sucess: (popCategories) {
                 return RefreshIndicator.adaptive(
                   onRefresh: () async {
-                    await    context.read<CategoriesCubit>().initCategories();
+                    await context.read<CategoriesCubit>().initCategories();
 
                   },
                   child: SingleChildScrollView(

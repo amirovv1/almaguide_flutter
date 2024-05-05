@@ -26,7 +26,7 @@ mixin _$ReviewDto {
   int get rate => throw _privateConstructorUsedError;
   String get review => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  UserDto get user => throw _privateConstructorUsedError;
+  UserDto? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,9 +45,9 @@ abstract class $ReviewDtoCopyWith<$Res> {
       int rate,
       String review,
       String? description,
-      UserDto user});
+      UserDto? user});
 
-  $UserDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$ReviewDtoCopyWithImpl<$Res, $Val extends ReviewDto>
     Object? rate = null,
     Object? review = null,
     Object? description = freezed,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,17 +91,21 @@ class _$ReviewDtoCopyWithImpl<$Res, $Val extends ReviewDto>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto,
+              as UserDto?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res> get user {
-    return $UserDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserDtoCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -121,10 +125,10 @@ abstract class _$$ReviewDtoImplCopyWith<$Res>
       int rate,
       String review,
       String? description,
-      UserDto user});
+      UserDto? user});
 
   @override
-  $UserDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -143,7 +147,7 @@ class __$$ReviewDtoImplCopyWithImpl<$Res>
     Object? rate = null,
     Object? review = null,
     Object? description = freezed,
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$ReviewDtoImpl(
       id: null == id
@@ -166,10 +170,10 @@ class __$$ReviewDtoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: null == user
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto,
+              as UserDto?,
     ));
   }
 }
@@ -183,7 +187,7 @@ class _$ReviewDtoImpl implements _ReviewDto {
       required this.rate,
       required this.review,
       this.description,
-      required this.user});
+      this.user});
 
   factory _$ReviewDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewDtoImplFromJson(json);
@@ -200,7 +204,7 @@ class _$ReviewDtoImpl implements _ReviewDto {
   @override
   final String? description;
   @override
-  final UserDto user;
+  final UserDto? user;
 
   @override
   String toString() {
@@ -248,7 +252,7 @@ abstract class _ReviewDto implements ReviewDto {
       required final int rate,
       required final String review,
       final String? description,
-      required final UserDto user}) = _$ReviewDtoImpl;
+      final UserDto? user}) = _$ReviewDtoImpl;
 
   factory _ReviewDto.fromJson(Map<String, dynamic> json) =
       _$ReviewDtoImpl.fromJson;
@@ -265,7 +269,7 @@ abstract class _ReviewDto implements ReviewDto {
   @override
   String? get description;
   @override
-  UserDto get user;
+  UserDto? get user;
   @override
   @JsonKey(ignore: true)
   _$$ReviewDtoImplCopyWith<_$ReviewDtoImpl> get copyWith =>

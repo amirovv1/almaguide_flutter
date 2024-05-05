@@ -14,7 +14,7 @@ class ReviewDto with _$ReviewDto {
     required int rate,
     required String review,
     final String? description,
-    required UserDto user,
+    final UserDto? user,
   }) = _ReviewDto;
 
   factory ReviewDto.fromJson(Map<String, dynamic> json) =>

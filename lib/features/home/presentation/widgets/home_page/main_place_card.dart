@@ -41,6 +41,11 @@ class MainPlaceCard extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(12).r,
                 child: CachedNetworkImage(
+                  errorWidget: (context, url, error) {
+                    return Container(
+                      color: Colors.grey,
+                    );
+                  },
                   imageUrl: backgroundImage,
                   fit: BoxFit.cover,
                 )),

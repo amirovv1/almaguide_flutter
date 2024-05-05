@@ -34,7 +34,9 @@ class CategoriesGridView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // ignore: deprecated_member_use
-        Image.network(icon, color: Colors.white),
+        Image.network(icon, color: Colors.white, errorBuilder: (cont, obj, trace){
+          return Container(color: Colors.black,);
+        },),
         SizedBox(height: 8.r),
         Text(
           title,

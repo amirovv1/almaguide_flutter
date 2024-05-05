@@ -347,7 +347,7 @@ class ReviewWidget extends StatelessWidget {
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
-                                  imageUrl: review.user.photo ?? '',
+                                  imageUrl: review.user?.photo ?? '',
                                   fit: BoxFit.cover,
                                   errorWidget: (context, url, error) {
                                     return Container(
@@ -363,7 +363,7 @@ class ReviewWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                review.user.fullName ?? '',
+                                review.user?.fullName ?? '',
                                 style: ts(TS.s12w400)
                                     .copyWith(color: Colors.black),
                               ),

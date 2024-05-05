@@ -11,7 +11,7 @@ class AttractionDto with _$AttractionDto {
     required String name,
     final String? image,
     final String? distance,
-        final String? description,
+    final String? description,
 
     @JsonValue('category_icon') final String? categoryIcon,
             final List<DetailsDto>? details,

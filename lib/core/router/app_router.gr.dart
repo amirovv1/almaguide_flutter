@@ -47,10 +47,22 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    EnterNewPasswordRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EnterNewPasswordPage(),
+      );
+    },
     FavoritesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const FavoritesScreen(),
+      );
+    },
+    ForgotPasswordRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ForgotPasswordPage(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -69,6 +81,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MapScreen(),
+      );
+    },
+    OtpForgotPasswordRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OtpForgotPasswordPage(),
+      );
+    },
+    PasswordSuccessChangeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PasswordSuccessChangePage(),
       );
     },
     PrivatPolicyRoute.name: (routeData) {
@@ -213,6 +237,20 @@ class CategoryDetailRouteArgs {
 }
 
 /// generated route for
+/// [EnterNewPasswordPage]
+class EnterNewPasswordRoute extends PageRouteInfo<void> {
+  const EnterNewPasswordRoute({List<PageRouteInfo>? children})
+      : super(
+          EnterNewPasswordRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EnterNewPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [FavoritesScreen]
 class FavoritesRoute extends PageRouteInfo<void> {
   const FavoritesRoute({List<PageRouteInfo>? children})
@@ -222,6 +260,20 @@ class FavoritesRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FavoritesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ForgotPasswordPage]
+class ForgotPasswordRoute extends PageRouteInfo<void> {
+  const ForgotPasswordRoute({List<PageRouteInfo>? children})
+      : super(
+          ForgotPasswordRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgotPasswordRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -264,6 +316,34 @@ class MapRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OtpForgotPasswordPage]
+class OtpForgotPasswordRoute extends PageRouteInfo<void> {
+  const OtpForgotPasswordRoute({List<PageRouteInfo>? children})
+      : super(
+          OtpForgotPasswordRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OtpForgotPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PasswordSuccessChangePage]
+class PasswordSuccessChangeRoute extends PageRouteInfo<void> {
+  const PasswordSuccessChangeRoute({List<PageRouteInfo>? children})
+      : super(
+          PasswordSuccessChangeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PasswordSuccessChangeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

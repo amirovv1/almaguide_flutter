@@ -1,5 +1,8 @@
 import 'package:almaguide_flutter/core/errors/failure.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/domain/auth_repository.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,14 +20,34 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await repo.createJTW(email: email, password: password);
     result.fold((l) {
       emit(_AuthError(message: mapFailureToMessage(l)));
-          emit(const _InitialPage());
-
+      emit(const _InitialPage());
     }, (r) async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('access', r.access);
       emit(const _AuthSuccess());
       emit(const _InitialPage());
+    });
+  }
 
+  Future<void> forgotPassword(String email, BuildContext context) async {
+    emit(const _AuthLoading());
+    final result = await repo.forgotPassword(email);
+    result.fold((l) {
+      emit(_AuthError(message: l.toString()));
+      emit(const _InitialPage());
+    }, (r) {
+      emit(const _InitialPage());
+      context.router.popAndPush(const OtpForgotPasswordRoute());
+    });
+  }
+  Future<void> requestNewPassword(String password, BuildContext context) async {
+    emit(const _AuthLoading());
+    final result = await repo.requestNewPassword(password);
+    result.fold((l) {
+      emit(_AuthError(message: l.toString()));
+      emit(const _InitialPage());
+    }, (r) {
+      context.router.popAndPush(const PasswordSuccessChangeRoute());
     });
   }
 }

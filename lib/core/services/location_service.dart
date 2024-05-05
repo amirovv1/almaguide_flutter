@@ -6,10 +6,12 @@ class LocationService {
   static const double defaultLongitude = 76.9450;
 
   Future<void> requestPermission() async {
-    await location.requestPermission();
+    final res = await location.requestPermission();
+    print("location res $res");
   }
 
   Future<LocationData> getCurrentLocation() async {
+
     try {
       bool serviceEnabled = await location.serviceEnabled();
 

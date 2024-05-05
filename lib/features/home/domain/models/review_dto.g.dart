@@ -13,7 +13,9 @@ _$ReviewDtoImpl _$$ReviewDtoImplFromJson(Map<String, dynamic> json) =>
       rate: json['rate'] as int,
       review: json['review'] as String,
       description: json['description'] as String?,
-      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : UserDto.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ReviewDtoImplToJson(_$ReviewDtoImpl instance) =>

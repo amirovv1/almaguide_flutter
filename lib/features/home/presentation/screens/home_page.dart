@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             orElse: () {
               return const Center(child: CircularProgressIndicator.adaptive());
             },
-            sucess: (attractionDto, subs) {
+            sucess: (attractionDto, subs, attractionList) {
               return RefreshIndicator.adaptive(
                 onRefresh: () async {
                   await context.read<HomeCubit>().initHome();

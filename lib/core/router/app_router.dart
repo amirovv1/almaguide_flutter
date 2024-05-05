@@ -8,6 +8,10 @@ import 'package:almaguide_flutter/features/home/presentation/screens/search_page
 import 'package:almaguide_flutter/features/home/presentation/screens/web_view_page.dart';
 import 'package:almaguide_flutter/features/map/presentation/screens/map_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/auth_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/enter_new_password_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/forgot_password_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/otp_forgot_password_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/password_success_change.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/privat_policy_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/profile_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/sign_up_page.dart';
@@ -32,6 +36,10 @@ class AppRouter extends _$AppRouter {
         ]),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: ForgotPasswordRoute.page),
+        AutoRoute(page: OtpForgotPasswordRoute.page),
+        AutoRoute(page: EnterNewPasswordRoute.page),
+        AutoRoute(page: PasswordSuccessChangeRoute.page),
         AutoRoute(page: AttractionDetailRoute.page),
         AutoRoute(page: PrivatPolicyRoute.page),
         AutoRoute(page: SearchRoute.page),
