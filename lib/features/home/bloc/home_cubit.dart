@@ -21,7 +21,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit(this.repo) : super(const HomeState.initialState());
   late AttractionDto _attractionDto;
-  late List<SubcategoryDto> _subsList;
+  List<SubcategoryDto> _subsList = [];
 
   Future<void> initHome() async {
     emit(const _HomeLoading());
@@ -41,7 +41,7 @@ class HomeCubit extends Cubit<HomeState> {
     }, (r) {
       _subsList = r;
     });
-
+    await getFavorites();
     emit(_HomeSuccess(attractionDto: _attractionDto, subsList: _subsList));
   }
 
@@ -64,51 +64,45 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> addAttractionToFavorite(
       int attraction, BuildContext context) async {
-    emit(_HomeLoading());
-
+    //emit(const _HomeLoading());
     final result = await repo.addAttractionToFavorites(attraction: attraction);
     result.fold((l) {
       emit(_HomeError(message: mapFailureToMessage(l)));
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
     }, (r) {
-      emit(_HomeSuccess());
-      getFavorites(context);
+      getFavorites();
     });
-    print("state ${state.toString()}");
   }
 
   Future<void> deleteFromFavorite(
       int attractionId, BuildContext context) async {
-    emit(_HomeLoading());
-
+    //emit(const _HomeLoading());
     final result = await repo.deleteFromFavorites(attractionId);
     result.fold((l) {
       emit(_HomeError(message: mapFailureToMessage(l)));
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
     }, (r) {
-      emit(_HomeSuccess());
-      getFavorites(context);
+      getFavorites();
     });
-    print("state ${state.toString()}");
   }
 
-  Future<void> getFavorites(BuildContext context) async {
-    emit(_HomeLoading());
+  Future<void> getFavorites() async {
+    //emit(_HomeLoading());
     final location = await LocationService().getCurrentLocation();
     final result = await repo.getFavorites(
         lat: location.latitude.toString(), lng: location.longitude.toString());
     result.fold((l) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
     }, (r) {
+      print("R is $r");
       emit(_HomeSuccess(
           favoriteAttractions: r,
           attractionDto: _attractionDto,
           subsList: _subsList));
     });
-    print("state ${state.toString()}");
   }
 
   Future<void> getStories() async {
