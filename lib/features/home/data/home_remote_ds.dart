@@ -5,6 +5,7 @@ import 'package:almaguide_flutter/core/api/dio_wrapper.dart';
 import 'package:almaguide_flutter/core/errors/server_errors.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -23,13 +24,21 @@ abstract class HomeRemoteDS {
 
   Future<void> addAttractionToFavorites({required int attraction});
 
-  Future<String> makeAttractRoute({required String longitude,
-    required String latitude,
-    required int attractId});
+  Future<String> makeAttractRoute(
+      {required String longitude,
+      required String latitude,
+      required int attractId});
 
   Future<List<AttractionDto>> searchAttraction(
       {required String keyword, required int lat, required int lng});
 
+  Future<void> deleteFromFavorites(int id);
+
+  Future<String> getAttractionRoutUrl(int id, String lat, String lng);
+
+  Future<List<AttractionDto>> getFavorites({required String lat, required String lng});
+
+  Future<List<StoryDto>> getStories();
 }
 
 @LazySingleton(as: HomeRemoteDS)
@@ -166,13 +175,11 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
   }
 
   @override
-  Future<void> addAttractionToFavorites({required int attraction}) async{
+  Future<void> addAttractionToFavorites({required int attraction}) async {
     try {
       final response = await dio.post(
         '${EndPoints.attractions}/favourite/choose/',
-        data: {
-          "attraction": attraction
-        },
+        data: {"attraction": attraction},
       );
       // final Map<String, dynamic> responseBody =
       // response.data as Map<String, dynamic>;
@@ -187,17 +194,88 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
   }
 
   @override
-  Future<List<AttractionDto>> searchAttraction({required String keyword, required int lat, required int lng}) async {
-    try{
+  Future<List<AttractionDto>> searchAttraction(
+      {required String keyword, required int lat, required int lng}) async {
+    try {
       final response = await dio.get(
         '${EndPoints.attractions}?lat=$lat&lng=$lng&search=$keyword',
       );
       final Map<String, dynamic> responseBody =
-      response.data as Map<String, dynamic>;
-      print('resp ${response.data}');
-      final res = (responseBody['results'] as List).map((e) => AttractionDto.fromJson(e)).toList();
+          response.data as Map<String, dynamic>;
+      final res = (responseBody['results'] as List)
+          .map((e) => AttractionDto.fromJson(e))
+          .toList();
       return res;
-    }on DioException catch (e) {
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<void> deleteFromFavorites(int id) async {
+    try {
+      await dio.delete(
+        EndPoints.deleteFromFavorites(id),
+      );
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<String> getAttractionRoutUrl(int id, String lat, String lng) async {
+    try {
+      final response = await dio
+          .get("${EndPoints.getAttractionRoutUrl(id)}?lat=$lat&lng=$lng");
+      final Map<String, dynamic> responseBody =
+          response.data as Map<String, dynamic>;
+      return responseBody["url"];
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<AttractionDto>> getFavorites({required String lat, required String lng}) async {
+    try {
+      final response = await dio.get(
+        '${EndPoints.getFavorites}?lat=$lat&lng=$lng',
+      );
+      final Map<String, dynamic> responseBody =
+      response.data as Map<String, dynamic>;
+      final res = (responseBody['results'] as List)
+          .map((e) => AttractionDto.fromJson(e))
+          .toList();
+      return res;
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<StoryDto>> getStories() async {
+
+    try {
+      final response = await dio.get(
+        EndPoints.getStories,
+      );
+      final res = (response.data as List)
+          .map((e) => StoryDto.fromJson(e))
+          .toList();
+      return res;
+    } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
       throw ServerException(
         message: error['detail'].toString(),

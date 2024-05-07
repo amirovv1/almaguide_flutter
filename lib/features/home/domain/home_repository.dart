@@ -3,6 +3,7 @@ import 'package:almaguide_flutter/core/errors/server_errors.dart';
 import 'package:almaguide_flutter/features/home/data/home_remote_ds.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -14,12 +15,21 @@ abstract class HomeRepository {
       {required String lng, required String lat});
   Future<Either<Failure, AttractionDto>> getAttractionByID(
       {required String lng, required String lat, required int id});
-      Future<Either<Failure, List<ReviewDto>>> getAttractReviews(
-      {required int id});
-      Future<Either<Failure, String>> makeAttractRoute(
+  Future<Either<Failure, List<ReviewDto>>> getAttractReviews({required int id});
+  Future<Either<Failure, String>> makeAttractRoute(
       {required String lng, required String lat, required int id});
-      Future<Either<Failure, void>> addAttractionToFavorites({required int attraction});
-  Future<Either<Failure, List<AttractionDto>>> searchAttraction({required String keyword, required int lat, required int lng});
+  Future<Either<Failure, void>> addAttractionToFavorites(
+      {required int attraction});
+  Future<Either<Failure, List<AttractionDto>>> searchAttraction(
+      {required String keyword, required int lat, required int lng});
+  Future<Either<Failure, void>> deleteFromFavorites(int id);
+
+  Future<Either<Failure, String>> getAttractionRoutUrl(
+      {required int id, required String lat, required String lng});
+
+  Future<Either<Failure, List<AttractionDto>>> getFavorites(
+      {required String lat, required String lng});
+  Future<Either<Failure, List<StoryDto>>> getStories();
 }
 
 @LazySingleton(as: HomeRepository)
@@ -68,24 +78,12 @@ class HomeRepositoryImpl extends HomeRepository {
       return Left(ServerFailure(message: e.message));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<ReviewDto>>> getAttractReviews({required int id})async {
+  Future<Either<Failure, List<ReviewDto>>> getAttractReviews(
+      {required int id}) async {
     try {
-      final result =
-          await remoteDS.getAttractReviews(id: id);
-
-      return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    }
-  }
-  
-  @override
-  Future<Either<Failure, String>> makeAttractRoute({required String lng, required String lat, required int id})async {
-     try {
-      final result =
-          await remoteDS.makeAttractRoute(longitude: lng, latitude: lat, attractId: id);
+      final result = await remoteDS.getAttractReviews(id: id);
 
       return Right(result);
     } on ServerException catch (e) {
@@ -94,21 +92,78 @@ class HomeRepositoryImpl extends HomeRepository {
   }
 
   @override
-  Future<Either<Failure, void>> addAttractionToFavorites({required int attraction})async {
+  Future<Either<Failure, String>> makeAttractRoute(
+      {required String lng, required String lat, required int id}) async {
+    try {
+      final result = await remoteDS.makeAttractRoute(
+          longitude: lng, latitude: lat, attractId: id);
+
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addAttractionToFavorites(
+      {required int attraction}) async {
     try {
       final result =
           await remoteDS.addAttractionToFavorites(attraction: attraction);
-        return Right(result);
+      return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
     }
   }
 
   @override
-  Future<Either<Failure, List<AttractionDto>>> searchAttraction({required String keyword, required int lat, required int lng}) async {
+  Future<Either<Failure, List<AttractionDto>>> searchAttraction(
+      {required String keyword, required int lat, required int lng}) async {
     try {
-      final result = await remoteDS.searchAttraction(
-          keyword: keyword, lat: lat, lng: lng);
+      final result =
+          await remoteDS.searchAttraction(keyword: keyword, lat: lat, lng: lng);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteFromFavorites(int id) async {
+    try {
+      await remoteDS.deleteFromFavorites(id);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getAttractionRoutUrl(
+      {required int id, required String lat, required String lng}) async {
+    try {
+      final result = await remoteDS.getAttractionRoutUrl(id, lat, lng);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<AttractionDto>>> getFavorites(
+      {required String lat, required String lng}) async {
+    try {
+      final result = await remoteDS.getFavorites(lat: lat, lng: lng);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StoryDto>>> getStories() async {
+    try {
+      final result = await remoteDS.getStories();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

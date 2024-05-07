@@ -44,7 +44,7 @@ class AttractionDetailsCubit extends Cubit<AttractionDetailsState> {
 
   Future<String?> attractRoute() async {
     final location = await LocationService().getCurrentLocation();
-    final result = await repo.makeAttractRoute(
+    final result = await repo.getAttractionRoutUrl(
         lng: location.longitude.toString(),
         lat: location.latitude.toString(),
         id: _attractionDto.id);

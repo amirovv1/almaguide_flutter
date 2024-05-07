@@ -21,8 +21,12 @@ mixin _$HomeState {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)
+    required TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,8 +35,12 @@ mixin _$HomeState {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult? Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,8 +49,12 @@ mixin _$HomeState {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
     required TResult orElse(),
   }) =>
@@ -132,8 +144,12 @@ class _$InitialPageImpl implements _InitialPage {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)
+    required TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)
         sucess,
   }) {
     return initialState();
@@ -145,8 +161,12 @@ class _$InitialPageImpl implements _InitialPage {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult? Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
   }) {
     return initialState?.call();
@@ -158,8 +178,12 @@ class _$InitialPageImpl implements _InitialPage {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
     required TResult orElse(),
   }) {
@@ -252,8 +276,12 @@ class _$HomeLoadingImpl implements _HomeLoading {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)
+    required TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)
         sucess,
   }) {
     return loadingState();
@@ -265,8 +293,12 @@ class _$HomeLoadingImpl implements _HomeLoading {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult? Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
   }) {
     return loadingState?.call();
@@ -278,8 +310,12 @@ class _$HomeLoadingImpl implements _HomeLoading {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
     required TResult orElse(),
   }) {
@@ -399,8 +435,12 @@ class _$HomeErrorImpl implements _HomeError {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)
+    required TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)
         sucess,
   }) {
     return errorState(message);
@@ -412,8 +452,12 @@ class _$HomeErrorImpl implements _HomeError {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult? Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
   }) {
     return errorState?.call(message);
@@ -425,8 +469,12 @@ class _$HomeErrorImpl implements _HomeError {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
     required TResult orElse(),
   }) {
@@ -491,8 +539,10 @@ abstract class _$$HomeSuccessImplCopyWith<$Res> {
   @useResult
   $Res call(
       {AttractionDto? attractionDto,
+      List<StoryDto> stories,
       List<SubcategoryDto> subsList,
-      List<AttractionDto> attractionsList});
+      List<AttractionDto> attractionsList,
+      List<AttractionDto> favoriteAttractions});
 
   $AttractionDtoCopyWith<$Res>? get attractionDto;
 }
@@ -509,14 +559,20 @@ class __$$HomeSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? attractionDto = freezed,
+    Object? stories = null,
     Object? subsList = null,
     Object? attractionsList = null,
+    Object? favoriteAttractions = null,
   }) {
     return _then(_$HomeSuccessImpl(
       attractionDto: freezed == attractionDto
           ? _value.attractionDto
           : attractionDto // ignore: cast_nullable_to_non_nullable
               as AttractionDto?,
+      stories: null == stories
+          ? _value._stories
+          : stories // ignore: cast_nullable_to_non_nullable
+              as List<StoryDto>,
       subsList: null == subsList
           ? _value._subsList
           : subsList // ignore: cast_nullable_to_non_nullable
@@ -524,6 +580,10 @@ class __$$HomeSuccessImplCopyWithImpl<$Res>
       attractionsList: null == attractionsList
           ? _value._attractionsList
           : attractionsList // ignore: cast_nullable_to_non_nullable
+              as List<AttractionDto>,
+      favoriteAttractions: null == favoriteAttractions
+          ? _value._favoriteAttractions
+          : favoriteAttractions // ignore: cast_nullable_to_non_nullable
               as List<AttractionDto>,
     ));
   }
@@ -546,13 +606,26 @@ class __$$HomeSuccessImplCopyWithImpl<$Res>
 class _$HomeSuccessImpl implements _HomeSuccess {
   const _$HomeSuccessImpl(
       {this.attractionDto,
+      final List<StoryDto> stories = const [],
       final List<SubcategoryDto> subsList = const [],
-      final List<AttractionDto> attractionsList = const []})
-      : _subsList = subsList,
-        _attractionsList = attractionsList;
+      final List<AttractionDto> attractionsList = const [],
+      final List<AttractionDto> favoriteAttractions = const []})
+      : _stories = stories,
+        _subsList = subsList,
+        _attractionsList = attractionsList,
+        _favoriteAttractions = favoriteAttractions;
 
   @override
   final AttractionDto? attractionDto;
+  final List<StoryDto> _stories;
+  @override
+  @JsonKey()
+  List<StoryDto> get stories {
+    if (_stories is EqualUnmodifiableListView) return _stories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stories);
+  }
+
   final List<SubcategoryDto> _subsList;
   @override
   @JsonKey()
@@ -571,9 +644,19 @@ class _$HomeSuccessImpl implements _HomeSuccess {
     return EqualUnmodifiableListView(_attractionsList);
   }
 
+  final List<AttractionDto> _favoriteAttractions;
+  @override
+  @JsonKey()
+  List<AttractionDto> get favoriteAttractions {
+    if (_favoriteAttractions is EqualUnmodifiableListView)
+      return _favoriteAttractions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoriteAttractions);
+  }
+
   @override
   String toString() {
-    return 'HomeState.sucess(attractionDto: $attractionDto, subsList: $subsList, attractionsList: $attractionsList)';
+    return 'HomeState.sucess(attractionDto: $attractionDto, stories: $stories, subsList: $subsList, attractionsList: $attractionsList, favoriteAttractions: $favoriteAttractions)';
   }
 
   @override
@@ -583,17 +666,22 @@ class _$HomeSuccessImpl implements _HomeSuccess {
             other is _$HomeSuccessImpl &&
             (identical(other.attractionDto, attractionDto) ||
                 other.attractionDto == attractionDto) &&
+            const DeepCollectionEquality().equals(other._stories, _stories) &&
             const DeepCollectionEquality().equals(other._subsList, _subsList) &&
             const DeepCollectionEquality()
-                .equals(other._attractionsList, _attractionsList));
+                .equals(other._attractionsList, _attractionsList) &&
+            const DeepCollectionEquality()
+                .equals(other._favoriteAttractions, _favoriteAttractions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       attractionDto,
+      const DeepCollectionEquality().hash(_stories),
       const DeepCollectionEquality().hash(_subsList),
-      const DeepCollectionEquality().hash(_attractionsList));
+      const DeepCollectionEquality().hash(_attractionsList),
+      const DeepCollectionEquality().hash(_favoriteAttractions));
 
   @JsonKey(ignore: true)
   @override
@@ -607,11 +695,16 @@ class _$HomeSuccessImpl implements _HomeSuccess {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)
+    required TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)
         sucess,
   }) {
-    return sucess(attractionDto, subsList, attractionsList);
+    return sucess(
+        attractionDto, stories, subsList, attractionsList, favoriteAttractions);
   }
 
   @override
@@ -620,11 +713,16 @@ class _$HomeSuccessImpl implements _HomeSuccess {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult? Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
   }) {
-    return sucess?.call(attractionDto, subsList, attractionsList);
+    return sucess?.call(
+        attractionDto, stories, subsList, attractionsList, favoriteAttractions);
   }
 
   @override
@@ -633,13 +731,18 @@ class _$HomeSuccessImpl implements _HomeSuccess {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(AttractionDto? attractionDto,
-            List<SubcategoryDto> subsList, List<AttractionDto> attractionsList)?
+    TResult Function(
+            AttractionDto? attractionDto,
+            List<StoryDto> stories,
+            List<SubcategoryDto> subsList,
+            List<AttractionDto> attractionsList,
+            List<AttractionDto> favoriteAttractions)?
         sucess,
     required TResult orElse(),
   }) {
     if (sucess != null) {
-      return sucess(attractionDto, subsList, attractionsList);
+      return sucess(attractionDto, stories, subsList, attractionsList,
+          favoriteAttractions);
     }
     return orElse();
   }
@@ -685,12 +788,16 @@ class _$HomeSuccessImpl implements _HomeSuccess {
 abstract class _HomeSuccess implements HomeState {
   const factory _HomeSuccess(
       {final AttractionDto? attractionDto,
+      final List<StoryDto> stories,
       final List<SubcategoryDto> subsList,
-      final List<AttractionDto> attractionsList}) = _$HomeSuccessImpl;
+      final List<AttractionDto> attractionsList,
+      final List<AttractionDto> favoriteAttractions}) = _$HomeSuccessImpl;
 
   AttractionDto? get attractionDto;
+  List<StoryDto> get stories;
   List<SubcategoryDto> get subsList;
   List<AttractionDto> get attractionsList;
+  List<AttractionDto> get favoriteAttractions;
   @JsonKey(ignore: true)
   _$$HomeSuccessImplCopyWith<_$HomeSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

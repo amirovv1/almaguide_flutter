@@ -3,8 +3,12 @@ import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_widget.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/main_place_card.dart';
+import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/stories_list.dart';
+import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/stories_thumbnail.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -55,27 +59,58 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return state.maybeWhen(
+          return state.maybeMap(
             orElse: () {
               return const Center(child: CircularProgressIndicator.adaptive());
             },
-            sucess: (attractionDto, subs, attractionList) {
+            loadingState: (load) =>
+                const Center(child: CircularProgressIndicator.adaptive()),
+            sucess: (success) {
               return RefreshIndicator.adaptive(
                 onRefresh: () async {
                   await context.read<HomeCubit>().initHome();
                 },
                 child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
-                    if(attractionDto != null)  MainPlaceCard(
-                        backgroundImage: attractionDto.image ?? '',
-                        name: attractionDto.name ,
-                        distance: attractionDto.distance ?? '', id: attractionDto.id,
+                      if(success.stories.isNotEmpty)
+                      Container(
+                        width: 300.w,
+                        height: 150.h,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (ctx1, index) {
+                            return Container(
+                              height: 150.h,
+                              width: 100.w,
+                              child:  StoriesThumbnail(
+                                  url: success.stories[index].uploadedFile ??""
+                            ));
+                          },
+                          separatorBuilder: (ctx2, index) {
+                            return SizedBox(
+                              width: 10.w,
+                            );
+                          },
+                          itemCount: success.stories.length,
+                        ),
                       ),
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      if (success.attractionDto != null)
+                        MainPlaceCard(
+                          backgroundImage: success.attractionDto?.image ?? '',
+                          name: success.attractionDto!.name,
+                          distance: success.attractionDto?.distance ?? '',
+                          id: success.attractionDto?.id ?? 0,
+                        ),
                       SizedBox(
                         height: 10.h,
                       ),
-                      ...subs
+                      ...success.subsList
                           .map((e) => Column(
                                 children: [
                                   HomeListWidget(

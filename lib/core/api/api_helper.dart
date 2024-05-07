@@ -16,5 +16,6 @@ mixin EndPoints {
   static const String routeAttraction = '/attractions/routes';
   static  String getAttractionRoutUrl(int id) => "/attractions/routes/$id/yandex/";
   static  String deleteFromFavorites(int id) => "/attractions/favourite/$id/chosen/";
-
+  static const String getFavorites = "/attractions/favourite";
+  static const String getStories = "/stories/";
 }

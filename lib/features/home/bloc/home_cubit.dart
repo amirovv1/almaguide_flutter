@@ -4,6 +4,7 @@ import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/home/domain/home_repository.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> initHome() async {
     emit(const _HomeLoading());
+    getStories();
     final location = await LocationService().getCurrentLocation();
     final attrResult = await repo.getMainAttraction(
         lat: location.latitude.toString(), lng: location.longitude.toString());
@@ -55,15 +57,66 @@ class HomeCubit extends Cubit<HomeState> {
         emit(_HomeError(message: mapFailureToMessage(l)));
       }, (r) {
         emit(_HomeSuccess(attractionsList: r));
+        initHome();
       });
     });
   }
 
-  Future<void> addAttractionToFavorite(int attraction, BuildContext context) async {
+  Future<void> addAttractionToFavorite(
+      int attraction, BuildContext context) async {
+    emit(_HomeLoading());
+
     final result = await repo.addAttractionToFavorites(attraction: attraction);
-    result.fold((l){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
-    }, (r) {});
+    result.fold((l) {
+      emit(_HomeError(message: mapFailureToMessage(l)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
+    }, (r) {
+      emit(_HomeSuccess());
+      getFavorites(context);
+    });
+    print("state ${state.toString()}");
+  }
+
+  Future<void> deleteFromFavorite(
+      int attractionId, BuildContext context) async {
+    emit(_HomeLoading());
+
+    final result = await repo.deleteFromFavorites(attractionId);
+    result.fold((l) {
+      emit(_HomeError(message: mapFailureToMessage(l)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
+    }, (r) {
+      emit(_HomeSuccess());
+      getFavorites(context);
+    });
+    print("state ${state.toString()}");
+  }
+
+  Future<void> getFavorites(BuildContext context) async {
+    emit(_HomeLoading());
+    final location = await LocationService().getCurrentLocation();
+    final result = await repo.getFavorites(
+        lat: location.latitude.toString(), lng: location.longitude.toString());
+    result.fold((l) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
+    }, (r) {
+      emit(_HomeSuccess(
+          favoriteAttractions: r,
+          attractionDto: _attractionDto,
+          subsList: _subsList));
+    });
+    print("state ${state.toString()}");
+  }
+
+  Future<void> getStories() async {
+    final result = await repo.getStories();
+    result.fold((l) {}, (r) {
+      emit(_HomeSuccess(
+          stories: r.isEmpty ? [] : r,));
+    });
   }
 }
 
@@ -75,7 +128,9 @@ class HomeState with _$HomeState {
       _HomeError;
   const factory HomeState.sucess({
     final AttractionDto? attractionDto,
+    @Default([]) List<StoryDto> stories,
     @Default([]) List<SubcategoryDto> subsList,
     @Default([]) List<AttractionDto> attractionsList,
+    @Default([]) List<AttractionDto> favoriteAttractions,
   }) = _HomeSuccess;
 }
