@@ -11,7 +11,7 @@ _$StoryDtoImpl _$$StoryDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       title: json['title'] as String,
       uploadedFile: json['uploadedFile'] as String?,
-      seenCount: json['seenCount'] as int,
+      seenCount: json['seenCount'] as int?,
     );
 
 Map<String, dynamic> _$$StoryDtoImplToJson(_$StoryDtoImpl instance) =>

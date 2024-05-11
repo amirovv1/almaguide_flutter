@@ -21,7 +21,8 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen>
     with TickerProviderStateMixin {
   @override
-  void initState() {
+  void initState(){
+    context.read<HomeCubit>().getFavorites();
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
@@ -131,14 +132,9 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                 backgroundColor: Colors.white,
                 body: RefreshIndicator.adaptive(
                   onRefresh: () async {},
-                  child: success.favoriteAttractions.isEmpty
-                      ? Center(
-                          child: Text('Добавьте в избранное'),
-                        )
-                      : ListView.separated(
+                  child: ListView.separated(
                           padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 20)
-                              .r,
+                                  horizontal: 16, vertical: 20),
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -154,8 +150,8 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                                       ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(12).r,
-                                        child: Image.asset(
-                                          Assets.example.example1.path,
+                                        child: Image.network(
+                                          success.favoriteAttractions[index].image != null ? success.favoriteAttractions[index].image! : 'something',
                                           fit: BoxFit
                                               .cover, // Растягивание изображения на весь контейнер
                                         ),
@@ -224,18 +220,18 @@ class _LikeButtonState extends State<LikeButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        setState(() {
-          isFav = !isFav;
-        });
-        if (isFav == false || (widget.active != null)) {
+        if (isFav == false && widget.active == null) {
           context
               .read<HomeCubit>()
               .addAttractionToFavorite(widget.attractionId, context);
-        } else if (isFav == true || (widget.active != null)) {
+        } else if (isFav == true || (widget.active != null && widget.active! == true)) {
           context
               .read<HomeCubit>()
               .deleteFromFavorite(widget.attractionId, context);
         }
+        setState(() {
+          isFav = !isFav;
+        });
       },
       child: Container(
         margin: const EdgeInsets.all(10).r,

@@ -19,13 +19,17 @@ part 'home_cubit.freezed.dart';
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository repo;
 
-  HomeCubit(this.repo) : super(const HomeState.initialState());
+  HomeCubit(this.repo) : super(const HomeState.initialState()) {
+    initHome();
+    getStories();
+  }
   late AttractionDto _attractionDto;
   List<SubcategoryDto> _subsList = [];
+  List<StoryDto> _storiesList = [];
+  List<AttractionDto> _favoritesList = [];
 
   Future<void> initHome() async {
     emit(const _HomeLoading());
-    getStories();
     final location = await LocationService().getCurrentLocation();
     final attrResult = await repo.getMainAttraction(
         lat: location.latitude.toString(), lng: location.longitude.toString());
@@ -41,8 +45,11 @@ class HomeCubit extends Cubit<HomeState> {
     }, (r) {
       _subsList = r;
     });
-    await getFavorites();
-    emit(_HomeSuccess(attractionDto: _attractionDto, subsList: _subsList));
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList));
   }
 
   Future<void> search(String name) async {
@@ -56,7 +63,12 @@ class HomeCubit extends Cubit<HomeState> {
       result.fold((l) {
         emit(_HomeError(message: mapFailureToMessage(l)));
       }, (r) {
-        emit(_HomeSuccess(attractionsList: r));
+        emit(_HomeSuccess(
+            attractionsList: r,
+            favoriteAttractions: _favoritesList,
+            stories: _storiesList,
+            attractionDto: _attractionDto,
+            subsList: _subsList));
         initHome();
       });
     });
@@ -89,28 +101,29 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getFavorites() async {
-    //emit(_HomeLoading());
     final location = await LocationService().getCurrentLocation();
     final result = await repo.getFavorites(
         lat: location.latitude.toString(), lng: location.longitude.toString());
-    result.fold((l) {
-      // ScaffoldMessenger.of(context)
-      //     .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
-    }, (r) {
-      print("R is $r");
-      emit(_HomeSuccess(
-          favoriteAttractions: r,
-          attractionDto: _attractionDto,
-          subsList: _subsList));
+    result.fold((l) {}, (r) {
+      _favoritesList = r;
     });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList));
   }
 
   Future<void> getStories() async {
     final result = await repo.getStories();
     result.fold((l) {}, (r) {
-      emit(_HomeSuccess(
-          stories: r.isEmpty ? [] : r,));
+      _storiesList = r;
     });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList));
   }
 }
 

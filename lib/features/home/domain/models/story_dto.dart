@@ -9,7 +9,7 @@ class StoryDto with _$StoryDto {
     required int id,
     required String title,
     final String? uploadedFile,
-    @JsonValue('seen_count') required int seenCount,
+    @JsonValue('seen_count')int? seenCount,
   }) = _StoryDto;
 
   factory StoryDto.fromJson(Map<String, dynamic> json) =>

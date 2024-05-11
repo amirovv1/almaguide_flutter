@@ -24,7 +24,7 @@ mixin _$StoryDto {
   String get title => throw _privateConstructorUsedError;
   String? get uploadedFile => throw _privateConstructorUsedError;
   @JsonValue('seen_count')
-  int get seenCount => throw _privateConstructorUsedError;
+  int? get seenCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $StoryDtoCopyWith<$Res> {
       {int id,
       String title,
       String? uploadedFile,
-      @JsonValue('seen_count') int seenCount});
+      @JsonValue('seen_count') int? seenCount});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$StoryDtoCopyWithImpl<$Res, $Val extends StoryDto>
     Object? id = null,
     Object? title = null,
     Object? uploadedFile = freezed,
-    Object? seenCount = null,
+    Object? seenCount = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,10 +75,10 @@ class _$StoryDtoCopyWithImpl<$Res, $Val extends StoryDto>
           ? _value.uploadedFile
           : uploadedFile // ignore: cast_nullable_to_non_nullable
               as String?,
-      seenCount: null == seenCount
+      seenCount: freezed == seenCount
           ? _value.seenCount
           : seenCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -95,7 +95,7 @@ abstract class _$$StoryDtoImplCopyWith<$Res>
       {int id,
       String title,
       String? uploadedFile,
-      @JsonValue('seen_count') int seenCount});
+      @JsonValue('seen_count') int? seenCount});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$StoryDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? uploadedFile = freezed,
-    Object? seenCount = null,
+    Object? seenCount = freezed,
   }) {
     return _then(_$StoryDtoImpl(
       id: null == id
@@ -127,10 +127,10 @@ class __$$StoryDtoImplCopyWithImpl<$Res>
           ? _value.uploadedFile
           : uploadedFile // ignore: cast_nullable_to_non_nullable
               as String?,
-      seenCount: null == seenCount
+      seenCount: freezed == seenCount
           ? _value.seenCount
           : seenCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$StoryDtoImpl implements _StoryDto {
       {required this.id,
       required this.title,
       this.uploadedFile,
-      @JsonValue('seen_count') required this.seenCount});
+      @JsonValue('seen_count') this.seenCount});
 
   factory _$StoryDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$StoryDtoImplFromJson(json);
@@ -155,7 +155,7 @@ class _$StoryDtoImpl implements _StoryDto {
   final String? uploadedFile;
   @override
   @JsonValue('seen_count')
-  final int seenCount;
+  final int? seenCount;
 
   @override
   String toString() {
@@ -199,7 +199,7 @@ abstract class _StoryDto implements StoryDto {
       {required final int id,
       required final String title,
       final String? uploadedFile,
-      @JsonValue('seen_count') required final int seenCount}) = _$StoryDtoImpl;
+      @JsonValue('seen_count') final int? seenCount}) = _$StoryDtoImpl;
 
   factory _StoryDto.fromJson(Map<String, dynamic> json) =
       _$StoryDtoImpl.fromJson;
@@ -212,7 +212,7 @@ abstract class _StoryDto implements StoryDto {
   String? get uploadedFile;
   @override
   @JsonValue('seen_count')
-  int get seenCount;
+  int? get seenCount;
   @override
   @JsonKey(ignore: true)
   _$$StoryDtoImplCopyWith<_$StoryDtoImpl> get copyWith =>
