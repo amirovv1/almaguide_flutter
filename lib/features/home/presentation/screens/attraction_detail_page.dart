@@ -3,6 +3,7 @@ import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
@@ -44,6 +45,10 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        actions:  [
+          LikeButton(attractionId: 1,)
+        ],
+        
       ),
       body: BlocConsumer<AttractionDetailsCubit, AttractionDetailsState>(
         listener: (context, state) {},

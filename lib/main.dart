@@ -4,6 +4,7 @@ import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/profile/bloc/language_cubit/language_cubit.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,8 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await initLocator();
   await LocationService().requestPermission();
+      ChuckerFlutter.showOnRelease = true;
+
   runApp(AlmaGuideApp());
 }
 
@@ -35,6 +38,9 @@ class AlmaGuideApp extends StatelessWidget {
           child: BlocBuilder<LanguageCubit, LanguageState>(
             builder: (context, state) {
               return MaterialApp.router(
+                routerDelegate: _appRouter.delegate(
+                        navigatorObservers: () =>
+                            [ChuckerFlutter.navigatorObserver]),
                 themeMode: ThemeMode.dark,
                 locale: Locale(state.langCode),
                 localizationsDelegates: const [
@@ -46,7 +52,6 @@ class AlmaGuideApp extends StatelessWidget {
                 supportedLocales: S.delegate.supportedLocales,
                 title: 'Almaguide',
                 routeInformationParser: _appRouter.defaultRouteParser(),
-                routerDelegate: _appRouter.delegate(),
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(
                   iconTheme: IconThemeData(size: 24.r),

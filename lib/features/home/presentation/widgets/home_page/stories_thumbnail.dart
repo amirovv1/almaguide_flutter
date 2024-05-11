@@ -13,6 +13,7 @@ class StoriesThumbnail extends StatefulWidget {
 class _StoriesThumbnailState extends State<StoriesThumbnail> {
   @override
   Widget build(BuildContext context) {
+    print('ssilka-${widget.url}');
     return InkWell(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(builder: (ctx) {
@@ -21,7 +22,7 @@ class _StoriesThumbnailState extends State<StoriesThumbnail> {
           );
         }),
       ),
-      child: Container(
+      child: SizedBox(
         height: 140.h,
         width: 100.w,
         child: FittedBox(fit: BoxFit.fill, child: Image.network(widget.url)),

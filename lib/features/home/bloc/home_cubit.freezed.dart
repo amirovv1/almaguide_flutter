@@ -26,7 +26,8 @@ mixin _$HomeState {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ mixin _$HomeState {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +56,8 @@ mixin _$HomeState {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
     required TResult orElse(),
   }) =>
@@ -149,7 +152,8 @@ class _$InitialPageImpl implements _InitialPage {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)
         sucess,
   }) {
     return initialState();
@@ -166,7 +170,8 @@ class _$InitialPageImpl implements _InitialPage {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
   }) {
     return initialState?.call();
@@ -183,7 +188,8 @@ class _$InitialPageImpl implements _InitialPage {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
     required TResult orElse(),
   }) {
@@ -281,7 +287,8 @@ class _$HomeLoadingImpl implements _HomeLoading {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)
         sucess,
   }) {
     return loadingState();
@@ -298,7 +305,8 @@ class _$HomeLoadingImpl implements _HomeLoading {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
   }) {
     return loadingState?.call();
@@ -315,7 +323,8 @@ class _$HomeLoadingImpl implements _HomeLoading {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
     required TResult orElse(),
   }) {
@@ -440,7 +449,8 @@ class _$HomeErrorImpl implements _HomeError {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)
         sucess,
   }) {
     return errorState(message);
@@ -457,7 +467,8 @@ class _$HomeErrorImpl implements _HomeError {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
   }) {
     return errorState?.call(message);
@@ -474,7 +485,8 @@ class _$HomeErrorImpl implements _HomeError {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
     required TResult orElse(),
   }) {
@@ -542,7 +554,8 @@ abstract class _$$HomeSuccessImplCopyWith<$Res> {
       List<StoryDto> stories,
       List<SubcategoryDto> subsList,
       List<AttractionDto> attractionsList,
-      List<AttractionDto> favoriteAttractions});
+      List<AttractionDto> favoriteAttractions,
+      List<RouteDto> routes});
 
   $AttractionDtoCopyWith<$Res>? get attractionDto;
 }
@@ -563,6 +576,7 @@ class __$$HomeSuccessImplCopyWithImpl<$Res>
     Object? subsList = null,
     Object? attractionsList = null,
     Object? favoriteAttractions = null,
+    Object? routes = null,
   }) {
     return _then(_$HomeSuccessImpl(
       attractionDto: freezed == attractionDto
@@ -585,6 +599,10 @@ class __$$HomeSuccessImplCopyWithImpl<$Res>
           ? _value._favoriteAttractions
           : favoriteAttractions // ignore: cast_nullable_to_non_nullable
               as List<AttractionDto>,
+      routes: null == routes
+          ? _value._routes
+          : routes // ignore: cast_nullable_to_non_nullable
+              as List<RouteDto>,
     ));
   }
 
@@ -609,11 +627,13 @@ class _$HomeSuccessImpl implements _HomeSuccess {
       final List<StoryDto> stories = const [],
       final List<SubcategoryDto> subsList = const [],
       final List<AttractionDto> attractionsList = const [],
-      final List<AttractionDto> favoriteAttractions = const []})
+      final List<AttractionDto> favoriteAttractions = const [],
+      final List<RouteDto> routes = const []})
       : _stories = stories,
         _subsList = subsList,
         _attractionsList = attractionsList,
-        _favoriteAttractions = favoriteAttractions;
+        _favoriteAttractions = favoriteAttractions,
+        _routes = routes;
 
   @override
   final AttractionDto? attractionDto;
@@ -654,9 +674,18 @@ class _$HomeSuccessImpl implements _HomeSuccess {
     return EqualUnmodifiableListView(_favoriteAttractions);
   }
 
+  final List<RouteDto> _routes;
+  @override
+  @JsonKey()
+  List<RouteDto> get routes {
+    if (_routes is EqualUnmodifiableListView) return _routes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_routes);
+  }
+
   @override
   String toString() {
-    return 'HomeState.sucess(attractionDto: $attractionDto, stories: $stories, subsList: $subsList, attractionsList: $attractionsList, favoriteAttractions: $favoriteAttractions)';
+    return 'HomeState.sucess(attractionDto: $attractionDto, stories: $stories, subsList: $subsList, attractionsList: $attractionsList, favoriteAttractions: $favoriteAttractions, routes: $routes)';
   }
 
   @override
@@ -671,7 +700,8 @@ class _$HomeSuccessImpl implements _HomeSuccess {
             const DeepCollectionEquality()
                 .equals(other._attractionsList, _attractionsList) &&
             const DeepCollectionEquality()
-                .equals(other._favoriteAttractions, _favoriteAttractions));
+                .equals(other._favoriteAttractions, _favoriteAttractions) &&
+            const DeepCollectionEquality().equals(other._routes, _routes));
   }
 
   @override
@@ -681,7 +711,8 @@ class _$HomeSuccessImpl implements _HomeSuccess {
       const DeepCollectionEquality().hash(_stories),
       const DeepCollectionEquality().hash(_subsList),
       const DeepCollectionEquality().hash(_attractionsList),
-      const DeepCollectionEquality().hash(_favoriteAttractions));
+      const DeepCollectionEquality().hash(_favoriteAttractions),
+      const DeepCollectionEquality().hash(_routes));
 
   @JsonKey(ignore: true)
   @override
@@ -700,11 +731,12 @@ class _$HomeSuccessImpl implements _HomeSuccess {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)
         sucess,
   }) {
-    return sucess(
-        attractionDto, stories, subsList, attractionsList, favoriteAttractions);
+    return sucess(attractionDto, stories, subsList, attractionsList,
+        favoriteAttractions, routes);
   }
 
   @override
@@ -718,11 +750,12 @@ class _$HomeSuccessImpl implements _HomeSuccess {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
   }) {
-    return sucess?.call(
-        attractionDto, stories, subsList, attractionsList, favoriteAttractions);
+    return sucess?.call(attractionDto, stories, subsList, attractionsList,
+        favoriteAttractions, routes);
   }
 
   @override
@@ -736,13 +769,14 @@ class _$HomeSuccessImpl implements _HomeSuccess {
             List<StoryDto> stories,
             List<SubcategoryDto> subsList,
             List<AttractionDto> attractionsList,
-            List<AttractionDto> favoriteAttractions)?
+            List<AttractionDto> favoriteAttractions,
+            List<RouteDto> routes)?
         sucess,
     required TResult orElse(),
   }) {
     if (sucess != null) {
       return sucess(attractionDto, stories, subsList, attractionsList,
-          favoriteAttractions);
+          favoriteAttractions, routes);
     }
     return orElse();
   }
@@ -791,13 +825,15 @@ abstract class _HomeSuccess implements HomeState {
       final List<StoryDto> stories,
       final List<SubcategoryDto> subsList,
       final List<AttractionDto> attractionsList,
-      final List<AttractionDto> favoriteAttractions}) = _$HomeSuccessImpl;
+      final List<AttractionDto> favoriteAttractions,
+      final List<RouteDto> routes}) = _$HomeSuccessImpl;
 
   AttractionDto? get attractionDto;
   List<StoryDto> get stories;
   List<SubcategoryDto> get subsList;
   List<AttractionDto> get attractionsList;
   List<AttractionDto> get favoriteAttractions;
+  List<RouteDto> get routes;
   @JsonKey(ignore: true)
   _$$HomeSuccessImplCopyWith<_$HomeSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

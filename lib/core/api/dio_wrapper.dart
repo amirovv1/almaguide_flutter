@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:almaguide_flutter/core/api/api_helper.dart';
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,8 @@ class DioWrapper {
           receiveTimeout: const Duration(seconds: 10)),
     )..interceptors.addAll(
         [
+          ChuckerDioInterceptor(),
+
           PrettyDioLogger(
             request: true,
             requestHeader: true,
@@ -33,9 +36,10 @@ class DioWrapper {
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 String locale = prefs.getString('langCode') ?? 'ru';
 
-                String? token =  prefs.getString('access');
-               
+                String? token = prefs.getString('access');
+
                 if (token != null) {
+                  log('TOKEN-${token}');
                   options.headers = {
                     "Accept-Language": locale,
                     "Authorization": "Bearer $token"

@@ -6,7 +6,6 @@ import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/auth_cubit/auth_cubit.dart';
 import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
-import 'package:almaguide_flutter/features/profile/presentation/screens/forgot_password_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/app_form_field.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';

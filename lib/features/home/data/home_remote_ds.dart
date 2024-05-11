@@ -3,8 +3,10 @@
 import 'package:almaguide_flutter/core/api/api_helper.dart';
 import 'package:almaguide_flutter/core/api/dio_wrapper.dart';
 import 'package:almaguide_flutter/core/errors/server_errors.dart';
+import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/route_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:dio/dio.dart';
@@ -36,9 +38,12 @@ abstract class HomeRemoteDS {
 
   Future<String> getAttractionRoutUrl(int id, String lat, String lng);
 
-  Future<List<AttractionDto>> getFavorites({required String lat, required String lng});
+  Future<List<AttractionDto>> getFavorites(
+      {required String lat, required String lng});
 
   Future<List<StoryDto>> getStories();
+  Future<void> makeRoute();
+  Future<List<RouteDto>> getRoutes();
 }
 
 @LazySingleton(as: HomeRemoteDS)
@@ -177,7 +182,7 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
   @override
   Future<void> addAttractionToFavorites({required int attraction}) async {
     try {
-      final response = await dio.post(
+      await dio.post(
         '${EndPoints.attractions}/favourite/choose/',
         data: {"attraction": attraction},
       );
@@ -245,13 +250,14 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
   }
 
   @override
-  Future<List<AttractionDto>> getFavorites({required String lat, required String lng}) async {
+  Future<List<AttractionDto>> getFavorites(
+      {required String lat, required String lng}) async {
     try {
       final response = await dio.get(
         '${EndPoints.getFavorites}?lat=$lat&lng=$lng',
       );
       final Map<String, dynamic> responseBody =
-      response.data as Map<String, dynamic>;
+          response.data as Map<String, dynamic>;
       final res = (responseBody['results'] as List)
           .map((e) => AttractionDto.fromJson(e))
           .toList();
@@ -266,13 +272,52 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
 
   @override
   Future<List<StoryDto>> getStories() async {
+  try {
+    final response = await dio.get(
+      EndPoints.getStories,
+    );
+    print('история-${response.data.toString()}');
+    if (response.statusCode == 200) {
+      final List<dynamic> responseData = response.data as List<dynamic>;
+      final List<StoryDto> stories = responseData
+          .map((e) => StoryDto.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return stories;
+    } else {
+      throw ServerException(message: 'Failed to load stories');
+    }
+  } on DioError catch (e) {
+    throw ServerException(message: 'Failed to load stories: ${e.message}');
+  }
+}
 
+  @override
+  Future<void> makeRoute() async {
+    try {
+      final location = await LocationService().getCurrentLocation();
+
+      await dio.post(
+        EndPoints.makeRoute,
+        data: {"lat": location.latitude, "lng": location.longitude},
+      );
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<RouteDto>> getRoutes() async {
     try {
       final response = await dio.get(
-        EndPoints.getStories,
+        EndPoints.routes,
       );
-      final res = (response.data as List)
-          .map((e) => StoryDto.fromJson(e))
+      final Map<String, dynamic> responseBody =
+          response.data as Map<String, dynamic>;
+      final res = (responseBody['results'] as List)
+          .map((e) => RouteDto.fromJson(e))
           .toList();
       return res;
     } on DioException catch (e) {

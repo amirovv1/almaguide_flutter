@@ -6,10 +6,10 @@ part 'story_dto.g.dart';
 @freezed
 class StoryDto with _$StoryDto {
   const factory StoryDto({
-    required int id,
+    final int? id,
     required String title,
-    final String? uploadedFile,
-    @JsonValue('seen_count') required int seenCount,
+    @JsonKey(name: 'uploaded_file') final String? uploadedFile,
+    @JsonKey(name: 'seen_count') final int? seenCount,
   }) = _StoryDto;
 
   factory StoryDto.fromJson(Map<String, dynamic> json) =>

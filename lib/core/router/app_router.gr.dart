@@ -107,6 +107,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    RouteDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RouteDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RouteDetailScreen(
+          key: args.key,
+          title: args.title,
+          routeId: args.routeId,
+        ),
+      );
+    },
     SearchRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -374,6 +385,49 @@ class ProfileRoute extends PageRouteInfo<void> {
   static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RouteDetailScreen]
+class RouteDetailRoute extends PageRouteInfo<RouteDetailRouteArgs> {
+  RouteDetailRoute({
+    Key? key,
+    required String title,
+    required int routeId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RouteDetailRoute.name,
+          args: RouteDetailRouteArgs(
+            key: key,
+            title: title,
+            routeId: routeId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RouteDetailRoute';
+
+  static const PageInfo<RouteDetailRouteArgs> page =
+      PageInfo<RouteDetailRouteArgs>(name);
+}
+
+class RouteDetailRouteArgs {
+  const RouteDetailRouteArgs({
+    this.key,
+    required this.title,
+    required this.routeId,
+  });
+
+  final Key? key;
+
+  final String title;
+
+  final int routeId;
+
+  @override
+  String toString() {
+    return 'RouteDetailRouteArgs{key: $key, title: $title, routeId: $routeId}';
+  }
 }
 
 /// generated route for

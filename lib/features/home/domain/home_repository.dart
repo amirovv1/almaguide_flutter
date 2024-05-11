@@ -3,6 +3,7 @@ import 'package:almaguide_flutter/core/errors/server_errors.dart';
 import 'package:almaguide_flutter/features/home/data/home_remote_ds.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/route_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:dartz/dartz.dart';
@@ -30,6 +31,9 @@ abstract class HomeRepository {
   Future<Either<Failure, List<AttractionDto>>> getFavorites(
       {required String lat, required String lng});
   Future<Either<Failure, List<StoryDto>>> getStories();
+    Future<Either<Failure, void>> makeRoute();
+    Future<Either<Failure, List<RouteDto>>> getRoutes();
+
 }
 
 @LazySingleton(as: HomeRepository)
@@ -164,6 +168,26 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<Either<Failure, List<StoryDto>>> getStories() async {
     try {
       final result = await remoteDS.getStories();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, void>> makeRoute()async {
+    try {
+      await remoteDS.makeRoute();
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<RouteDto>>> getRoutes() async{
+    try {
+      final result = await remoteDS.getRoutes();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

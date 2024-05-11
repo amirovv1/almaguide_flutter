@@ -14,8 +14,14 @@ mixin EndPoints {
   static const String reviewAttraction = '/reviews/attraction/';
   static const String user = '/users/me/';
   static const String routeAttraction = '/attractions/routes';
-  static  String getAttractionRoutUrl(int id) => "/attractions/routes/$id/yandex/";
-  static  String deleteFromFavorites(int id) => "/attractions/favourite/$id/chosen/";
+  static String getAttractionRoutUrl(int id) =>
+      "/attractions/routes/$id/yandex/";
+  static String deleteFromFavorites(int id) =>
+      "/attractions/favourite/$id/chosen/";
   static const String getFavorites = "/attractions/favourite";
   static const String getStories = "/stories/";
+  static const String makeRoute = "/attractions/routes/make/";
+  static const String routes = "/attractions/routes/";
+  static String getAttractionByRouteId(int id) =>
+      "/attractions/routes/$id/attractions/";
 }

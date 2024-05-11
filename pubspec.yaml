@@ -60,6 +60,7 @@ dependencies:
   cached_network_image: ^3.3.1
   flutter_rating_bar: ^4.0.1
   story_view: ^0.16.5
+  chucker_flutter: ^1.6.3
 
 
 dev_dependencies:

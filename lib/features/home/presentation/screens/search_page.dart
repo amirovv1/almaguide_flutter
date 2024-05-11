@@ -1,9 +1,7 @@
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
-import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

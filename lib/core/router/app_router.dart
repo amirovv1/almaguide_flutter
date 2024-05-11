@@ -1,6 +1,7 @@
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_details_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_main_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
+import 'package:almaguide_flutter/features/favorites/presentation/screens/route_details_page.dart';
 import 'package:almaguide_flutter/features/home/presentation/screens/attraction_detail_page.dart';
 import 'package:almaguide_flutter/features/home/presentation/screens/home_page.dart';
 import 'package:almaguide_flutter/features/home/presentation/screens/launcher_app.dart';
@@ -45,5 +46,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SearchRoute.page),
         AutoRoute(page: WebViewRoute.page),
         AutoRoute(page: CategoryDetailRoute.page),
+                AutoRoute(page: RouteDetailRoute.page),
+
       ];
 }

@@ -24,7 +24,6 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
       routes: const [
         HomeRoute(),
         CategoriesMainRoute(),
-        MapRoute(),
         FavoritesRoute(),
         ProfileRoute(),
 
@@ -56,11 +55,7 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
                   iconAsset: Assets.svg.category24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
-                CustomNavBarItem(
-                  label: S.of(context).map,
-                  iconAsset: Assets.svg.navigationOutline24,
-                  activeColor: AppColors.mainGreen,
-                ).build(),
+                
                 CustomNavBarItem(
                   label: S.of(context).favorites,
                   iconAsset: Assets.svg.likeOutline24,

@@ -1,5 +1,6 @@
 import 'package:almaguide_flutter/core/injection/get_it.dart';
 import 'package:almaguide_flutter/features/categories/bloc/categories_main_cubit.dart';
+import 'package:almaguide_flutter/features/favorites/presentation/bloc/route_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/features/profile/bloc/auth_cubit/auth_cubit.dart';
@@ -36,6 +37,9 @@ class GlobalProvider extends StatelessWidget {
         ),
         BlocProvider<AttractionDetailsCubit>(
           create: (context) => getIt<AttractionDetailsCubit>(),
+        ),
+         BlocProvider<RouteDetailsCubit>(
+          create: (context) => getIt<RouteDetailsCubit>(),
         ),
       ],
       child: child,

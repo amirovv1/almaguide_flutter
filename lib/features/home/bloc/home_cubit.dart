@@ -4,9 +4,9 @@ import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/home/domain/home_repository.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
+import 'package:almaguide_flutter/features/home/domain/models/route_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/story_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
@@ -43,6 +43,24 @@ class HomeCubit extends Cubit<HomeState> {
     });
     await getFavorites();
     emit(_HomeSuccess(attractionDto: _attractionDto, subsList: _subsList));
+  }
+
+  Future<void> getRoutes() async {
+    emit(const _HomeLoading());
+    final result = await repo.getRoutes();
+    result.fold((l) {}, (r) {
+      final newState = const _HomeSuccess().copyWith(routes: r.toList());
+      emit(newState);
+    });
+  }
+
+  Future<void> makeRoute() async {
+    emit(const _HomeLoading());
+    final result = await repo.makeRoute();
+    result.fold((l) {}, (r) {
+      getFavorites();
+      getRoutes();
+    });
   }
 
   Future<void> search(String name) async {
@@ -89,7 +107,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getFavorites() async {
-    //emit(_HomeLoading());
     final location = await LocationService().getCurrentLocation();
     final result = await repo.getFavorites(
         lat: location.latitude.toString(), lng: location.longitude.toString());
@@ -99,7 +116,7 @@ class HomeCubit extends Cubit<HomeState> {
     }, (r) {
       print("R is $r");
       emit(_HomeSuccess(
-          favoriteAttractions: r,
+          favoriteAttractions: r.toSet().toList(),
           attractionDto: _attractionDto,
           subsList: _subsList));
     });
@@ -108,8 +125,10 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getStories() async {
     final result = await repo.getStories();
     result.fold((l) {}, (r) {
+      print('история111-${r.toList().toString()}');
       emit(_HomeSuccess(
-          stories: r.isEmpty ? [] : r,));
+        stories: r.isEmpty ? [] : r,
+      ));
     });
   }
 }
@@ -126,5 +145,6 @@ class HomeState with _$HomeState {
     @Default([]) List<SubcategoryDto> subsList,
     @Default([]) List<AttractionDto> attractionsList,
     @Default([]) List<AttractionDto> favoriteAttractions,
+    @Default([]) List<RouteDto> routes,
   }) = _HomeSuccess;
 }
