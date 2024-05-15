@@ -43,3 +43,4 @@ class LanguageState with _$LanguageState {
   const factory LanguageState.initialState({@Default('') String langCode}) =
       _InitialPage;
 }
+

@@ -45,7 +45,10 @@ class _SearchScreenState extends State<SearchScreen> {
               errorState: (error) => ScaffoldMessenger(child: Text(error.message)),
               sucess: (success) => Padding(
                 padding: EdgeInsets.all(16.r),
-                child: ListView.separated(
+                child:
+                success.attractionsList.isEmpty ?
+                const Center(child: Text("Ничего не найдено"),)
+               : ListView.separated(
                   scrollDirection: Axis.vertical,
                   itemBuilder: (ctx, index) {
                     return CustomCard(

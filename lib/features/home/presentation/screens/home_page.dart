@@ -22,7 +22,8 @@ bool isLoading = false;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    context.read<HomeCubit>().initHome();
+    // context.read<HomeCubit>().initHome();
+    // context.read<HomeCubit>().getStories();
     super.initState();
   }
 
@@ -56,96 +57,96 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
-          print('нынешний стейт это - ${state.toString()}');
-          return state.maybeMap(
-            orElse: () {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            },
-            loadingState: (load) =>
-                const Center(child: CircularProgressIndicator.adaptive()),
-            sucess: (success) {
-              print('stori-${success.stories.toList().toString()}');
-              return RefreshIndicator.adaptive(
-                onRefresh: () async {
-                  await context.read<HomeCubit>().initHome();
-                },
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      if (success.stories.isNotEmpty)
-                        SizedBox(
-                          width: 300.w,
-                          height: 150.h,
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (ctx1, index) {
-                              return SizedBox(
-                                  height: 150.h,
-                                  width: 100.w,
-                                  child: StoriesThumbnail(
-                                      url:
-                                          success.stories[index].uploadedFile ??
-                                              ""));
-                            },
-                            separatorBuilder: (ctx2, index) {
-                              return SizedBox(
-                                width: 10.w,
-                              );
-                            },
-                            itemCount: success.stories.length,
+          return state.map(
+              loadingState: (load) =>
+                  const Center(child: CircularProgressIndicator.adaptive()),
+              sucess: (success) {
+                return RefreshIndicator.adaptive(
+                  onRefresh: () async {
+                    await context.read<HomeCubit>().initHome();
+                  },
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        if (success.stories.isNotEmpty)
+                          SizedBox(
+                            width: 300.w,
+                            height: 150.h,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (ctx1, index) {
+                                return SizedBox(
+                                    height: 150.h,
+                                    width: 100.w,
+                                    child: StoriesThumbnail(
+                                        description:
+                                            success.stories[index].title,
+                                        url: success
+                                                .stories[index].uploadedFile ??
+                                            "https://images.unsplash.com/photo-1715276611597-048987ab7d97?q=80&w=2819&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"));
+                              },
+                              separatorBuilder: (ctx2, index) {
+                                return SizedBox(
+                                  width: 10.w,
+                                );
+                              },
+                              itemCount: success.stories.length,
+                            ),
                           ),
+                        SizedBox(
+                          height: 40.h,
                         ),
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      if (success.attractionDto != null)
-                        MainPlaceCard(
-                          backgroundImage: success.attractionDto?.image ?? '',
-                          name: success.attractionDto!.name,
-                          distance: success.attractionDto?.distance ?? '',
-                          id: success.attractionDto?.id ?? 0,
+                        if (success.attractionDto != null)
+                          MainPlaceCard(
+                            backgroundImage: success.attractionDto?.image ?? '',
+                            name: success.attractionDto!.name,
+                            distance: success.attractionDto?.distance ?? '',
+                            id: success.attractionDto?.id ?? 0,
+                          ),
+                        SizedBox(
+                          height: 10.h,
                         ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      ...success.subsList
-                          .map((e) => Column(
-                                children: [
-                                  HomeListWidget(
-                                      title: e.name ?? '',
-                                      attracts: e.attractions),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                ],
-                              ))
-                          .toList()
-                      // const HomeListWidget(
-                      //   title: 'Достопримечательности',
-                      // ),
-                      // SizedBox(
-                      //   height: 10.h,
-                      // ),
-                      // const HomeListWidget(
-                      //   title: 'Пункты питания',
-                      // ),
-                      // SizedBox(
-                      //   height: 10.h,
-                      // ),
-                      // const HomeListWidget(
-                      //   title: 'Новости',
-                      // ),
-                      // SizedBox(
-                      //   height: 50.h,
-                      // ),
-                    ],
+                        ...success.subsList
+                            .map((e) => Column(
+                                  children: [
+                                    HomeListWidget(
+                                        title: e.name ?? '',
+                                        attracts: e.attractions ?? [], categoryId: e.category.id,),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                  ],
+                                ))
+                            .toList()
+                        // const HomeListWidget(
+                        //   title: 'Достопримечательности',
+                        // ),
+                        // SizedBox(
+                        //   height: 10.h,
+                        // ),
+                        // const HomeListWidget(
+                        //   title: 'Пункты питания',
+                        // ),
+                        // SizedBox(
+                        //   height: 10.h,
+                        // ),
+                        // const HomeListWidget(
+                        //   title: 'Новости',
+                        // ),
+                        // SizedBox(
+                        //   height: 50.h,
+                        // ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          );
+                );
+              },
+              initialState: (init) =>
+                  const Center(child: CircularProgressIndicator.adaptive()),
+              errorState: (error) =>
+                  const Center(child: CircularProgressIndicator.adaptive()));
         },
       ),
     );

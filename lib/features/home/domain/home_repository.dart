@@ -33,6 +33,14 @@ abstract class HomeRepository {
   Future<Either<Failure, List<StoryDto>>> getStories();
     Future<Either<Failure, void>> makeRoute();
     Future<Either<Failure, List<RouteDto>>> getRoutes();
+    Future<Either<Failure, List<AttractionDto>>> getAttractsByCategories(
+       {int? categoryId,
+      int? subcategory,
+      int? avgRate,
+      String? ordering});
+
+      Future<Either<Failure, List<SubcategoryDto>>> getSubsByCategory(
+      {required int categoryId});
 
 }
 
@@ -188,6 +196,26 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<Either<Failure, List<RouteDto>>> getRoutes() async{
     try {
       final result = await remoteDS.getRoutes();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<AttractionDto>>> getAttractsByCategories({int? categoryId, int? subcategory, int? avgRate, String? ordering}) async {
+    try {
+      final result = await remoteDS.getAttractionByCategory(categoryId: categoryId, subcategory: subcategory, avgRate: avgRate, ordering: ordering);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<SubcategoryDto>>> getSubsByCategory({required int categoryId}) async {
+     try {
+      final result = await remoteDS.getSubcategoriesByCategory(categoryId: categoryId);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

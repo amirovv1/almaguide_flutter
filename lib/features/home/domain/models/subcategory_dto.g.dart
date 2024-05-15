@@ -11,8 +11,8 @@ _$SubcategoryDtoImpl _$$SubcategoryDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String?,
       category: CategoryDto.fromJson(json['category'] as Map<String, dynamic>),
-      attractions: (json['attractions'] as List<dynamic>)
-          .map((e) => AttractionDto.fromJson(e as Map<String, dynamic>))
+      attractions: (json['attractions'] as List<dynamic>?)
+          ?.map((e) => AttractionDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

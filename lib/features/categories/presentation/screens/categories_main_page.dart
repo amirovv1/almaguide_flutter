@@ -1,4 +1,5 @@
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/bloc/categories_main_cubit.dart';
 import 'package:almaguide_flutter/features/categories/presentation/widgets/categories_card.dart';
 import 'package:auto_route/auto_route.dart';
@@ -27,19 +28,18 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: BlocConsumer<CategoriesCubit, CategoriesState>(
-          listener: (context, state) {
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
                 return const Center(
                     child: CircularProgressIndicator.adaptive());
               },
-              sucess: (popCategories) {
-                return RefreshIndicator.adaptive(
+              sucess: (popCategories,otherCategories) {
+                final limitedCategories = popCategories.toList();
+                return RefreshIndicator(
                   onRefresh: () async {
                     await context.read<CategoriesCubit>().initCategories();
-
                   },
                   child: SingleChildScrollView(
                     child: Column(
@@ -47,33 +47,47 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                         SizedBox(
                           height: 16.r,
                         ),
-                         CategoriesCard(categories: popCategories,),
+                        CategoriesCard(categories: limitedCategories),
                         SizedBox(height: 16.r),
                         ListView.builder(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8).r,
-                            physics:
-                                const NeverScrollableScrollPhysics(), // Отключение прокрутки
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
+                          padding: const EdgeInsets.symmetric(horizontal: 8).r,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            // Отображаем элементы, начиная с 9-го
+                              final category = otherCategories[index];
                               return SizedBox(
                                 height: 52.h,
                                 child: ListTile(
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 10)
-                                          .r,
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 10).r,
                                   title: Text(
-                                    'Название категорий',
-                                    style: ts(TS.s14w400)
-                                        .copyWith(color: Colors.black),
+                                    category.name ?? '', // Замените на соответствующее свойство
+                                    style: ts(TS.s14w400).copyWith(color: Colors.black),
                                   ),
                                   trailing: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.chevron_right)),
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.chevron_right),
+                                  ),
                                 ),
                               );
-                            },
-                            itemCount: 10)
+                            
+                          },
+                          itemCount: otherCategories.length, // Указываем количество элементов, начиная с 9-го
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 10).r,
+                                    title: Text(
+                                      'Туры', // Замените на соответствующее свойство
+                                      style: ts(TS.s14w400).copyWith(color: Colors.black),
+                                    ),
+                                    trailing: IconButton(
+                                      onPressed: () => context.router.push(const TourListRoute()),
+                                      icon: const Icon(Icons.chevron_right),
+                                    ),
+                                  ),
+                        ),
                       ],
                     ),
                   ),

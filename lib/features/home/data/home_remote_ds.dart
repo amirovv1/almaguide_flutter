@@ -22,6 +22,9 @@ abstract class HomeRemoteDS {
   Future<List<SubcategoryDto>> getSubcategories(
       {required String longitude, required String latitude});
 
+  Future<List<SubcategoryDto>> getSubcategoriesByCategory(
+      {required int categoryId});
+
   Future<List<ReviewDto>> getAttractReviews({required int id});
 
   Future<void> addAttractionToFavorites({required int attraction});
@@ -44,6 +47,9 @@ abstract class HomeRemoteDS {
   Future<List<StoryDto>> getStories();
   Future<void> makeRoute();
   Future<List<RouteDto>> getRoutes();
+
+  Future<List<AttractionDto>> getAttractionByCategory(
+      {int? categoryId, int? subcategory, int? avgRate, String? ordering});
 }
 
 @LazySingleton(as: HomeRemoteDS)
@@ -272,24 +278,24 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
 
   @override
   Future<List<StoryDto>> getStories() async {
-  try {
-    final response = await dio.get(
-      EndPoints.getStories,
-    );
-    print('история-${response.data.toString()}');
-    if (response.statusCode == 200) {
-      final List<dynamic> responseData = response.data as List<dynamic>;
-      final List<StoryDto> stories = responseData
-          .map((e) => StoryDto.fromJson(e as Map<String, dynamic>))
-          .toList();
-      return stories;
-    } else {
-      throw ServerException(message: 'Failed to load stories');
+    try {
+      final response = await dio.get(
+        EndPoints.getStories,
+      );
+      print('история-${response.data.toString()}');
+      if (response.statusCode == 200) {
+        final List<dynamic> responseData = response.data as List<dynamic>;
+        final List<StoryDto> stories = responseData
+            .map((e) => StoryDto.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return stories;
+      } else {
+        throw ServerException(message: 'Failed to load stories');
+      }
+    } on DioError catch (e) {
+      throw ServerException(message: 'Failed to load stories: ${e.message}');
     }
-  } on DioError catch (e) {
-    throw ServerException(message: 'Failed to load stories: ${e.message}');
   }
-}
 
   @override
   Future<void> makeRoute() async {
@@ -322,6 +328,69 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
       return res;
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<AttractionDto>> getAttractionByCategory(
+      {int? categoryId,
+      int? subcategory,
+      int? avgRate,
+      String? ordering}) async {
+    try {
+      final location = await LocationService().getCurrentLocation();
+      final response = await dio.get(EndPoints.attractions, data: {
+        if (categoryId != null) "category": categoryId,
+        if (avgRate != null) "avg_rate": categoryId,
+        if (subcategory != null) "subcategory": categoryId,
+        if (ordering != null) "ordering": categoryId,
+        "lat": location.latitude,
+        "lng": location.longitude,
+      }, queryParameters: {
+        if (categoryId != null) "category": categoryId,
+        if (avgRate != null) "avg_rate": categoryId,
+        if (subcategory != null) "subcategory": categoryId,
+        if (ordering != null) "ordering": categoryId,
+        "lat": location.latitude,
+        "lng": location.longitude,
+      });
+      final Map<String, dynamic> responseBody =
+          response.data as Map<String, dynamic>;
+      final res = (responseBody['results'] as List)
+          .map((e) => AttractionDto.fromJson(e))
+          .toList();
+      return res;
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+
+  @override
+  Future<List<SubcategoryDto>> getSubcategoriesByCategory(
+      {required int categoryId}) async {
+    try {
+      final location = await LocationService().getCurrentLocation();
+      final response = await dio.get(
+        EndPoints.subsByCategory,
+        queryParameters: {
+          'category': categoryId,
+          'lng': location.longitude,
+          'lat': location.latitude,
+        },
+      );
+      
+      final List<dynamic> results = response.data as List<dynamic>;
+
+      return results.map((json) => SubcategoryDto.fromJson(json)).toList();
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+
       throw ServerException(
         message: error['detail'].toString(),
       );

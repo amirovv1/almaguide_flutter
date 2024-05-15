@@ -24,7 +24,7 @@ class CategoriesGridView extends StatelessWidget {
         children: categories
             .map((e) =>
                 InkWell(
-                  onTap: () => context.router.push( CategoryDetailRoute(title: e.name ?? '')),
+                  onTap: () => context.router.push( CategoryDetailRoute(title: e.name ?? '', categoryId: e.id)),
                   child: _buildGridItem(e.icon ?? '', e.name ?? '')))
             .toList());
   }

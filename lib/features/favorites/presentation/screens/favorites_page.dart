@@ -24,14 +24,14 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   @override
   void didChangeDependencies() {
     BlocProvider.of<HomeCubit>(context).getFavorites();
-    BlocProvider.of<HomeCubit>(context).getRoutes();
+     BlocProvider.of<HomeCubit>(context).getRoutes();
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
     BlocProvider.of<HomeCubit>(context).getFavorites();
-    BlocProvider.of<HomeCubit>(context).getRoutes();
+     BlocProvider.of<HomeCubit>(context).getRoutes();
 
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
@@ -92,11 +92,11 @@ class _FavoritesScreenState extends State<FavoritesScreen>
           controller: _tabController,
           children: [
             state.map(
-              errorState: (value) => CircularProgressIndicator.adaptive(),
+              errorState: (value) => const CircularProgressIndicator.adaptive(),
               initialState: (value) {
-                return Text('Здвесь будут созданные маршруты');
+                return const Text('Здвесь будут созданные маршруты');
               },
-              loadingState: (value) => CircularProgressIndicator.adaptive(),
+              loadingState: (value) => const CircularProgressIndicator.adaptive(),
               sucess: (success) {
                 return Padding(
                   padding: EdgeInsets.all(16.w),
@@ -153,7 +153,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                       context.read<HomeCubit>().getFavorites();
                     },
                     child: success.favoriteAttractions.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: Text('Добавьте в избранное'),
                           )
                         : Column(
@@ -225,17 +225,15 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                               ),
                               SizedBox(height: 20.h),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16).r,
+                                padding: const EdgeInsets.symmetric(horizontal: 16).r,
                                 height: 48.h,
                                 width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    context.read<HomeCubit>().makeRoute();
+                                   context.read<HomeCubit>().makeRoute();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.blue, // Цвет фона кнопки
-                                    onPrimary:
-                                        Colors.white, // Цвет текста на кнопке
+                                    foregroundColor: Colors.white, backgroundColor: Colors.blue, // Цвет текста на кнопке
                                     elevation:
                                         4, // Высота эффекта поднятия кнопки
                                     shape: RoundedRectangleBorder(
@@ -333,6 +331,6 @@ class _LikeButtonState extends State<LikeButton> {
               )),
             ),
           )
-        : SizedBox();
+        : const SizedBox();
   }
 }

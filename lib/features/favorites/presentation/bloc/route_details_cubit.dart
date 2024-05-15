@@ -16,19 +16,27 @@ class RouteDetailsCubit extends Cubit<RouteDetailsState> {
 
   Future<void> initRouteDetails({required int id}) async {
     emit(const _RouteDetailsLoading());
-    final result = await repo.getAttractByRouteId(id: id
-       );
+    final result = await repo.getAttractByRouteId(id: id);
 
     result.fold((l) {
       emit(_RouteDetailsError(message: mapFailureToMessage(l)));
     }, (r) {
-      emit(_RouteDetailsSuccess(attracts:r ));
+      emit(_RouteDetailsSuccess(attracts: r));
     });
+  }
 
-   
+  Future<void> makeRoute({required int id}) async {
+    emit(const _RouteDetailsLoading());
+    final result = await repo.makeRoute(id: id);
+
+    result.fold((l) {
+      emit(_RouteDetailsError(message: mapFailureToMessage(l)));
+    }, (r) {
+      emit(_RouteDetailsSuccessRoute(url: r));
+      initRouteDetails(id: id);
+    });
   }
 }
-
 
 @freezed
 class RouteDetailsState with _$RouteDetailsState {
@@ -38,4 +46,6 @@ class RouteDetailsState with _$RouteDetailsState {
       _RouteDetailsError;
   const factory RouteDetailsState.sucess(
       {@Default([]) List<AttractionDto> attracts}) = _RouteDetailsSuccess;
+  const factory RouteDetailsState.sucessRoute({@Default('') String url}) =
+      _RouteDetailsSuccessRoute;
 }

@@ -23,7 +23,7 @@ mixin _$SubcategoryDto {
   int get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   CategoryDto get category => throw _privateConstructorUsedError;
-  List<AttractionDto> get attractions => throw _privateConstructorUsedError;
+  List<AttractionDto>? get attractions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $SubcategoryDtoCopyWith<$Res> {
       {int id,
       String? name,
       CategoryDto category,
-      List<AttractionDto> attractions});
+      List<AttractionDto>? attractions});
 
   $CategoryDtoCopyWith<$Res> get category;
 }
@@ -62,7 +62,7 @@ class _$SubcategoryDtoCopyWithImpl<$Res, $Val extends SubcategoryDto>
     Object? id = null,
     Object? name = freezed,
     Object? category = null,
-    Object? attractions = null,
+    Object? attractions = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -77,10 +77,10 @@ class _$SubcategoryDtoCopyWithImpl<$Res, $Val extends SubcategoryDto>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryDto,
-      attractions: null == attractions
+      attractions: freezed == attractions
           ? _value.attractions
           : attractions // ignore: cast_nullable_to_non_nullable
-              as List<AttractionDto>,
+              as List<AttractionDto>?,
     ) as $Val);
   }
 
@@ -105,7 +105,7 @@ abstract class _$$SubcategoryDtoImplCopyWith<$Res>
       {int id,
       String? name,
       CategoryDto category,
-      List<AttractionDto> attractions});
+      List<AttractionDto>? attractions});
 
   @override
   $CategoryDtoCopyWith<$Res> get category;
@@ -125,7 +125,7 @@ class __$$SubcategoryDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = freezed,
     Object? category = null,
-    Object? attractions = null,
+    Object? attractions = freezed,
   }) {
     return _then(_$SubcategoryDtoImpl(
       id: null == id
@@ -140,10 +140,10 @@ class __$$SubcategoryDtoImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryDto,
-      attractions: null == attractions
+      attractions: freezed == attractions
           ? _value._attractions
           : attractions // ignore: cast_nullable_to_non_nullable
-              as List<AttractionDto>,
+              as List<AttractionDto>?,
     ));
   }
 }
@@ -155,7 +155,7 @@ class _$SubcategoryDtoImpl implements _SubcategoryDto {
       {required this.id,
       this.name,
       required this.category,
-      required final List<AttractionDto> attractions})
+      final List<AttractionDto>? attractions})
       : _attractions = attractions;
 
   factory _$SubcategoryDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -167,12 +167,14 @@ class _$SubcategoryDtoImpl implements _SubcategoryDto {
   final String? name;
   @override
   final CategoryDto category;
-  final List<AttractionDto> _attractions;
+  final List<AttractionDto>? _attractions;
   @override
-  List<AttractionDto> get attractions {
+  List<AttractionDto>? get attractions {
+    final value = _attractions;
+    if (value == null) return null;
     if (_attractions is EqualUnmodifiableListView) return _attractions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_attractions);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -218,7 +220,7 @@ abstract class _SubcategoryDto implements SubcategoryDto {
       {required final int id,
       final String? name,
       required final CategoryDto category,
-      required final List<AttractionDto> attractions}) = _$SubcategoryDtoImpl;
+      final List<AttractionDto>? attractions}) = _$SubcategoryDtoImpl;
 
   factory _SubcategoryDto.fromJson(Map<String, dynamic> json) =
       _$SubcategoryDtoImpl.fromJson;
@@ -230,7 +232,7 @@ abstract class _SubcategoryDto implements SubcategoryDto {
   @override
   CategoryDto get category;
   @override
-  List<AttractionDto> get attractions;
+  List<AttractionDto>? get attractions;
   @override
   @JsonKey(ignore: true)
   _$$SubcategoryDtoImplCopyWith<_$SubcategoryDtoImpl> get copyWith =>

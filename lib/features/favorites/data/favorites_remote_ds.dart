@@ -8,8 +8,10 @@ import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dar
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class FavoritesRemoteDs {
+abstract interface class FavoritesRemoteDs {
   Future<List<AttractionDto>> getAttractsByRouteId({required int id});
+    Future<String> makeRouteWebById({required int id});
+
 }
 
 @LazySingleton(as: FavoritesRemoteDs)
@@ -42,6 +44,37 @@ class FavoritesRemoteDsImpl extends FavoritesRemoteDs {
       final List<dynamic> results = response.data as List<dynamic>;
 
       return results.map((json) => AttractionDto.fromJson(json)).toList();
+    } on DioException catch (e) {
+      print('ochibka-${e.message}');
+      final error = e.response?.data as Map<String, dynamic>;
+
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+  
+  @override
+  Future<String> makeRouteWebById({required int id}) async {
+    try {
+      final location = await LocationService().getCurrentLocation();
+      final response =
+          await dio.get(EndPoints.makeWebRouteById(id), data: {
+        "lat": location.latitude,
+        "lng": location.longitude,
+        "id": "$id",
+      },
+      queryParameters: {
+        "lat": location.latitude,
+        "lng": location.longitude,
+        "id": "$id",
+      },);
+
+      print('oshibka-${response.data.toString()}');
+
+      final  results = response.data as Map<String,dynamic>;
+
+      return results['url'];
     } on DioException catch (e) {
       print('ochibka-${e.message}');
       final error = e.response?.data as Map<String, dynamic>;

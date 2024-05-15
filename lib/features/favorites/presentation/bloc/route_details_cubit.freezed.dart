@@ -22,6 +22,7 @@ mixin _$RouteDetailsState {
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
     required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$RouteDetailsState {
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
     TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$RouteDetailsState {
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
     TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$RouteDetailsState {
     required TResult Function(_RouteDetailsLoading value) loadingState,
     required TResult Function(_RouteDetailsError value) errorState,
     required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$RouteDetailsState {
     TResult? Function(_RouteDetailsLoading value)? loadingState,
     TResult? Function(_RouteDetailsError value)? errorState,
     TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$RouteDetailsState {
     TResult Function(_RouteDetailsLoading value)? loadingState,
     TResult Function(_RouteDetailsError value)? errorState,
     TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +134,7 @@ class _$InitialPageImpl implements _InitialPage {
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
     required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
   }) {
     return initialState();
   }
@@ -139,6 +146,7 @@ class _$InitialPageImpl implements _InitialPage {
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
     TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
   }) {
     return initialState?.call();
   }
@@ -150,6 +158,7 @@ class _$InitialPageImpl implements _InitialPage {
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
     TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
     required TResult orElse(),
   }) {
     if (initialState != null) {
@@ -165,6 +174,7 @@ class _$InitialPageImpl implements _InitialPage {
     required TResult Function(_RouteDetailsLoading value) loadingState,
     required TResult Function(_RouteDetailsError value) errorState,
     required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
   }) {
     return initialState(this);
   }
@@ -176,6 +186,7 @@ class _$InitialPageImpl implements _InitialPage {
     TResult? Function(_RouteDetailsLoading value)? loadingState,
     TResult? Function(_RouteDetailsError value)? errorState,
     TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
   }) {
     return initialState?.call(this);
   }
@@ -187,6 +198,7 @@ class _$InitialPageImpl implements _InitialPage {
     TResult Function(_RouteDetailsLoading value)? loadingState,
     TResult Function(_RouteDetailsError value)? errorState,
     TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
     required TResult orElse(),
   }) {
     if (initialState != null) {
@@ -243,6 +255,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
     required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
   }) {
     return loadingState();
   }
@@ -254,6 +267,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
     TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
   }) {
     return loadingState?.call();
   }
@@ -265,6 +279,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
     TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
     required TResult orElse(),
   }) {
     if (loadingState != null) {
@@ -280,6 +295,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     required TResult Function(_RouteDetailsLoading value) loadingState,
     required TResult Function(_RouteDetailsError value) errorState,
     required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
   }) {
     return loadingState(this);
   }
@@ -291,6 +307,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     TResult? Function(_RouteDetailsLoading value)? loadingState,
     TResult? Function(_RouteDetailsError value)? errorState,
     TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
   }) {
     return loadingState?.call(this);
   }
@@ -302,6 +319,7 @@ class _$RouteDetailsLoadingImpl implements _RouteDetailsLoading {
     TResult Function(_RouteDetailsLoading value)? loadingState,
     TResult Function(_RouteDetailsError value)? errorState,
     TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
     required TResult orElse(),
   }) {
     if (loadingState != null) {
@@ -385,6 +403,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
     required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
   }) {
     return errorState(message);
   }
@@ -396,6 +415,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
     TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
   }) {
     return errorState?.call(message);
   }
@@ -407,6 +427,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
     TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
     required TResult orElse(),
   }) {
     if (errorState != null) {
@@ -422,6 +443,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     required TResult Function(_RouteDetailsLoading value) loadingState,
     required TResult Function(_RouteDetailsError value) errorState,
     required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
   }) {
     return errorState(this);
   }
@@ -433,6 +455,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     TResult? Function(_RouteDetailsLoading value)? loadingState,
     TResult? Function(_RouteDetailsError value)? errorState,
     TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
   }) {
     return errorState?.call(this);
   }
@@ -444,6 +467,7 @@ class _$RouteDetailsErrorImpl implements _RouteDetailsError {
     TResult Function(_RouteDetailsLoading value)? loadingState,
     TResult Function(_RouteDetailsError value)? errorState,
     TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
     required TResult orElse(),
   }) {
     if (errorState != null) {
@@ -541,6 +565,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
     required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
   }) {
     return sucess(attracts);
   }
@@ -552,6 +577,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
     TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
   }) {
     return sucess?.call(attracts);
   }
@@ -563,6 +589,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
     TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
     required TResult orElse(),
   }) {
     if (sucess != null) {
@@ -578,6 +605,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     required TResult Function(_RouteDetailsLoading value) loadingState,
     required TResult Function(_RouteDetailsError value) errorState,
     required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
   }) {
     return sucess(this);
   }
@@ -589,6 +617,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     TResult? Function(_RouteDetailsLoading value)? loadingState,
     TResult? Function(_RouteDetailsError value)? errorState,
     TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
   }) {
     return sucess?.call(this);
   }
@@ -600,6 +629,7 @@ class _$RouteDetailsSuccessImpl implements _RouteDetailsSuccess {
     TResult Function(_RouteDetailsLoading value)? loadingState,
     TResult Function(_RouteDetailsError value)? errorState,
     TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
     required TResult orElse(),
   }) {
     if (sucess != null) {
@@ -617,4 +647,161 @@ abstract class _RouteDetailsSuccess implements RouteDetailsState {
   @JsonKey(ignore: true)
   _$$RouteDetailsSuccessImplCopyWith<_$RouteDetailsSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RouteDetailsSuccessRouteImplCopyWith<$Res> {
+  factory _$$RouteDetailsSuccessRouteImplCopyWith(
+          _$RouteDetailsSuccessRouteImpl value,
+          $Res Function(_$RouteDetailsSuccessRouteImpl) then) =
+      __$$RouteDetailsSuccessRouteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$$RouteDetailsSuccessRouteImplCopyWithImpl<$Res>
+    extends _$RouteDetailsStateCopyWithImpl<$Res,
+        _$RouteDetailsSuccessRouteImpl>
+    implements _$$RouteDetailsSuccessRouteImplCopyWith<$Res> {
+  __$$RouteDetailsSuccessRouteImplCopyWithImpl(
+      _$RouteDetailsSuccessRouteImpl _value,
+      $Res Function(_$RouteDetailsSuccessRouteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_$RouteDetailsSuccessRouteImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RouteDetailsSuccessRouteImpl implements _RouteDetailsSuccessRoute {
+  const _$RouteDetailsSuccessRouteImpl({this.url = ''});
+
+  @override
+  @JsonKey()
+  final String url;
+
+  @override
+  String toString() {
+    return 'RouteDetailsState.sucessRoute(url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RouteDetailsSuccessRouteImpl &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RouteDetailsSuccessRouteImplCopyWith<_$RouteDetailsSuccessRouteImpl>
+      get copyWith => __$$RouteDetailsSuccessRouteImplCopyWithImpl<
+          _$RouteDetailsSuccessRouteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialState,
+    required TResult Function() loadingState,
+    required TResult Function(String message) errorState,
+    required TResult Function(List<AttractionDto> attracts) sucess,
+    required TResult Function(String url) sucessRoute,
+  }) {
+    return sucessRoute(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialState,
+    TResult? Function()? loadingState,
+    TResult? Function(String message)? errorState,
+    TResult? Function(List<AttractionDto> attracts)? sucess,
+    TResult? Function(String url)? sucessRoute,
+  }) {
+    return sucessRoute?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialState,
+    TResult Function()? loadingState,
+    TResult Function(String message)? errorState,
+    TResult Function(List<AttractionDto> attracts)? sucess,
+    TResult Function(String url)? sucessRoute,
+    required TResult orElse(),
+  }) {
+    if (sucessRoute != null) {
+      return sucessRoute(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialPage value) initialState,
+    required TResult Function(_RouteDetailsLoading value) loadingState,
+    required TResult Function(_RouteDetailsError value) errorState,
+    required TResult Function(_RouteDetailsSuccess value) sucess,
+    required TResult Function(_RouteDetailsSuccessRoute value) sucessRoute,
+  }) {
+    return sucessRoute(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialPage value)? initialState,
+    TResult? Function(_RouteDetailsLoading value)? loadingState,
+    TResult? Function(_RouteDetailsError value)? errorState,
+    TResult? Function(_RouteDetailsSuccess value)? sucess,
+    TResult? Function(_RouteDetailsSuccessRoute value)? sucessRoute,
+  }) {
+    return sucessRoute?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialPage value)? initialState,
+    TResult Function(_RouteDetailsLoading value)? loadingState,
+    TResult Function(_RouteDetailsError value)? errorState,
+    TResult Function(_RouteDetailsSuccess value)? sucess,
+    TResult Function(_RouteDetailsSuccessRoute value)? sucessRoute,
+    required TResult orElse(),
+  }) {
+    if (sucessRoute != null) {
+      return sucessRoute(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RouteDetailsSuccessRoute implements RouteDetailsState {
+  const factory _RouteDetailsSuccessRoute({final String url}) =
+      _$RouteDetailsSuccessRouteImpl;
+
+  String get url;
+  @JsonKey(ignore: true)
+  _$$RouteDetailsSuccessRouteImplCopyWith<_$RouteDetailsSuccessRouteImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

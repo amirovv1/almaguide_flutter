@@ -21,7 +21,9 @@ mixin _$CategoriesState {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(List<CategoryDto> popCategories) sucess,
+    required TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)
+        sucess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +31,9 @@ mixin _$CategoriesState {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(List<CategoryDto> popCategories)? sucess,
+    TResult? Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +41,9 @@ mixin _$CategoriesState {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(List<CategoryDto> popCategories)? sucess,
+    TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +133,9 @@ class _$InitialPageImpl implements _InitialPage {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(List<CategoryDto> popCategories) sucess,
+    required TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)
+        sucess,
   }) {
     return initialState();
   }
@@ -138,7 +146,9 @@ class _$InitialPageImpl implements _InitialPage {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(List<CategoryDto> popCategories)? sucess,
+    TResult? Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
   }) {
     return initialState?.call();
   }
@@ -149,7 +159,9 @@ class _$InitialPageImpl implements _InitialPage {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(List<CategoryDto> popCategories)? sucess,
+    TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
     required TResult orElse(),
   }) {
     if (initialState != null) {
@@ -241,7 +253,9 @@ class _$CategoriesLoadingImpl implements _CategoriesLoading {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(List<CategoryDto> popCategories) sucess,
+    required TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)
+        sucess,
   }) {
     return loadingState();
   }
@@ -252,7 +266,9 @@ class _$CategoriesLoadingImpl implements _CategoriesLoading {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(List<CategoryDto> popCategories)? sucess,
+    TResult? Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
   }) {
     return loadingState?.call();
   }
@@ -263,7 +279,9 @@ class _$CategoriesLoadingImpl implements _CategoriesLoading {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(List<CategoryDto> popCategories)? sucess,
+    TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
     required TResult orElse(),
   }) {
     if (loadingState != null) {
@@ -383,7 +401,9 @@ class _$CategoriesErrorImpl implements _CategoriesError {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(List<CategoryDto> popCategories) sucess,
+    required TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)
+        sucess,
   }) {
     return errorState(message);
   }
@@ -394,7 +414,9 @@ class _$CategoriesErrorImpl implements _CategoriesError {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(List<CategoryDto> popCategories)? sucess,
+    TResult? Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
   }) {
     return errorState?.call(message);
   }
@@ -405,7 +427,9 @@ class _$CategoriesErrorImpl implements _CategoriesError {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(List<CategoryDto> popCategories)? sucess,
+    TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
     required TResult orElse(),
   }) {
     if (errorState != null) {
@@ -468,7 +492,8 @@ abstract class _$$CategoriesSuccessImplCopyWith<$Res> {
           $Res Function(_$CategoriesSuccessImpl) then) =
       __$$CategoriesSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CategoryDto> popCategories});
+  $Res call(
+      {List<CategoryDto> popCategories, List<CategoryDto> otherCategories});
 }
 
 /// @nodoc
@@ -483,11 +508,16 @@ class __$$CategoriesSuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? popCategories = null,
+    Object? otherCategories = null,
   }) {
     return _then(_$CategoriesSuccessImpl(
       popCategories: null == popCategories
           ? _value._popCategories
           : popCategories // ignore: cast_nullable_to_non_nullable
+              as List<CategoryDto>,
+      otherCategories: null == otherCategories
+          ? _value._otherCategories
+          : otherCategories // ignore: cast_nullable_to_non_nullable
               as List<CategoryDto>,
     ));
   }
@@ -497,8 +527,10 @@ class __$$CategoriesSuccessImplCopyWithImpl<$Res>
 
 class _$CategoriesSuccessImpl implements _CategoriesSuccess {
   const _$CategoriesSuccessImpl(
-      {final List<CategoryDto> popCategories = const []})
-      : _popCategories = popCategories;
+      {final List<CategoryDto> popCategories = const [],
+      final List<CategoryDto> otherCategories = const []})
+      : _popCategories = popCategories,
+        _otherCategories = otherCategories;
 
   final List<CategoryDto> _popCategories;
   @override
@@ -509,9 +541,18 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
     return EqualUnmodifiableListView(_popCategories);
   }
 
+  final List<CategoryDto> _otherCategories;
+  @override
+  @JsonKey()
+  List<CategoryDto> get otherCategories {
+    if (_otherCategories is EqualUnmodifiableListView) return _otherCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_otherCategories);
+  }
+
   @override
   String toString() {
-    return 'CategoriesState.sucess(popCategories: $popCategories)';
+    return 'CategoriesState.sucess(popCategories: $popCategories, otherCategories: $otherCategories)';
   }
 
   @override
@@ -520,12 +561,16 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
         (other.runtimeType == runtimeType &&
             other is _$CategoriesSuccessImpl &&
             const DeepCollectionEquality()
-                .equals(other._popCategories, _popCategories));
+                .equals(other._popCategories, _popCategories) &&
+            const DeepCollectionEquality()
+                .equals(other._otherCategories, _otherCategories));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_popCategories));
+      runtimeType,
+      const DeepCollectionEquality().hash(_popCategories),
+      const DeepCollectionEquality().hash(_otherCategories));
 
   @JsonKey(ignore: true)
   @override
@@ -540,9 +585,11 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(List<CategoryDto> popCategories) sucess,
+    required TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)
+        sucess,
   }) {
-    return sucess(popCategories);
+    return sucess(popCategories, otherCategories);
   }
 
   @override
@@ -551,9 +598,11 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(List<CategoryDto> popCategories)? sucess,
+    TResult? Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
   }) {
-    return sucess?.call(popCategories);
+    return sucess?.call(popCategories, otherCategories);
   }
 
   @override
@@ -562,11 +611,13 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(List<CategoryDto> popCategories)? sucess,
+    TResult Function(
+            List<CategoryDto> popCategories, List<CategoryDto> otherCategories)?
+        sucess,
     required TResult orElse(),
   }) {
     if (sucess != null) {
-      return sucess(popCategories);
+      return sucess(popCategories, otherCategories);
     }
     return orElse();
   }
@@ -610,10 +661,12 @@ class _$CategoriesSuccessImpl implements _CategoriesSuccess {
 }
 
 abstract class _CategoriesSuccess implements CategoriesState {
-  const factory _CategoriesSuccess({final List<CategoryDto> popCategories}) =
-      _$CategoriesSuccessImpl;
+  const factory _CategoriesSuccess(
+      {final List<CategoryDto> popCategories,
+      final List<CategoryDto> otherCategories}) = _$CategoriesSuccessImpl;
 
   List<CategoryDto> get popCategories;
+  List<CategoryDto> get otherCategories;
   @JsonKey(ignore: true)
   _$$CategoriesSuccessImplCopyWith<_$CategoriesSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

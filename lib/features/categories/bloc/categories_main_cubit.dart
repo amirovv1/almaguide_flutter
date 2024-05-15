@@ -13,21 +13,32 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   final CategoriesRepository repo;
 
   CategoriesCubit(this.repo) : super(const CategoriesState.initialState());
-  late List<CategoryDto> _popCategories;
+  List<CategoryDto> _popCategories = [];
+  List<CategoryDto> otherCategories = [];
 
   Future<void> initCategories() async {
     emit(const _CategoriesLoading());
-    final attrResult = await repo.getPopularCategories(
-       );
-    
+    final attrResult = await repo.getPopularCategories();
+
     attrResult.fold((l) {
       emit(_CategoriesError(message: mapFailureToMessage(l)));
     }, (r) {
       _popCategories = r;
     });
-    
+    await  getOtherCategories();
 
-    emit(_CategoriesSuccess(popCategories:_popCategories ));
+    emit(_CategoriesSuccess(popCategories: _popCategories, otherCategories: otherCategories));
+  }
+
+  Future<void> getOtherCategories() async {
+    emit(const _CategoriesLoading());
+    final attrResult = await repo.getOtherCategories();
+
+    attrResult.fold((l) {
+      emit(_CategoriesError(message: mapFailureToMessage(l)));
+    }, (r) {
+      otherCategories = r;
+    });
   }
 }
 
@@ -37,6 +48,7 @@ class CategoriesState with _$CategoriesState {
   const factory CategoriesState.loadingState() = _CategoriesLoading;
   const factory CategoriesState.errorState({@Default('') String message}) =
       _CategoriesError;
-  const factory CategoriesState.sucess({ @Default([]) List<CategoryDto> popCategories}) =
-      _CategoriesSuccess;
+  const factory CategoriesState.sucess(
+      {@Default([]) List<CategoryDto> popCategories,
+      @Default([]) List<CategoryDto> otherCategories}) = _CategoriesSuccess;
 }

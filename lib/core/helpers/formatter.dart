@@ -1,16 +1,18 @@
+import 'package:almaguide_flutter/features/categories/presentation/widgets/category_details_widgets/order_modal.dart';
+import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class Formatter {
   static String getServiceName(String number, BuildContext context) {
     switch (number) {
       case '101':
-        return 'Служба пожаротушения';
+        return S.of(context).fireman;
       case '102':
-        return 'Полиция';
+        return S.of(context).policies;
       case '103':
-        return 'Скорая медицинская помощь';
+        return S.of(context).ambulance;
       case '104':
-        return 'Аварийная служба газа';
+        return S.of(context).gas_service;
       default:
         return 'Неизвестная служба';
     }
@@ -31,13 +33,23 @@ class Formatter {
 
 
  static String convertMetersToKilometers(String metersString) {
-    // Преобразуем строку в число
     double meters = double.parse(metersString);
 
-    // Переводим метры в километры
     double kilometers = meters / 1000;
 
-    // Возвращаем результат как строку
     return kilometers.toInt().toString();
+  }
+
+  static String sortFormat(Order order, BuildContext context) {
+    switch (order) {
+      case Order.name:
+        return S.of(context).name_sorting;
+      case Order.avgRate:
+        return S.of(context).rating_sorting;
+      case Order.distance:
+        return S.of(context).distance_sorting;
+      default:
+        return "Unknown";
+    }
   }
 }

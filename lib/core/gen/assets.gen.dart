@@ -47,8 +47,11 @@ class $AssetsPngGen {
   /// File path: assets/png/oyu_card_2.png
   AssetGenImage get oyuCard2 => const AssetGenImage('assets/png/oyu_card_2.png');
 
+  /// File path: assets/png/succes.png
+  AssetGenImage get succes => const AssetGenImage('assets/png/succes.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [almaGuide, oyuCard, oyuCard2];
+  List<AssetGenImage> get values => [almaGuide, oyuCard, oyuCard2, succes];
 }
 
 class $AssetsSvgGen {

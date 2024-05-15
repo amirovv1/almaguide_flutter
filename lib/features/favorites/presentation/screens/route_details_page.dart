@@ -1,8 +1,10 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/bloc/route_details_cubit.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
+import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +51,7 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
             style: ts(TS.s18w600).copyWith(color: Colors.black),
           ),
         ),
-        body: BlocBuilder<RouteDetailsCubit, RouteDetailsState>(
+        body: BlocConsumer<RouteDetailsCubit, RouteDetailsState>(
           builder: (BuildContext context, RouteDetailsState state) {
             return state.maybeMap(
               orElse: () {
@@ -58,13 +60,13 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                 );
               },
               sucess: (value) {
-                return  RefreshIndicator.adaptive(
+                return RefreshIndicator.adaptive(
                   onRefresh: () async {
                     context.read<HomeCubit>().getFavorites();
                   },
                   child: value.attracts.isEmpty
-                      ? const Center(
-                          child: Text('Добавьте в избранное'),
+                      ?  Center(
+                          child: Text(S.of(context).empty_list),
                         )
                       : Column(
                           children: [
@@ -101,8 +103,8 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                                               right: 0,
                                               child: LikeButton(
                                                 //active: true,
-                                                attractionId: value.attracts[index]
-                                                    .id,
+                                                attractionId:
+                                                    value.attracts[index].id,
                                               ))
                                         ],
                                       ),
@@ -132,26 +134,27 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                             ),
                             SizedBox(height: 20.h),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16).r,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16).r,
                               height: 48.h,
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  context.read<HomeCubit>().makeRoute();
+                                  context
+                                      .read<RouteDetailsCubit>()
+                                      .makeRoute(id: widget.routeId);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blue, // Цвет фона кнопки
-                                  onPrimary:
-                                      Colors.white, // Цвет текста на кнопке
+                                  foregroundColor: Colors.white, backgroundColor: Colors.blue, // Цвет текста на кнопке
                                   elevation:
-                                      4, // Высота эффекта поднятия кнопки
+                                      4, 
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
-                                        8), // Закругленные углы кнопки
+                                        8), 
                                   ),
                                 ),
                                 child: Text(
-                                  'Создать маршрут',
+                                  S.of(context).go_to_route,
                                   style: ts(TS.s16w600)
                                       .copyWith(color: Colors.white),
                                 ), // Текст на кнопке
@@ -160,6 +163,14 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                           ],
                         ),
                 );
+              },
+            );
+          },
+          listener: (BuildContext context, RouteDetailsState state) {
+            state.whenOrNull(
+              sucessRoute: (url) {
+                print(url.toString());
+                context.router.push(WebViewRoute(url: url));
               },
             );
           },

@@ -1,5 +1,10 @@
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_details_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_main_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/payment_succes_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/paytment_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/tour_list_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/tour_review_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/route_details_page.dart';
 import 'package:almaguide_flutter/features/home/presentation/screens/attraction_detail_page.dart';
@@ -11,6 +16,7 @@ import 'package:almaguide_flutter/features/map/presentation/screens/map_page.dar
 import 'package:almaguide_flutter/features/profile/presentation/screens/auth_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/enter_new_password_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/forgot_password_page.dart';
+import 'package:almaguide_flutter/features/profile/presentation/screens/my_tours_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/otp_forgot_password_page.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/password_success_change.dart';
 import 'package:almaguide_flutter/features/profile/presentation/screens/privat_policy_page.dart';
@@ -46,7 +52,13 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SearchRoute.page),
         AutoRoute(page: WebViewRoute.page),
         AutoRoute(page: CategoryDetailRoute.page),
-                AutoRoute(page: RouteDetailRoute.page),
+        AutoRoute(page: RouteDetailRoute.page),
+        AutoRoute(page: TourListRoute.page),
+        AutoRoute(page: TourDetailsRoute.page),
+        AutoRoute(page: TourReviewRoute.page),
+        AutoRoute(page: PaymentRoute.page),
+        AutoRoute(page: PaymentSuccessRoute.page),
+      AutoRoute(page: MyTourListRoute.page),
 
       ];
 }

@@ -19,13 +19,18 @@ part 'home_cubit.freezed.dart';
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository repo;
 
-  HomeCubit(this.repo) : super(const HomeState.initialState());
+  HomeCubit(this.repo) : super(const HomeState.initialState()) {
+    initHome();
+    getStories();
+  }
   late AttractionDto _attractionDto;
   List<SubcategoryDto> _subsList = [];
+  List<StoryDto> _storiesList = [];
+  List<AttractionDto> _favoritesList = [];
+  List<RouteDto> _routeList = [];
 
   Future<void> initHome() async {
     emit(const _HomeLoading());
-    getStories();
     final location = await LocationService().getCurrentLocation();
     final attrResult = await repo.getMainAttraction(
         lat: location.latitude.toString(), lng: location.longitude.toString());
@@ -41,26 +46,12 @@ class HomeCubit extends Cubit<HomeState> {
     }, (r) {
       _subsList = r;
     });
-    await getFavorites();
-    emit(_HomeSuccess(attractionDto: _attractionDto, subsList: _subsList));
-  }
-
-  Future<void> getRoutes() async {
-    emit(const _HomeLoading());
-    final result = await repo.getRoutes();
-    result.fold((l) {}, (r) {
-      final newState = const _HomeSuccess().copyWith(routes: r.toList());
-      emit(newState);
-    });
-  }
-
-  Future<void> makeRoute() async {
-    emit(const _HomeLoading());
-    final result = await repo.makeRoute();
-    result.fold((l) {}, (r) {
-      getFavorites();
-      getRoutes();
-    });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList,
+        routes: _routeList));
   }
 
   Future<void> search(String name) async {
@@ -74,7 +65,13 @@ class HomeCubit extends Cubit<HomeState> {
       result.fold((l) {
         emit(_HomeError(message: mapFailureToMessage(l)));
       }, (r) {
-        emit(_HomeSuccess(attractionsList: r));
+        emit(_HomeSuccess(
+            attractionsList: r,
+            favoriteAttractions: _favoritesList,
+            stories: _storiesList,
+            attractionDto: _attractionDto,
+            subsList: _subsList,
+            routes: _routeList));
         initHome();
       });
     });
@@ -110,26 +107,50 @@ class HomeCubit extends Cubit<HomeState> {
     final location = await LocationService().getCurrentLocation();
     final result = await repo.getFavorites(
         lat: location.latitude.toString(), lng: location.longitude.toString());
-    result.fold((l) {
-      // ScaffoldMessenger.of(context)
-      //     .showSnackBar(SnackBar(content: Text(mapFailureToMessage(l))));
-    }, (r) {
-      print("R is $r");
-      emit(_HomeSuccess(
-          favoriteAttractions: r.toSet().toList(),
-          attractionDto: _attractionDto,
-          subsList: _subsList));
+    result.fold((l) {}, (r) {
+      _favoritesList = r;
+    });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList,
+        routes: _routeList));
+  }
+
+  Future<void> getRoutes() async {
+    final result = await repo.getRoutes();
+    result.fold((l) {}, (r) {
+      _routeList = r;
+    });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList,
+        routes: _routeList));
+  }
+
+  Future<void> makeRoute() async {
+    emit(const HomeState.loadingState());
+    final result = await repo.makeRoute();
+    result.fold((l) {}, (r) {
+      getRoutes();
+            getFavorites();
+
     });
   }
 
   Future<void> getStories() async {
     final result = await repo.getStories();
     result.fold((l) {}, (r) {
-      print('история111-${r.toList().toString()}');
-      emit(_HomeSuccess(
-        stories: r.isEmpty ? [] : r,
-      ));
+      _storiesList = r;
     });
+    emit(_HomeSuccess(
+        favoriteAttractions: _favoritesList,
+        stories: _storiesList,
+        attractionDto: _attractionDto,
+        subsList: _subsList));
   }
 }
 

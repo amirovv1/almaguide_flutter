@@ -3,6 +3,7 @@ import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
@@ -45,7 +46,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions:  [
+        actions:  const [
           LikeButton(attractionId: 1,)
         ],
         
@@ -164,7 +165,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                         attractionDto?.description ?? '',
                                   ),
                                 ReviewWidget(
-                                  reviews: reviews,
+                                  reviews: reviews, isAttract: true, itemId: attractionDto?.id ?? 1,
                                 ),
                                 SizedBox(
                                   height: 25.r,
@@ -288,167 +289,4 @@ class DescriptionWidget extends StatelessWidget {
   }
 }
 
-class ReviewWidget extends StatelessWidget {
-  const ReviewWidget({
-    super.key,
-    required this.reviews,
-  });
-  final List<ReviewDto> reviews;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              S.of(context).reviews,
-              style: ts(TS.s18w600).copyWith(color: Colors.black),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: Colors.blue.withOpacity(0.1), // Adjust color here
-              ),
-              child: reviews.length > 1
-                  ? SizedBox(
-                      height: 32.h,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          S.of(context).showAll,
-                          style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blue),
-                        ),
-                      ),
-                    )
-                  : null,
-            ),
-          ],
-        ),
-        reviews.isEmpty
-            ? Padding(
-                padding: const EdgeInsets.all(16).r,
-                child: const Text('Отзывов нет'),
-              )
-            : ListView.separated(
-                padding: const EdgeInsets.symmetric(vertical: 10).r,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final review = reviews[index];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 40.r,
-                            height: 40.r,
-                            decoration:
-                                const BoxDecoration(shape: BoxShape.circle),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: CachedNetworkImage(
-                                  imageUrl: review.user?.photo ?? '',
-                                  fit: BoxFit.cover,
-                                  errorWidget: (context, url, error) {
-                                    return Container(
-                                      color: Colors.grey,
-                                    );
-                                  },
-                                )),
-                          ),
-                          SizedBox(
-                            width: 10.r,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                review.user?.fullName ?? '',
-                                style: ts(TS.s12w400)
-                                    .copyWith(color: Colors.black),
-                              ),
-                              Text(
-                                DateFormat('dd MMMM yyyy, HH: mm').format(
-                                    DateTime.parse(review.createdAt ?? '')),
-                                style: ts(TS.s12w400),
-                              ),
-                              SizedBox(
-                                  height: 16.h,
-                                  child: RatingBar.builder(
-                                    initialRating: review.rate
-                                        .toDouble(), // Устанавливает начальный рейтинг
-                                    minRating: 0, // Минимальный рейтинг
-                                    maxRating: 5, // Максимальный рейтинг
-                                    allowHalfRating:
-                                        true, // Разрешает половинные оценки
-                                    itemCount:
-                                        5, // Количество элементов рейтинга (звезды)
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    itemSize: 16
-                                        .r, // Размер элементов рейтинга (звезды)
-                                    ignoreGestures:
-                                        true, // Установите в true, чтобы виджет был только для отображения
-                                    onRatingUpdate: (rating) {
-                                      // Обработчик событий, который будет вызываться при изменении рейтинга
-                                      // В данном случае ничего не делаем, потому что это виджет только для отображения
-                                    },
-                                  ))
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.r,
-                      ),
-                      Text(
-                        review.review,
-                        style: ts(TS.s14w400).copyWith(color: Colors.black),
-                      ),
-                    ],
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(
-                      height: 10.h,
-                    ),
-                itemCount: reviews.length),
-        SizedBox(
-          height: 10.r,
-        ),
-        SizedBox(
-          width: 1.sw,
-          height: 32.h,
-          child: ElevatedButton(
-            onPressed: () {
-              // Добавьте логику при нажатии кнопки здесь
-            },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.green,
-              backgroundColor: Colors.white, // Зеленый цвет текста
-              elevation: 0, // Высота приподнятия
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(8), // Скругление углов кнопки
-                side: const BorderSide(
-                    color: Colors.green, width: 1), // Зеленая граница
-              ),
-            ),
-            child: Text(
-              S.of(context).make_comment,
-              style: const TextStyle(
-                color: Colors.green, // Зеленый цвет текста
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}

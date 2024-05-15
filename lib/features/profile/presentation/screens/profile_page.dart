@@ -143,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: S.of(context).app_language,
                           onTap: () => showLanguageModal(context),
                         ),
-                        ProfileItemCard(title: S.of(context).my_tours),
+                        ProfileItemCard(title: S.of(context).my_tours, onTap: () => context.router.push(MyTourListRoute())),
                         ProfileItemCard(
                           title: S.of(context).emerge_contacts,
                           onTap: () => showContactsModal(context),

@@ -1,14 +1,22 @@
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeListWidget extends StatelessWidget {
-  const HomeListWidget({Key? key, required this.title, required this.attracts}) : super(key: key);
+  const HomeListWidget(
+      {Key? key,
+      required this.title,
+      required this.attracts,
+      required this.categoryId})
+      : super(key: key);
   final String title;
   final List<AttractionDto> attracts;
+  final int categoryId;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,10 @@ class HomeListWidget extends StatelessWidget {
                 child: SizedBox(
                   height: 32.h,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(CategoryDetailRoute(
+                          title: title, categoryId: categoryId));
+                    },
                     child: Text(
                       S.of(context).showAll,
                       style: TextStyle(
@@ -62,7 +73,10 @@ class HomeListWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: attracts.length,
             itemBuilder: (context, index) {
-              return CustomCard(index: index, attract: attracts[index],);
+              return CustomCard(
+                index: index,
+                attract: attracts[index],
+              );
             },
             separatorBuilder: (context, index) => SizedBox(width: 20.r),
           ),

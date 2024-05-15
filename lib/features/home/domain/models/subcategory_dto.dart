@@ -11,7 +11,7 @@ class SubcategoryDto with _$SubcategoryDto {
     required int id,
     final String? name,
     required CategoryDto category,
-    required List<AttractionDto> attractions
+    final List<AttractionDto>? attractions
    
   }) = _SubcategoryDto;
 
