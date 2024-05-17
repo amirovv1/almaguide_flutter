@@ -13,6 +13,7 @@ _$AttractionDtoImpl _$$AttractionDtoImplFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String?,
       distance: json['distance'] as String?,
       description: json['description'] as String?,
+      isFavourite: json['is_favourite'] as bool?,
       categoryIcon: json['categoryIcon'] as String?,
       details: (json['details'] as List<dynamic>?)
           ?.map((e) => DetailsDto.fromJson(e as Map<String, dynamic>))
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$AttractionDtoImplToJson(_$AttractionDtoImpl instance) =>
       'image': instance.image,
       'distance': instance.distance,
       'description': instance.description,
+      'is_favourite': instance.isFavourite,
       'categoryIcon': instance.categoryIcon,
       'details': instance.details,
     };

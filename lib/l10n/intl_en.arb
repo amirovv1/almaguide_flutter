@@ -66,5 +66,9 @@
   "ambulance": "Ambulance",
   "gas_service": "Gas Emergency Service",
   "auth_need": "Authorization Required",
-  "auth_need_description": "Authorization is required to perform this function"
+  "auth_need_description": "Authorization is required to perform this function",
+
+"add_to_fav": "Add to favorites",
+"routes": "Routes",
+"create_route": "Create route"
 }

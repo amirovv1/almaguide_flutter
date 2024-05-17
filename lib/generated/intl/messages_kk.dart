@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Confirm": MessageLookupByLibrary.simpleMessage("Растау"),
+        "add_to_fav": MessageLookupByLibrary.simpleMessage("Таңдаулыға қосу"),
         "addit_info":
             MessageLookupByLibrary.simpleMessage("Қосымша мәліметтер"),
         "ambulance": MessageLookupByLibrary.simpleMessage("Жедел жәрдем"),
@@ -43,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("Санаттар"),
         "confirm_pay_title":
             MessageLookupByLibrary.simpleMessage("Сатып алуды растау"),
+        "create_route": MessageLookupByLibrary.simpleMessage("Маршрут құру"),
         "description": MessageLookupByLibrary.simpleMessage("Сипаттама"),
         "details": MessageLookupByLibrary.simpleMessage("Мәліметтер"),
         "distance_sorting": MessageLookupByLibrary.simpleMessage("Жақын"),
@@ -93,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reviews": MessageLookupByLibrary.simpleMessage("Пікірлер"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("Пікірлер жоқ"),
         "route": MessageLookupByLibrary.simpleMessage("Маршрут"),
+        "routes": MessageLookupByLibrary.simpleMessage("Маршруттар"),
         "send": MessageLookupByLibrary.simpleMessage("Жіберу"),
         "showAll": MessageLookupByLibrary.simpleMessage("Барлығын көрсету"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Кіру"),

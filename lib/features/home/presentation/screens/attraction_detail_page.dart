@@ -14,10 +14,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
@@ -28,6 +26,8 @@ class AttractionDetailScreen extends StatefulWidget {
   @override
   State<AttractionDetailScreen> createState() => _AttractionDetailScreenState();
 }
+
+bool isFav = false;
 
 class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
   @override
@@ -46,13 +46,23 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions:  const [
-          LikeButton(attractionId: 1,)
+        actions: [
+          LikeButton(
+            active: isFav,
+            attractionId: 1,
+          )
         ],
-        
       ),
       body: BlocConsumer<AttractionDetailsCubit, AttractionDetailsState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.whenOrNull(
+            sucess: (attractionDto, reviews) {
+              setState(() {
+                isFav = attractionDto?.isFavourite ?? false;
+              });
+            },
+          );
+        },
         builder: (context, state) {
           return state.maybeWhen(
             orElse: () {
@@ -150,7 +160,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                             .attractRoute()
                                             .then((value) {
                                           if (value != null) {
-                                            context.router.push(WebViewRoute(url: value));
+                                            context.router
+                                                .push(WebViewRoute(url: value));
                                           }
                                         });
                                       },
@@ -165,7 +176,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                         attractionDto?.description ?? '',
                                   ),
                                 ReviewWidget(
-                                  reviews: reviews, isAttract: true, itemId: attractionDto?.id ?? 1,
+                                  reviews: reviews,
+                                  isAttract: true,
+                                  itemId: attractionDto?.id ?? 1,
                                 ),
                                 SizedBox(
                                   height: 25.r,
@@ -288,5 +301,3 @@ class DescriptionWidget extends StatelessWidget {
     );
   }
 }
-
-

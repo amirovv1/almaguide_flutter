@@ -12,6 +12,7 @@ class AttractionDto with _$AttractionDto {
     final String? image,
     final String? distance,
     final String? description,
+    @JsonKey(name: 'is_favourite')final bool? isFavourite,
 
     @JsonValue('category_icon') final String? categoryIcon,
             final List<DetailsDto>? details,

@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "add_to_fav": MessageLookupByLibrary.simpleMessage("Add to favorites"),
         "addit_info": MessageLookupByLibrary.simpleMessage("Additional Info"),
         "ambulance": MessageLookupByLibrary.simpleMessage("Ambulance"),
         "app_language": MessageLookupByLibrary.simpleMessage("App Language"),
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "confirm_pay_title":
             MessageLookupByLibrary.simpleMessage("Confirm Purchase"),
+        "create_route": MessageLookupByLibrary.simpleMessage("Create route"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "distance_sorting": MessageLookupByLibrary.simpleMessage("Nearby"),
@@ -88,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("No Reviews"),
         "route": MessageLookupByLibrary.simpleMessage("Route"),
+        "routes": MessageLookupByLibrary.simpleMessage("Routes"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "showAll": MessageLookupByLibrary.simpleMessage("Show All"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),

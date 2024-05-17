@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+        "add_to_fav":
+            MessageLookupByLibrary.simpleMessage("Добавьте в избранное"),
         "addit_info":
             MessageLookupByLibrary.simpleMessage("Дополнительные данные"),
         "ambulance":
@@ -44,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("Категории"),
         "confirm_pay_title":
             MessageLookupByLibrary.simpleMessage("Подтвердите покупку"),
+        "create_route": MessageLookupByLibrary.simpleMessage("Создать маршрут"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "details": MessageLookupByLibrary.simpleMessage("Детали"),
         "distance_sorting": MessageLookupByLibrary.simpleMessage("Рядом"),
@@ -94,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reviews": MessageLookupByLibrary.simpleMessage("Отзывы"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("Отзывов нет"),
         "route": MessageLookupByLibrary.simpleMessage("Маршрут"),
+        "routes": MessageLookupByLibrary.simpleMessage("Маршруты"),
         "send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "showAll": MessageLookupByLibrary.simpleMessage("Показать все"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Войти"),

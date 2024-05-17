@@ -25,6 +25,8 @@ mixin _$AttractionDto {
   String? get image => throw _privateConstructorUsedError;
   String? get distance => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_favourite')
+  bool? get isFavourite => throw _privateConstructorUsedError;
   @JsonValue('category_icon')
   String? get categoryIcon => throw _privateConstructorUsedError;
   List<DetailsDto>? get details => throw _privateConstructorUsedError;
@@ -47,6 +49,7 @@ abstract class $AttractionDtoCopyWith<$Res> {
       String? image,
       String? distance,
       String? description,
+      @JsonKey(name: 'is_favourite') bool? isFavourite,
       @JsonValue('category_icon') String? categoryIcon,
       List<DetailsDto>? details});
 }
@@ -69,6 +72,7 @@ class _$AttractionDtoCopyWithImpl<$Res, $Val extends AttractionDto>
     Object? image = freezed,
     Object? distance = freezed,
     Object? description = freezed,
+    Object? isFavourite = freezed,
     Object? categoryIcon = freezed,
     Object? details = freezed,
   }) {
@@ -93,6 +97,10 @@ class _$AttractionDtoCopyWithImpl<$Res, $Val extends AttractionDto>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavourite: freezed == isFavourite
+          ? _value.isFavourite
+          : isFavourite // ignore: cast_nullable_to_non_nullable
+              as bool?,
       categoryIcon: freezed == categoryIcon
           ? _value.categoryIcon
           : categoryIcon // ignore: cast_nullable_to_non_nullable
@@ -119,6 +127,7 @@ abstract class _$$AttractionDtoImplCopyWith<$Res>
       String? image,
       String? distance,
       String? description,
+      @JsonKey(name: 'is_favourite') bool? isFavourite,
       @JsonValue('category_icon') String? categoryIcon,
       List<DetailsDto>? details});
 }
@@ -139,6 +148,7 @@ class __$$AttractionDtoImplCopyWithImpl<$Res>
     Object? image = freezed,
     Object? distance = freezed,
     Object? description = freezed,
+    Object? isFavourite = freezed,
     Object? categoryIcon = freezed,
     Object? details = freezed,
   }) {
@@ -163,6 +173,10 @@ class __$$AttractionDtoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavourite: freezed == isFavourite
+          ? _value.isFavourite
+          : isFavourite // ignore: cast_nullable_to_non_nullable
+              as bool?,
       categoryIcon: freezed == categoryIcon
           ? _value.categoryIcon
           : categoryIcon // ignore: cast_nullable_to_non_nullable
@@ -184,6 +198,7 @@ class _$AttractionDtoImpl implements _AttractionDto {
       this.image,
       this.distance,
       this.description,
+      @JsonKey(name: 'is_favourite') this.isFavourite,
       @JsonValue('category_icon') this.categoryIcon,
       final List<DetailsDto>? details})
       : _details = details;
@@ -202,6 +217,9 @@ class _$AttractionDtoImpl implements _AttractionDto {
   @override
   final String? description;
   @override
+  @JsonKey(name: 'is_favourite')
+  final bool? isFavourite;
+  @override
   @JsonValue('category_icon')
   final String? categoryIcon;
   final List<DetailsDto>? _details;
@@ -216,7 +234,7 @@ class _$AttractionDtoImpl implements _AttractionDto {
 
   @override
   String toString() {
-    return 'AttractionDto(id: $id, name: $name, image: $image, distance: $distance, description: $description, categoryIcon: $categoryIcon, details: $details)';
+    return 'AttractionDto(id: $id, name: $name, image: $image, distance: $distance, description: $description, isFavourite: $isFavourite, categoryIcon: $categoryIcon, details: $details)';
   }
 
   @override
@@ -231,6 +249,8 @@ class _$AttractionDtoImpl implements _AttractionDto {
                 other.distance == distance) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.isFavourite, isFavourite) ||
+                other.isFavourite == isFavourite) &&
             (identical(other.categoryIcon, categoryIcon) ||
                 other.categoryIcon == categoryIcon) &&
             const DeepCollectionEquality().equals(other._details, _details));
@@ -238,8 +258,16 @@ class _$AttractionDtoImpl implements _AttractionDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, image, distance,
-      description, categoryIcon, const DeepCollectionEquality().hash(_details));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      image,
+      distance,
+      description,
+      isFavourite,
+      categoryIcon,
+      const DeepCollectionEquality().hash(_details));
 
   @JsonKey(ignore: true)
   @override
@@ -262,6 +290,7 @@ abstract class _AttractionDto implements AttractionDto {
       final String? image,
       final String? distance,
       final String? description,
+      @JsonKey(name: 'is_favourite') final bool? isFavourite,
       @JsonValue('category_icon') final String? categoryIcon,
       final List<DetailsDto>? details}) = _$AttractionDtoImpl;
 
@@ -278,6 +307,9 @@ abstract class _AttractionDto implements AttractionDto {
   String? get distance;
   @override
   String? get description;
+  @override
+  @JsonKey(name: 'is_favourite')
+  bool? get isFavourite;
   @override
   @JsonValue('category_icon')
   String? get categoryIcon;

@@ -24,14 +24,14 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   @override
   void didChangeDependencies() {
     BlocProvider.of<HomeCubit>(context).getFavorites();
-     BlocProvider.of<HomeCubit>(context).getRoutes();
+    BlocProvider.of<HomeCubit>(context).getRoutes();
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
     BlocProvider.of<HomeCubit>(context).getFavorites();
-     BlocProvider.of<HomeCubit>(context).getRoutes();
+    BlocProvider.of<HomeCubit>(context).getRoutes();
 
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
@@ -55,7 +55,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                   width: 168.w,
                   child: Center(
                       child: Text(
-                    "Маршруты",
+                    S.of(context).routes,
                     style: ts(TS.s14w500).copyWith(color: Colors.black),
                   )))),
           Tab(
@@ -64,7 +64,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                   width: 168.w,
                   child: Center(
                       child: Text(
-                    "Избранное",
+                    S.of(context).favorites,
                     style: ts(TS.s14w500).copyWith(color: Colors.black),
                   )))),
         ],
@@ -96,7 +96,8 @@ class _FavoritesScreenState extends State<FavoritesScreen>
               initialState: (value) {
                 return const Text('Здвесь будут созданные маршруты');
               },
-              loadingState: (value) => const CircularProgressIndicator.adaptive(),
+              loadingState: (value) =>
+                  const CircularProgressIndicator.adaptive(),
               sucess: (success) {
                 return Padding(
                   padding: EdgeInsets.all(16.w),
@@ -109,7 +110,8 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                               return InkWell(
                                 onTap: () {
                                   context.router.push(RouteDetailRoute(
-                                      title: success.routes[index].name, routeId:  success.routes[index].id));
+                                      title: success.routes[index].name,
+                                      routeId: success.routes[index].id));
                                 },
                                 child: SizedBox(
                                   height: 50.h,
@@ -153,103 +155,110 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                       context.read<HomeCubit>().getFavorites();
                     },
                     child: success.favoriteAttractions.isEmpty
-                        ? const Center(
-                            child: Text('Добавьте в избранное'),
+                        ?  Center(
+                            child: Text(S.of(context).add_to_fav),
                           )
-                        : Column(
-                            children: [
-                              ListView.separated(
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 20)
-                                    .r,
-                                itemBuilder: (context, index) {
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 160.h,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12).r,
-                                          color: Colors.red,
-                                        ),
-                                        child: Stack(
-                                          fit: StackFit.expand,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(12).r,
-                                              child: Image.asset(
-                                                Assets.example.example1.path,
-                                                fit: BoxFit
-                                                    .cover, // Растягивание изображения на весь контейнер
+                        : SingleChildScrollView(
+                          child: Column(
+                              children: [
+                                ListView.separated(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  padding: const EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 20)
+                                      .r,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 160.h,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12).r,
+                                            color: Colors.red,
+                                          ),
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12).r,
+                                                child: Image.asset(
+                                                  Assets.example.example1.path,
+                                                  fit: BoxFit
+                                                      .cover, // Растягивание изображения на весь контейнер
+                                                ),
                                               ),
-                                            ),
-                                            Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: LikeButton(
-                                                  //active: true,
-                                                  attractionId: success
-                                                      .favoriteAttractions[
-                                                          index]
-                                                      .id,
-                                                ))
-                                          ],
+                                              Positioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  child: LikeButton(
+                                                    //active: true,
+                                                    attractionId: success
+                                                        .favoriteAttractions[
+                                                            index]
+                                                        .id,
+                                                  ))
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 15.r,
-                                      ),
-                                      Text(
-                                        success.favoriteAttractions[index].name,
-                                        style: ts(TS.s16w600)
-                                            .copyWith(color: Colors.black),
-                                      ),
-                                      SizedBox(
-                                        height: 10.r,
-                                      ),
-                                      Text(
-                                        '${Formatter.convertMetersToKilometers(success.favoriteAttractions[index].distance ?? 'N')} км',
-                                        style: ts(TS.s14w500).copyWith(
-                                            color: const Color(0xFF1F1F1F)),
-                                      ),
-                                    ],
-                                  );
-                                },
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: 20.r),
-                                itemCount: success.favoriteAttractions.length,
-                              ),
-                              SizedBox(height: 20.h),
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16).r,
-                                height: 48.h,
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                   context.read<HomeCubit>().makeRoute();
+                                        SizedBox(
+                                          height: 15.r,
+                                        ),
+                                        Text(
+                                          success.favoriteAttractions[index].name,
+                                          style: ts(TS.s16w600)
+                                              .copyWith(color: Colors.black),
+                                        ),
+                                        SizedBox(
+                                          height: 10.r,
+                                        ),
+                                        Text(
+                                          '${Formatter.convertMetersToKilometers(success.favoriteAttractions[index].distance ?? 'N')} км',
+                                          style: ts(TS.s14w500).copyWith(
+                                              color: const Color(0xFF1F1F1F)),
+                                        ),
+                                      ],
+                                    );
                                   },
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: Colors.white, backgroundColor: Colors.blue, // Цвет текста на кнопке
-                                    elevation:
-                                        4, // Высота эффекта поднятия кнопки
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Закругленные углы кнопки
-                                    ),
-                                  ),
-                                  child: Text(
-                                    'Создать маршрут',
-                                    style: ts(TS.s16w600)
-                                        .copyWith(color: Colors.white),
-                                  ), // Текст на кнопке
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 20.r),
+                                  itemCount: success.favoriteAttractions.length,
                                 ),
-                              ),
-                            ],
-                          ),
+                                SizedBox(height: 20.h),
+                                Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 16)
+                                          .r,
+                                  height: 48.h,
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      context.read<HomeCubit>().makeRoute();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      backgroundColor:
+                                          Colors.blue, // Цвет текста на кнопке
+                                      elevation:
+                                          4, // Высота эффекта поднятия кнопки
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            8), // Закругленные углы кнопки
+                                      ),
+                                    ),
+                                    child: Text(
+                                      S.of(context).create_route,
+                                      style: ts(TS.s16w600)
+                                          .copyWith(color: Colors.white),
+                                    ), // Текст на кнопке
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ),
                   ),
                 );
               },
@@ -280,7 +289,8 @@ class _LikeButtonState extends State<LikeButton> {
 
   @override
   void initState() {
-    isFav = widget.active ?? true;
+    print('sss-${widget.active}');
+    isFav = widget.active ?? false;
     _loadAccess();
     super.initState();
   }
@@ -325,7 +335,7 @@ class _LikeButtonState extends State<LikeButton> {
               child: Center(
                   child: Icon(
                 Icons.favorite,
-                color: widget.active != null || isFav
+                color:  isFav
                     ? Colors.red
                     : AppColors.textGrey,
               )),

@@ -729,6 +729,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Add to favorites`
+  String get add_to_fav {
+    return Intl.message(
+      'Add to favorites',
+      name: 'add_to_fav',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Routes`
+  String get routes {
+    return Intl.message(
+      'Routes',
+      name: 'routes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create route`
+  String get create_route {
+    return Intl.message(
+      'Create route',
+      name: 'create_route',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
