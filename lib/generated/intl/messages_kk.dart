@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Кіру"),
         "sorting": MessageLookupByLibrary.simpleMessage("Сұрыптау"),
         "success": MessageLookupByLibrary.simpleMessage("Сәтті"),
+        "success_change_password":
+            MessageLookupByLibrary.simpleMessage("Пароль успешно обновлен"),
         "success_pay_details":
             MessageLookupByLibrary.simpleMessage("Турды сәтті сатып алдыңыз"),
         "take_review": MessageLookupByLibrary.simpleMessage("Пікір қалдырыңыз"),

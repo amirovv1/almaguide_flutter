@@ -1,6 +1,7 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,7 @@ class PasswordSuccessChangePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: const Text('Войти'),
+        child:  Text(S.of(context).sign_in),
       ),
       appBar:  AppBar(
         leading: IconButton(
@@ -58,7 +59,7 @@ class PasswordSuccessChangePage extends StatelessWidget {
             SizedBox(height: 20.h,),
             Text(
                 textAlign: TextAlign.center,
-                "Пароль успешно обновлен",
+                S.of(context).success_change_password,
                 style: ts(TS.s24w700).copyWith(
                   color: Colors.black,
                 )),

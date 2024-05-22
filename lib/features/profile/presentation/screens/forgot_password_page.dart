@@ -43,7 +43,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: const Text('Продолжить'),
+            child:  const Text('Продолжить'),
           ),
           appBar: AppBar(
             leading: IconButton(

@@ -69,5 +69,7 @@
   "auth_need_description": "Бұл функцияны орындау үшін авторизация қажет",
   "add_to_fav": "Таңдаулыға қосу",
   "routes": "Маршруттар",
-  "create_route": "Маршрут құру"
+  "create_route": "Маршрут құру",
+  "success_change_password": "Пароль успешно обновлен",
+  "continue": "Продолжить"
 }

@@ -69,5 +69,7 @@
   "auth_need_description": "Для выполнения этой функции нужна авторизация",
   "add_to_fav": "Добавьте в избранное",
   "routes": "Маршруты",
-  "create_route": "Создать маршрут"
+  "create_route": "Создать маршрут",
+  "success_change_password": "Пароль успешно обновлен",
+  "continue": "Продолжить"
 }

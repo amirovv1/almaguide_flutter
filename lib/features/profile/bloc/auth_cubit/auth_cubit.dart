@@ -37,9 +37,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const _InitialPage());
     }, (r) {
       emit(const _InitialPage());
-      context.router.popAndPush( OtpForgotPasswordRoute(email: email));
+      context.router.popAndPush(OtpForgotPasswordRoute(email: email));
     });
   }
+
   Future<void> requestNewPassword(String password, BuildContext context) async {
     emit(const _AuthLoading());
     final result = await repo.requestNewPassword(password);
@@ -47,21 +48,25 @@ class AuthCubit extends Cubit<AuthState> {
       emit(_AuthError(message: l.toString()));
       emit(const _InitialPage());
     }, (r) {
+
       context.router.popAndPush(const PasswordSuccessChangeRoute());
+            emit(AuthState.initialState());
+
     });
-    
   }
 
-  Future<void> verifyOtp(String mail, String otp,BuildContext context) async {
+  Future<void> verifyOtp(String mail, String otp, BuildContext context) async {
     emit(const _AuthLoading());
-    final result = await repo.verifyOtp(mail,int.parse(otp));
+    final result = await repo.verifyOtp(mail, int.parse(otp));
     result.fold((l) {
       emit(_AuthError(message: l.toString()));
       emit(const _InitialPage());
-    }, (r) {
+    }, (r) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('access', r.access);
       context.router.popAndPush(const EnterNewPasswordRoute());
+      emit(AuthState.initialState());
     });
-    
   }
 }
 

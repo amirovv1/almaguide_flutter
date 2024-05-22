@@ -19,7 +19,7 @@ abstract class AuthRepository {
   Future<Either<Failure, UserDto>> getUser();
   Future<Either<Failure, void>> forgotPassword(String email);
   Future<Either<Failure, void>> requestNewPassword(String password);
-    Future<Either<Failure, void>> verifyOtp(String mail,int otp);
+    Future<Either<Failure, TokenDto>> verifyOtp(String mail,int otp);
 
 
 }
@@ -98,7 +98,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
   
   @override
-  Future<Either<Failure, void>> verifyOtp(String mail, int otp) async {
+  Future<Either<Failure, TokenDto>> verifyOtp(String mail, int otp) async {
     try {
       final result = await remoteDS.verifyOTP(mail,otp);
       return Right(result);

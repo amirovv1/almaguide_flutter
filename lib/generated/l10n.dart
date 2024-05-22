@@ -759,6 +759,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Пароль успешно обновлен`
+  String get success_change_password {
+    return Intl.message(
+      'Пароль успешно обновлен',
+      name: 'success_change_password',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

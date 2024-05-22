@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Войти"),
         "sorting": MessageLookupByLibrary.simpleMessage("Сортировка"),
         "success": MessageLookupByLibrary.simpleMessage("Успешно"),
+        "success_change_password":
+            MessageLookupByLibrary.simpleMessage("Пароль успешно обновлен"),
         "success_pay_details":
             MessageLookupByLibrary.simpleMessage("Вы успешно купили тур"),
         "take_review": MessageLookupByLibrary.simpleMessage("Оставьте отзыв"),
