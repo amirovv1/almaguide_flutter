@@ -18,7 +18,7 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await initLocator();
   await LocationService().requestPermission();
-      ChuckerFlutter.showOnRelease = true;
+  ChuckerFlutter.showOnRelease = true;
 
   runApp(AlmaGuideApp());
 }
@@ -39,8 +39,8 @@ class AlmaGuideApp extends StatelessWidget {
             builder: (context, state) {
               return MaterialApp.router(
                 routerDelegate: _appRouter.delegate(
-                        navigatorObservers: () =>
-                            [ChuckerFlutter.navigatorObserver]),
+                    navigatorObservers: () =>
+                        [ChuckerFlutter.navigatorObserver]),
                 themeMode: ThemeMode.dark,
                 locale: Locale(state.langCode),
                 localizationsDelegates: const [

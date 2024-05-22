@@ -6,6 +6,7 @@ import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -155,11 +156,11 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                       context.read<HomeCubit>().getFavorites();
                     },
                     child: success.favoriteAttractions.isEmpty
-                        ?  Center(
+                        ? Center(
                             child: Text(S.of(context).add_to_fav),
                           )
                         : SingleChildScrollView(
-                          child: Column(
+                            child: Column(
                               children: [
                                 ListView.separated(
                                   physics: const NeverScrollableScrollPhysics(),
@@ -183,19 +184,20 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                                             fit: StackFit.expand,
                                             children: [
                                               ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(12).r,
-                                                child: Image.asset(
-                                                  Assets.example.example1.path,
-                                                  fit: BoxFit
-                                                      .cover, // Растягивание изображения на весь контейнер
-                                                ),
-                                              ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(12)
+                                                          .r,
+                                                  child: CachedNetworkImage(
+                                                      imageUrl: success
+                                                              .favoriteAttractions[
+                                                                  index]
+                                                              .image ??
+                                                          '', fit: BoxFit.cover,)),
                                               Positioned(
                                                   top: 0,
                                                   right: 0,
                                                   child: LikeButton(
-                                                    //active: true,
+                                                    active: true,
                                                     attractionId: success
                                                         .favoriteAttractions[
                                                             index]
@@ -208,7 +210,8 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                                           height: 15.r,
                                         ),
                                         Text(
-                                          success.favoriteAttractions[index].name,
+                                          success
+                                              .favoriteAttractions[index].name,
                                           style: ts(TS.s16w600)
                                               .copyWith(color: Colors.black),
                                         ),
@@ -258,7 +261,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                                 ),
                               ],
                             ),
-                        ),
+                          ),
                   ),
                 );
               },
@@ -335,9 +338,7 @@ class _LikeButtonState extends State<LikeButton> {
               child: Center(
                   child: Icon(
                 Icons.favorite,
-                color:  isFav
-                    ? Colors.red
-                    : AppColors.textGrey,
+                color: isFav ? Colors.red : AppColors.textGrey,
               )),
             ),
           )

@@ -6,10 +6,9 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class FavoritesRepository {
-  Future<Either<Failure, List<AttractionDto>>> getAttractByRouteId({required int id});
-       Future<Either<Failure, String>> makeRoute({required int id});
-
- 
+  Future<Either<Failure, List<AttractionDto>>> getAttractByRouteId(
+      {required int id});
+  Future<Either<Failure, String>> makeRoute({required int id});
 }
 
 @LazySingleton(as: FavoritesRepository)
@@ -19,36 +18,27 @@ class FavoritesRepositoryImpl extends FavoritesRepository {
   FavoritesRepositoryImpl({
     required this.remoteDS,
   });
-  
+
   @override
-  Future<Either<Failure, List<AttractionDto>>> getAttractByRouteId({required int id}) async{
+  Future<Either<Failure, List<AttractionDto>>> getAttractByRouteId(
+      {required int id}) async {
     try {
-      final  result =
-          await remoteDS.getAttractsByRouteId(id: id);
+      final result = await remoteDS.getAttractsByRouteId(id: id);
 
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
     }
   }
-  
+
   @override
   Future<Either<Failure, String>> makeRoute({required int id}) async {
     try {
-      final  result =
-          await remoteDS.makeRouteWebById(id: id);
+      final result = await remoteDS.makeRouteWebById(id: id);
 
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
     }
   }
-
-  
-  
-  
-  
-  
-
- 
 }

@@ -20,6 +20,8 @@ abstract class AuthRemoteDs {
   Future<UserDto> getUser();
   Future<void> forgotPassword(String email);
   Future<void> requestNewPassword(String password);
+    Future<void> verifyOTP(String mail,int otp);
+
 }
 
 @LazySingleton(as: AuthRemoteDs)
@@ -130,6 +132,24 @@ class AuthRemoteDsImpl extends AuthRemoteDs {
         EndPoints.requestNewPassword,
         data: {
           "password": password,
+        },
+      );
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+  
+  @override
+  Future<void> verifyOTP(String mail, int otp)async {
+    try {
+      await dio.post(
+        EndPoints.verifyOtp,
+        data: {
+          "email": mail,
+          "otp": otp,
         },
       );
     } on DioException catch (e) {

@@ -47,9 +47,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           ),
           appBar: AppBar(
             leading: IconButton(
-              onPressed: () {
-                context.router.popForced();
-              },
+              onPressed: ()=>
+                context.router.popForced()
+              ,
               icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.black,

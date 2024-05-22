@@ -7,9 +7,11 @@ mixin EndPoints {
   static const String signUp = '/auth/sign-up/';
   static const String forgotPassword = "/auth/password/forgot-password/";
   static const String requestNewPassword = "/auth/password/new-password/";
+  static const String verifyOtp = "/auth/password/verify-otp/";
+
   static const String mainAttraction = '/attractions/main/';
   static const String mainSubcategories = '/categories/subcategories/';
-    static const String subsByCategory = '/categories/subcategories/list/';
+  static const String subsByCategory = '/categories/subcategories/list/';
 
   static const String popularCategories = '/categories/popular/';
   static const String categories = '/categories/';

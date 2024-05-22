@@ -91,9 +91,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     OtpForgotPasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<OtpForgotPasswordRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const OtpForgotPasswordPage(),
+        child: OtpForgotPasswordPage(
+          key: args.key,
+          email: args.email,
+        ),
       );
     },
     PasswordSuccessChangeRoute.name: (routeData) {
@@ -402,16 +406,40 @@ class MyTourListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [OtpForgotPasswordPage]
-class OtpForgotPasswordRoute extends PageRouteInfo<void> {
-  const OtpForgotPasswordRoute({List<PageRouteInfo>? children})
-      : super(
+class OtpForgotPasswordRoute extends PageRouteInfo<OtpForgotPasswordRouteArgs> {
+  OtpForgotPasswordRoute({
+    Key? key,
+    required String email,
+    List<PageRouteInfo>? children,
+  }) : super(
           OtpForgotPasswordRoute.name,
+          args: OtpForgotPasswordRouteArgs(
+            key: key,
+            email: email,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'OtpForgotPasswordRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<OtpForgotPasswordRouteArgs> page =
+      PageInfo<OtpForgotPasswordRouteArgs>(name);
+}
+
+class OtpForgotPasswordRouteArgs {
+  const OtpForgotPasswordRouteArgs({
+    this.key,
+    required this.email,
+  });
+
+  final Key? key;
+
+  final String email;
+
+  @override
+  String toString() {
+    return 'OtpForgotPasswordRouteArgs{key: $key, email: $email}';
+  }
 }
 
 /// generated route for

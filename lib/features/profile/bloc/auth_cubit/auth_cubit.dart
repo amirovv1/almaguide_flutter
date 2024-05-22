@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const _InitialPage());
     }, (r) {
       emit(const _InitialPage());
-      context.router.popAndPush(const OtpForgotPasswordRoute());
+      context.router.popAndPush( OtpForgotPasswordRoute(email: email));
     });
   }
   Future<void> requestNewPassword(String password, BuildContext context) async {
@@ -49,6 +49,19 @@ class AuthCubit extends Cubit<AuthState> {
     }, (r) {
       context.router.popAndPush(const PasswordSuccessChangeRoute());
     });
+    
+  }
+
+  Future<void> verifyOtp(String mail, String otp,BuildContext context) async {
+    emit(const _AuthLoading());
+    final result = await repo.verifyOtp(mail,int.parse(otp));
+    result.fold((l) {
+      emit(_AuthError(message: l.toString()));
+      emit(const _InitialPage());
+    }, (r) {
+      context.router.popAndPush(const EnterNewPasswordRoute());
+    });
+    
   }
 }
 

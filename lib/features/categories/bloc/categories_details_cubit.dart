@@ -2,7 +2,6 @@ import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/features/categories/domain/categories_repository.dart';
 import 'package:almaguide_flutter/features/home/domain/home_repository.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
-import 'package:almaguide_flutter/features/home/domain/models/category_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages

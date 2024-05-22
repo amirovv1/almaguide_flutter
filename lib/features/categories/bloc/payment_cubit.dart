@@ -1,7 +1,5 @@
 import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/features/categories/domain/categories_repository.dart';
-import 'package:almaguide_flutter/features/favorites/domain/models/tour_dto.dart';
-import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
