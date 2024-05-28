@@ -18,6 +18,9 @@ _$AttractionDtoImpl _$$AttractionDtoImplFromJson(Map<String, dynamic> json) =>
       details: (json['details'] as List<dynamic>?)
           ?.map((e) => DetailsDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      similarAttracts: (json['similar_attractions'] as List<dynamic>?)
+          ?.map((e) => AttractionDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$AttractionDtoImplToJson(_$AttractionDtoImpl instance) =>
@@ -30,4 +33,5 @@ Map<String, dynamic> _$$AttractionDtoImplToJson(_$AttractionDtoImpl instance) =>
       'is_favourite': instance.isFavourite,
       'categoryIcon': instance.categoryIcon,
       'details': instance.details,
+      'similar_attractions': instance.similarAttracts,
     };

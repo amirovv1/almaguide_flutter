@@ -2,6 +2,7 @@ import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/bloc/categories_main_cubit.dart';
 import 'package:almaguide_flutter/features/categories/presentation/widgets/categories_card.dart';
+import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +80,7 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                           child: ListTile(
                                     contentPadding: const EdgeInsets.symmetric(horizontal: 10).r,
                                     title: Text(
-                                      'Туры', // Замените на соответствующее свойство
+                                      S.of(context).tours, // Замените на соответствующее свойство
                                       style: ts(TS.s14w400).copyWith(color: Colors.black),
                                     ),
                                     trailing: IconButton(

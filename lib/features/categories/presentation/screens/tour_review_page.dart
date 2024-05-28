@@ -56,8 +56,8 @@ class _TourReviewScreenState extends State<TourReviewScreen> {
                 );
               });
             },
-            child: const Center(
-              child: Text('Оставить комментарий'),
+            child:  Center(
+              child: Text(S.of(context).make_a_new_review),
             )),
       ),
       appBar: AppBar(
@@ -254,7 +254,7 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
 
             if (feedback.isEmpty) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('Заполните поле')));
+                  .showSnackBar(SnackBar(content: Text(S.of(context).feel_field)));
             } else {
               context.read<ReviewsCubit>().sendReview(
                   tourId: widget.itemId,

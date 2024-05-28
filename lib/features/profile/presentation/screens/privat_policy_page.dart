@@ -15,9 +15,9 @@ class PrivatPolicyScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              context.router.pop();
-            },
+            onPressed: ()=>
+              context.router.pop()
+            ,
             icon: const Icon(
               Icons.chevron_left,
               color: Colors.black,

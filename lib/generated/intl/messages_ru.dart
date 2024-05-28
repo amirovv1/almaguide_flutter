@@ -61,18 +61,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите выйти с аккаунта?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Избранные"),
+        "feel_field": MessageLookupByLibrary.simpleMessage("Заполните поле"),
         "filter": MessageLookupByLibrary.simpleMessage("Фильтр"),
         "fireman": MessageLookupByLibrary.simpleMessage("Служба пожаротушения"),
+        "forget_a_password":
+            MessageLookupByLibrary.simpleMessage("Забыли пароль?"),
         "gas_service":
             MessageLookupByLibrary.simpleMessage("Аварийная служба газа"),
         "go_to_route":
             MessageLookupByLibrary.simpleMessage("Перейти к маршруту"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Уже есть аккаунт? "),
+        "here_a_new_routes": MessageLookupByLibrary.simpleMessage(
+            "Здесь будут созданные маршруты"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "how_trip": MessageLookupByLibrary.simpleMessage("Как вам поездка?"),
         "location": MessageLookupByLibrary.simpleMessage("Расположение"),
         "mail": MessageLookupByLibrary.simpleMessage("Почта"),
+        "make_a_new_review":
+            MessageLookupByLibrary.simpleMessage("Оставить комментарий"),
         "make_comment":
             MessageLookupByLibrary.simpleMessage("Оставить комментарий"),
         "make_route": MessageLookupByLibrary.simpleMessage("Построить маршрут"),
@@ -93,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push-уведомления"),
         "rating_sorting": MessageLookupByLibrary.simpleMessage("По рейтингу"),
+        "recomendation": MessageLookupByLibrary.simpleMessage("Рекомендации"),
         "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
         "reviews": MessageLookupByLibrary.simpleMessage("Отзывы"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("Отзывов нет"),

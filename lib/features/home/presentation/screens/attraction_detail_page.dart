@@ -6,8 +6,11 @@ import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
+import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
+import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
+import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_widget.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
@@ -175,6 +178,15 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                     description:
                                         attractionDto?.description ?? '',
                                   ),
+                                if (attractionDto?.similarAttracts != null)
+                                  RecomendationWidget(
+                                    attracts:
+                                        attractionDto?.similarAttracts ?? [],
+                                  ),
+                                if (attractionDto?.similarAttracts != null)
+                                  SizedBox(
+                                    height: 10.r,
+                                  ),
                                 ReviewWidget(
                                   reviews: reviews,
                                   isAttract: true,
@@ -296,6 +308,62 @@ class DescriptionWidget extends StatelessWidget {
         ),
         SizedBox(
           height: 25.r,
+        ),
+      ],
+    );
+  }
+}
+
+class RecomendationWidget extends StatelessWidget {
+  const RecomendationWidget({super.key, required this.attracts});
+  final List<AttractionDto> attracts;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0).r,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(
+                  S.of(context).recomendation,
+                  style: ts(TS.s18w600).copyWith(color: Colors.black),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              SizedBox(
+                width: 10.r,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.r),
+                  color: Colors.blue.withOpacity(0.1), // Adjust color here
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: 1.sw,
+          height: 170.h,
+          child: ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 0).r,
+            scrollDirection: Axis.horizontal,
+            itemCount: attracts.length,
+            itemBuilder: (context, index) {
+              return CustomCard(
+                index: index,
+                attract: attracts[index],
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(width: 20.r),
+          ),
         ),
       ],
     );

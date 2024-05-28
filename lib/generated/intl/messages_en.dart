@@ -57,17 +57,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to log out?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
+        "feel_field": MessageLookupByLibrary.simpleMessage("Fill in the field"),
         "filter": MessageLookupByLibrary.simpleMessage("Filter"),
         "fireman": MessageLookupByLibrary.simpleMessage("Fire Department"),
+        "forget_a_password":
+            MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "gas_service":
             MessageLookupByLibrary.simpleMessage("Gas Emergency Service"),
         "go_to_route": MessageLookupByLibrary.simpleMessage("Go to Route"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
+        "here_a_new_routes": MessageLookupByLibrary.simpleMessage(
+            "Here will be the created routes"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "how_trip": MessageLookupByLibrary.simpleMessage("How was your trip?"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "mail": MessageLookupByLibrary.simpleMessage("Email"),
+        "make_a_new_review":
+            MessageLookupByLibrary.simpleMessage("Leave a comment"),
         "make_comment": MessageLookupByLibrary.simpleMessage("Leave a Comment"),
         "make_route": MessageLookupByLibrary.simpleMessage("Build Route"),
         "map": MessageLookupByLibrary.simpleMessage("Map"),
@@ -86,6 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push Notifications"),
         "rating_sorting": MessageLookupByLibrary.simpleMessage("By Rating"),
+        "recomendation":
+            MessageLookupByLibrary.simpleMessage("Recommendations"),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("No Reviews"),
@@ -96,8 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sorting": MessageLookupByLibrary.simpleMessage("Sorting"),
         "success": MessageLookupByLibrary.simpleMessage("Success"),
-        "success_change_password":
-            MessageLookupByLibrary.simpleMessage("Пароль успешно обновлен"),
+        "success_change_password": MessageLookupByLibrary.simpleMessage(
+            "Password successfully updated"),
         "success_pay_details": MessageLookupByLibrary.simpleMessage(
             "You have successfully purchased the tour"),
         "take_review": MessageLookupByLibrary.simpleMessage("Leave a Review"),

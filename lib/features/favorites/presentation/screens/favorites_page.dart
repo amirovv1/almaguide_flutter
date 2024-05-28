@@ -95,7 +95,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
             state.map(
               errorState: (value) => const CircularProgressIndicator.adaptive(),
               initialState: (value) {
-                return const Text('Здвесь будут созданные маршруты');
+                return  Text(S.of(context).here_a_new_routes);
               },
               loadingState: (value) =>
                   const CircularProgressIndicator.adaptive(),

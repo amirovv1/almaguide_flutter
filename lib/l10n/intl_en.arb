@@ -70,5 +70,10 @@
   "add_to_fav": "Add to favorites",
   "routes": "Routes",
   "create_route": "Create route",
-  "success_change_password": "Пароль успешно обновлен"
+  "success_change_password": "Password successfully updated",
+  "recomendation": "Recommendations",
+  "make_a_new_review": "Leave a comment",
+  "feel_field": "Fill in the field",
+  "here_a_new_routes": "Here will be the created routes",
+  "forget_a_password": "Forgot password?"
 }

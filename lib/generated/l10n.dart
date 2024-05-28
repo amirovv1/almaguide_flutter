@@ -760,11 +760,61 @@ class S {
     );
   }
 
-  /// `Пароль успешно обновлен`
+  /// `Password successfully updated`
   String get success_change_password {
     return Intl.message(
-      'Пароль успешно обновлен',
+      'Password successfully updated',
       name: 'success_change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommendations`
+  String get recomendation {
+    return Intl.message(
+      'Recommendations',
+      name: 'recomendation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave a comment`
+  String get make_a_new_review {
+    return Intl.message(
+      'Leave a comment',
+      name: 'make_a_new_review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill in the field`
+  String get feel_field {
+    return Intl.message(
+      'Fill in the field',
+      name: 'feel_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here will be the created routes`
+  String get here_a_new_routes {
+    return Intl.message(
+      'Here will be the created routes',
+      name: 'here_a_new_routes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password?`
+  String get forget_a_password {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forget_a_password',
       desc: '',
       args: [],
     );

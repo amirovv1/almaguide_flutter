@@ -101,7 +101,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         context.router.push(const ForgotPasswordRoute());
                       },
                       child: Text(
-                        'Забыли пароль?',
+                        S.of(context).forget_a_password,
                         style: ts(TS.s14w400)
                             .copyWith(color: AppColors.buttonBlue),
                       ),

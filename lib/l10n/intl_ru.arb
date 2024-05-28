@@ -71,5 +71,10 @@
   "routes": "Маршруты",
   "create_route": "Создать маршрут",
   "success_change_password": "Пароль успешно обновлен",
-  "continue": "Продолжить"
+  "continue": "Продолжить",
+  "recomendation": "Рекомендации",
+  "make_a_new_review": "Оставить комментарий",
+  "feel_field": "Заполните поле",
+  "here_a_new_routes": "Здесь будут созданные маршруты",
+  "forget_a_password": "Забыли пароль?"
 }

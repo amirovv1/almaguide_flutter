@@ -70,6 +70,11 @@
   "add_to_fav": "Таңдаулыға қосу",
   "routes": "Маршруттар",
   "create_route": "Маршрут құру",
-  "success_change_password": "Пароль успешно обновлен",
-  "continue": "Продолжить"
+  "continue": "Продолжить",
+  "success_change_password": "Құпия сөз сәтті жаңартылды",
+  "recomendation": "Ұсыныстар",
+  "make_a_new_review": "Пікір қалдыру",
+  "feel_field": "Өрісті толтырыңыз",
+  "here_a_new_routes": "Мұнда жасалған маршруттар болады",
+  "forget_a_password": "Құпия сөзді ұмыттыңыз ба?"
 }

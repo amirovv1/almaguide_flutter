@@ -16,7 +16,7 @@ class HomeListWidget extends StatelessWidget {
       : super(key: key);
   final String title;
   final List<AttractionDto> attracts;
-  final int categoryId;
+  final int? categoryId;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,8 @@ class HomeListWidget extends StatelessWidget {
                   height: 32.h,
                   child: TextButton(
                     onPressed: () {
-                      context.router.push(CategoryDetailRoute(
-                          title: title, categoryId: categoryId));
+                   if(categoryId !=null)   context.router.push(CategoryDetailRoute(
+                          title: title, categoryId: categoryId!));
                     },
                     child: Text(
                       S.of(context).showAll,

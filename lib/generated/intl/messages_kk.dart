@@ -59,18 +59,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Аккаунттан шығуды растайсыз ба?"),
         "favorites": MessageLookupByLibrary.simpleMessage("Таңдаулы"),
+        "feel_field": MessageLookupByLibrary.simpleMessage("Өрісті толтырыңыз"),
         "filter": MessageLookupByLibrary.simpleMessage("Сүзгі"),
         "fireman": MessageLookupByLibrary.simpleMessage("Өрт сөндіру қызметі"),
+        "forget_a_password":
+            MessageLookupByLibrary.simpleMessage("Құпия сөзді ұмыттыңыз ба?"),
         "gas_service":
             MessageLookupByLibrary.simpleMessage("Газ апаттық қызметі"),
         "go_to_route": MessageLookupByLibrary.simpleMessage("Маршрутқа өту"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Аккаунтыңыз бар ма? "),
+        "here_a_new_routes": MessageLookupByLibrary.simpleMessage(
+            "Мұнда жасалған маршруттар болады"),
         "home": MessageLookupByLibrary.simpleMessage("Басты бет"),
         "how_trip":
             MessageLookupByLibrary.simpleMessage("Сапарыңыз қалай өтті?"),
         "location": MessageLookupByLibrary.simpleMessage("Орналасқан жері"),
         "mail": MessageLookupByLibrary.simpleMessage("Электрондық пошта"),
+        "make_a_new_review":
+            MessageLookupByLibrary.simpleMessage("Пікір қалдыру"),
         "make_comment": MessageLookupByLibrary.simpleMessage("Пікір қалдыру"),
         "make_route": MessageLookupByLibrary.simpleMessage("Маршрут құру"),
         "map": MessageLookupByLibrary.simpleMessage("Карта"),
@@ -91,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Push-хабарламалар"),
         "rating_sorting":
             MessageLookupByLibrary.simpleMessage("Рейтинг бойынша"),
+        "recomendation": MessageLookupByLibrary.simpleMessage("Ұсыныстар"),
         "registration": MessageLookupByLibrary.simpleMessage("Тіркелу"),
         "reviews": MessageLookupByLibrary.simpleMessage("Пікірлер"),
         "reviews_empty": MessageLookupByLibrary.simpleMessage("Пікірлер жоқ"),
@@ -102,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sorting": MessageLookupByLibrary.simpleMessage("Сұрыптау"),
         "success": MessageLookupByLibrary.simpleMessage("Сәтті"),
         "success_change_password":
-            MessageLookupByLibrary.simpleMessage("Пароль успешно обновлен"),
+            MessageLookupByLibrary.simpleMessage("Құпия сөз сәтті жаңартылды"),
         "success_pay_details":
             MessageLookupByLibrary.simpleMessage("Турды сәтті сатып алдыңыз"),
         "take_review": MessageLookupByLibrary.simpleMessage("Пікір қалдырыңыз"),
