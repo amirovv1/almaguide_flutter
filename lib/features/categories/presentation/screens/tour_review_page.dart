@@ -1,8 +1,8 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_final_fields
+
 import 'package:almaguide_flutter/core/helpers/auth_helper.dart';
-import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/features/categories/bloc/review_cubit.dart';
-import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';

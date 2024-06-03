@@ -1,7 +1,5 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
-import 'package:almaguide_flutter/core/router/app_router.dart';
-import 'package:almaguide_flutter/features/categories/bloc/tour_list_cubit.dart';
 import 'package:almaguide_flutter/features/profile/bloc/my_tour_cubit/my_tour_cubit.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';

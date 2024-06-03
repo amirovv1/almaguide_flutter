@@ -1,5 +1,4 @@
 import 'package:almaguide_flutter/features/categories/domain/categories_repository.dart';
-import 'package:almaguide_flutter/features/favorites/domain/models/tour_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
@@ -13,7 +12,6 @@ class TourReviewsCubit extends Cubit<TourReviewsState> {
   final CategoriesRepository repo;
 
   TourReviewsCubit(this.repo) : super(const TourReviewsState.initialState());
-  List<TourDto> _tours = [];
 
   // Future<void> initCategories() async {
   //   emit(const _TourListLoading());

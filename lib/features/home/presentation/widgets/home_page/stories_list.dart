@@ -17,7 +17,6 @@ class _StoriesListState extends State<StoriesList> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.url);
     return StoryView(
       controller: _controller,
       storyItems: [
@@ -34,7 +33,6 @@ class _StoriesListState extends State<StoriesList> {
 
       ],
       onStoryShow: (storyItem, index) {
-        print("Showing a story");
       },
       onComplete: () {
           Navigator.of(context).pop();

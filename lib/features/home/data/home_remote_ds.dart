@@ -292,7 +292,7 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
       } else {
         throw ServerException(message: 'Failed to load stories');
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(message: 'Failed to load stories: ${e.message}');
     }
   }

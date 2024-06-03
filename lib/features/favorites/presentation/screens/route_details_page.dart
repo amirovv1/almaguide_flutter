@@ -169,7 +169,6 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
           listener: (BuildContext context, RouteDetailsState state) {
             state.whenOrNull(
               sucessRoute: (url) {
-                print(url.toString());
                 context.router.push(WebViewRoute(url: url));
               },
             );

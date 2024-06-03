@@ -332,21 +332,21 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
         itemCount: values.length,
         itemBuilder: (context, index) {
           return Card(
-            margin: EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Container(
               width: 100,
               height: 20,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: Colors.yellow,
                   ),
                   Text(
                     values[index].toString(),
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),

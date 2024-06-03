@@ -50,7 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
     }, (r) {
 
       context.router.popAndPush(const PasswordSuccessChangeRoute());
-            emit(AuthState.initialState());
+            emit(const AuthState.initialState());
 
     });
   }
@@ -65,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('access', r.access);
       context.router.popAndPush(const EnterNewPasswordRoute());
-      emit(AuthState.initialState());
+      emit(const AuthState.initialState());
     });
   }
 }

@@ -8,13 +8,10 @@ import 'package:almaguide_flutter/features/favorites/presentation/screens/favori
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
-import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_item.dart';
-import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_widget.dart';
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

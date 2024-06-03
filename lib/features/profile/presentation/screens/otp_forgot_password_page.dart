@@ -1,9 +1,7 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
-import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/auth_cubit/auth_cubit.dart';
-import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

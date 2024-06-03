@@ -48,7 +48,7 @@ class _TourDetailScreenState extends State<TourDetailsScreen> {
         backgroundColor: Colors.transparent,
       ),
       floatingActionButton: Container(
-          margin: EdgeInsets.all(20).r,
+          margin: const EdgeInsets.all(20).r,
           width: 1.sw,
           height: 48.r,
           child: CustomButton(
@@ -516,7 +516,7 @@ void _showAccepBuy(BuildContext context, TourDto tour) {
                 children: [
                   Text(S.of(context).total,
                       style: ts(TS.s14w600).copyWith(color: Colors.black)),
-                  Spacer(),
+                  const Spacer(),
                   Text(tour.price.toStringAsFixed(0),
                       style: ts(TS.s14w600).copyWith(color: Colors.black))
                 ],

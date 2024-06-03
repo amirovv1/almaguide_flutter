@@ -1,4 +1,3 @@
-import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
@@ -74,7 +73,6 @@ class _FavoritesScreenState extends State<FavoritesScreen>
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
-      print('state is ${state.toString()}');
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -93,12 +91,12 @@ class _FavoritesScreenState extends State<FavoritesScreen>
           controller: _tabController,
           children: [
             state.map(
-              errorState: (value) => const CircularProgressIndicator.adaptive(),
+              errorState: (value) => const Center(child: CircularProgressIndicator.adaptive()),
               initialState: (value) {
                 return  Text(S.of(context).here_a_new_routes);
               },
               loadingState: (value) =>
-                  const CircularProgressIndicator.adaptive(),
+                  const Center(child: CircularProgressIndicator.adaptive()),
               sucess: (success) {
                 return Padding(
                   padding: EdgeInsets.all(16.w),
@@ -146,9 +144,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
                 child: Text('Здесь можете посмотреть избранное'),
               ),
               sucess: (success) {
-                print(success.routes.map((e) => e.name).toList().toString());
-                print(
-                    'избранные - ${success.favoriteAttractions.toList().toString()}');
+               
                 return Scaffold(
                   backgroundColor: Colors.white,
                   body: RefreshIndicator.adaptive(
@@ -292,7 +288,6 @@ class _LikeButtonState extends State<LikeButton> {
 
   @override
   void initState() {
-    print('sss-${widget.active}');
     isFav = widget.active ?? false;
     _loadAccess();
     super.initState();
