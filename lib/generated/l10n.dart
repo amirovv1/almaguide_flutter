@@ -819,6 +819,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Rating`
+  String get rating_filter {
+    return Intl.message(
+      'Rating',
+      name: 'rating_filter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exchange Rates`
+  String get exchanges {
+    return Intl.message(
+      'Exchange Rates',
+      name: 'exchanges',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

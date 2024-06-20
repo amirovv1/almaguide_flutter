@@ -54,7 +54,6 @@ class _TourDetailScreenState extends State<TourDetailsScreen> {
           child: CustomButton(
               onPressed: () {
                 checkAuthorizationAndExecute(context, () {
-                  print('salam');
                   _showAccepBuy(context, tour!);
                 });
               },
@@ -170,7 +169,7 @@ class _TourDetailScreenState extends State<TourDetailsScreen> {
                                   ),
                                 SizedBox(height: 25.r),
                                 ReviewWidget(
-                                    reviews: [],
+                                    reviews: const [],
                                     isAttract: false,
                                     itemId: tour.id)
                               ],

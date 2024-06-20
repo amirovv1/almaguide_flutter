@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/domain/auth_repository.dart';

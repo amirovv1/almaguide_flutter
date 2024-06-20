@@ -3,6 +3,7 @@
 import 'package:almaguide_flutter/core/api/api_helper.dart';
 import 'package:almaguide_flutter/core/api/dio_wrapper.dart';
 import 'package:almaguide_flutter/core/errors/server_errors.dart';
+import 'package:almaguide_flutter/features/categories/domain/models/exchange_dto.dart';
 import 'package:almaguide_flutter/features/favorites/domain/models/tour_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/category_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
@@ -19,6 +20,7 @@ abstract interface class CategoriesRemoteDs {
       {required int tourId, required String review, required int rate});
   Future<void> payTour({required int id});
     Future<List<TourDto>> getMyTours();
+  Future<List<Currency>> getExchanges();
 
   
 }
@@ -164,6 +166,25 @@ class CategoriesRemoteDsImpl extends CategoriesRemoteDs {
       final List<dynamic> results = response.data['results'] as List<dynamic>;
 
       return results.map((json) => TourDto.fromJson(json)).toList();
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+  
+  @override
+  Future<List<Currency>> getExchanges() async{
+     try {
+      final response = await dio.get(
+        EndPoints.exchanges,
+      );
+
+      final List<dynamic> results = response.data as List<dynamic>;
+
+      return results.map((json) => Currency.fromJson(json)).toList();
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
 

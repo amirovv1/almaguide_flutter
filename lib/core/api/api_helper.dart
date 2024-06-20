@@ -1,8 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
-const SERVER_ = 'http://51.20.245.100/api';
+const SERVER_ = 'http://185.129.50.26/api'; //'http://51.20.245.100/api';
 
 mixin EndPoints {
+    static const String exchanges = '/exchanges/';
+
   static const String createJWT = '/auth/jwt/create/';
   static const String signUp = '/auth/sign-up/';
   static const String forgotPassword = "/auth/password/forgot-password/";

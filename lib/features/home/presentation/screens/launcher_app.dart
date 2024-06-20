@@ -1,4 +1,5 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
+import 'package:almaguide_flutter/core/helpers/auth_helper.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
@@ -42,7 +43,15 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
               enableFeedback: true,
               type: BottomNavigationBarType.fixed,
               elevation: 0,
-              onTap: tabsRouter.setActiveIndex,
+              onTap: (int value) {
+                if (value == 2) {
+                  checkAuthorizationAndExecute(context, () {
+                    tabsRouter.setActiveIndex;
+                  });
+                } else {
+                  tabsRouter.setActiveIndex(value);
+                }
+              },
               currentIndex: tabsRouter.activeIndex,
               items: [
                 CustomNavBarItem(
@@ -55,7 +64,6 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
                   iconAsset: Assets.svg.category24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
-                
                 CustomNavBarItem(
                   label: S.of(context).favorites,
                   iconAsset: Assets.svg.likeOutline24,
@@ -66,7 +74,6 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
                   iconAsset: Assets.svg.user24,
                   activeColor: AppColors.mainGreen,
                 ).build(),
-             
               ]),
         );
       },

@@ -54,6 +54,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const EnterNewPasswordPage(),
       );
     },
+    ExchangeDetailRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExchangeDetailScreen(),
+      );
+    },
     FavoritesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -316,6 +322,20 @@ class EnterNewPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EnterNewPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ExchangeDetailScreen]
+class ExchangeDetailRoute extends PageRouteInfo<void> {
+  const ExchangeDetailRoute({List<PageRouteInfo>? children})
+      : super(
+          ExchangeDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExchangeDetailRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

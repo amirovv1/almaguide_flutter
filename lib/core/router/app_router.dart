@@ -1,5 +1,6 @@
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_details_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/categories_main_page.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/concurrency_details_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/payment_succes_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/paytment_page.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
@@ -59,6 +60,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: PaymentRoute.page),
         AutoRoute(page: PaymentSuccessRoute.page),
       AutoRoute(page: MyTourListRoute.page),
+      AutoRoute(page: ExchangeDetailRoute.page),
 
       ];
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_import, deprecated_member_use
+// ignore_for_file: deprecated_member_use
 
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/masks_helper.dart';
@@ -11,10 +11,12 @@ import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_
 import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:file/file.dart';
+import 'package:file/local.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
 class SignUpScreen extends StatefulWidget {
@@ -31,6 +33,22 @@ final TextEditingController passwordController = TextEditingController();
 final TextEditingController photo = TextEditingController();
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  File? _imageFile;
+  final LocalFileSystem localFileSystem = const LocalFileSystem();
+
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _imageFile = localFileSystem.file(image.path);
+      });
+    }
+  }
+
+//Image Picker function to get image from camera
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             sucess: () {
               SnackBarNotifier().showSuccess(context, S.of(context).success);
               context.router.pop();
-                  context.read<ProfileCubit>().initProfile();
-
+              context.read<ProfileCubit>().initProfile();
             },
             errorState: (message) {
               SnackBarNotifier().showError(context, S.of(context).error);
@@ -114,19 +131,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 20.r,
                   ),
                   InkWell(
-                    child: AppFormField(
-                      isEnable: false,
-                      controller: photo,
-                      hintText: S.of(context).profile_photo_upload,
-                      mask: '',
-                      maxLength: 30,
-                      inputType: TextInputType.visiblePassword,
-                      inputFormatters: [passwordMaskFormatter],
-                      isPassword: true,
-                    ),
+                    onTap: () async => await pickImage(),
+                    child: _imageFile != null
+                        ? Center(
+                            child: Container(
+                                width: 200.r,
+                                height: 200.r,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16.r)),
+                                child: Image.file(_imageFile!)),
+                          )
+                        : AppFormField(
+                            isEnable: false,
+                            controller: photo,
+                            hintText: S.of(context).profile_photo_upload,
+                            mask: '',
+                            maxLength: 30,
+                            inputType: TextInputType.visiblePassword,
+                            inputFormatters: [passwordMaskFormatter],
+                            isPassword: true,
+                          ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 150).r,
+                    padding: const EdgeInsets.only(top: 85).r,
                     child: Column(
                       children: [
                         Padding(
@@ -140,7 +167,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         email: mailController.text,
                                         password: passwordController.text,
                                         name: nameController.text,
-                                        phone: phoneController.text);
+                                        phone: phoneController.text,
+                                        image: _imageFile != null
+                                            ? XFile(_imageFile!.path)
+                                            : null);
                                   },
                                   buttonText: S.of(context).registration)),
                         ),

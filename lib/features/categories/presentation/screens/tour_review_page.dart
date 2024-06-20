@@ -24,7 +24,6 @@ class TourReviewScreen extends StatefulWidget {
 }
 
 class _TourReviewScreenState extends State<TourReviewScreen> {
-  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -262,7 +261,6 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
                   rate: _rating,
                   isAttract: widget.isAttract);
             }
-            print('Rating: $_rating, Feedback: $feedback');
 
             Navigator.pop(context);
           },

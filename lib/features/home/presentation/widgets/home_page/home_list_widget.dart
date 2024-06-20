@@ -49,8 +49,10 @@ class HomeListWidget extends StatelessWidget {
                   height: 32.h,
                   child: TextButton(
                     onPressed: () {
-                   if(categoryId !=null)   context.router.push(CategoryDetailRoute(
+                   if(categoryId !=null) {
+                     context.router.push(CategoryDetailRoute(
                           title: title, categoryId: categoryId!));
+                   }
                     },
                     child: Text(
                       S.of(context).showAll,

@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Emergency Contacts"),
         "empty_list": MessageLookupByLibrary.simpleMessage("List is empty"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "exchanges": MessageLookupByLibrary.simpleMessage("Exchange Rates"),
         "exit": MessageLookupByLibrary.simpleMessage("Log Out"),
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to log out?"),
@@ -92,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile Photo (optional)"),
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push Notifications"),
+        "rating_filter": MessageLookupByLibrary.simpleMessage("Rating"),
         "rating_sorting": MessageLookupByLibrary.simpleMessage("By Rating"),
         "recomendation":
             MessageLookupByLibrary.simpleMessage("Recommendations"),

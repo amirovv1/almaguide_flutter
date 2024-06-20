@@ -76,5 +76,7 @@
   "make_a_new_review": "Пікір қалдыру",
   "feel_field": "Өрісті толтырыңыз",
   "here_a_new_routes": "Мұнда жасалған маршруттар болады",
-  "forget_a_password": "Құпия сөзді ұмыттыңыз ба?"
+  "forget_a_password": "Құпия сөзді ұмыттыңыз ба?",
+  "rating_filter": "Рейтинг",
+  "exchanges": "Валюта бағамдары"
 }

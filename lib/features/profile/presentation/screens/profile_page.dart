@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:almaguide_flutter/core/helpers/auth_helper.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_item_card.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,9 +65,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 27.r),
-                          child: Text(
-                            S.of(context).your_info,
-                            style: ts(TS.s16w700).copyWith(color: Colors.black),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                S.of(context).your_info,
+                                style: ts(TS.s16w700)
+                                    .copyWith(color: Colors.black),
+                              ),
+                              if (user != null && user.photo != null)
+                                ClipOval(
+                                  child: CachedNetworkImage(
+                                    imageUrl: user.photo ?? '',
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator.adaptive(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      width: 45.r,
+                                      height: 45.r,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                         Padding(
@@ -143,7 +172,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: S.of(context).app_language,
                           onTap: () => showLanguageModal(context),
                         ),
-                        ProfileItemCard(title: S.of(context).my_tours, onTap: () => context.router.push(const MyTourListRoute())),
+                        ProfileItemCard(
+                            title: S.of(context).my_tours,
+                            onTap: () {
+                              checkAuthorizationAndExecute(context, () {
+                                context.router.push(const MyTourListRoute());
+                              });
+                            }),
                         ProfileItemCard(
                           title: S.of(context).emerge_contacts,
                           onTap: () => showContactsModal(context),
@@ -152,9 +187,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: S.of(context).call_center,
                           onTap: () => showCallCentersModal(context),
                         ),
-                        ProfileItemCard(title: S.of(context).privat_policy, 
-                        
-                       onTap: () => context.router.push(const PrivatPolicyRoute())),
+                        ProfileItemCard(
+                            title: S.of(context).privat_policy,
+                            onTap: () =>
+                                context.router.push(const PrivatPolicyRoute())),
                       ]),
                   if (isAuthorized)
                     InkWell(

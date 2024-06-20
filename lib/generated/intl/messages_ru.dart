@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Контакты в чрезвычайных ситуациях"),
         "empty_list": MessageLookupByLibrary.simpleMessage("Список пуст"),
         "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
+        "exchanges": MessageLookupByLibrary.simpleMessage("Курсы валют"),
         "exit": MessageLookupByLibrary.simpleMessage("Выйти"),
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Вы действительно хотите выйти с аккаунта?"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Фото профиля (необязательно)"),
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push-уведомления"),
+        "rating_filter": MessageLookupByLibrary.simpleMessage("Рейтинг"),
         "rating_sorting": MessageLookupByLibrary.simpleMessage("По рейтингу"),
         "recomendation": MessageLookupByLibrary.simpleMessage("Рекомендации"),
         "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),

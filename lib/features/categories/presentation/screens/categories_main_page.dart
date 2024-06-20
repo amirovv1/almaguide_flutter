@@ -36,7 +36,7 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                 return const Center(
                     child: CircularProgressIndicator.adaptive());
               },
-              sucess: (popCategories,otherCategories) {
+              sucess: (popCategories, otherCategories) {
                 final limitedCategories = popCategories.toList();
                 return RefreshIndicator(
                   onRefresh: () async {
@@ -56,38 +56,64 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             // Отображаем элементы, начиная с 9-го
-                              final category = otherCategories[index];
-                              return SizedBox(
-                                height: 52.h,
-                                child: ListTile(
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 10).r,
-                                  title: Text(
-                                    category.name ?? '', // Замените на соответствующее свойство
-                                    style: ts(TS.s14w400).copyWith(color: Colors.black),
-                                  ),
-                                  trailing: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.chevron_right),
-                                  ),
+                            final category = otherCategories[index];
+                            return SizedBox(
+                              height: 52.h,
+                              child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10)
+                                        .r,
+                                title: Text(
+                                  category.name ??
+                                      '', // Замените на соответствующее свойство
+                                  style: ts(TS.s14w400)
+                                      .copyWith(color: Colors.black),
                                 ),
-                              );
-                            
+                                trailing: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.chevron_right),
+                                ),
+                              ),
+                            );
                           },
-                          itemCount: otherCategories.length, // Указываем количество элементов, начиная с 9-го
+                          itemCount: otherCategories
+                              .length, // Указываем количество элементов, начиная с 9-го
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: ListTile(
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 10).r,
-                                    title: Text(
-                                      S.of(context).tours, // Замените на соответствующее свойство
-                                      style: ts(TS.s14w400).copyWith(color: Colors.black),
-                                    ),
-                                    trailing: IconButton(
-                                      onPressed: () => context.router.push(const TourListRoute()),
-                                      icon: const Icon(Icons.chevron_right),
-                                    ),
-                                  ),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 10).r,
+                            title: Text(
+                              S
+                                  .of(context)
+                                  .tours, // Замените на соответствующее свойство
+                              style:
+                                  ts(TS.s14w400).copyWith(color: Colors.black),
+                            ),
+                            trailing: IconButton(
+                              onPressed: () =>
+                                  context.router.push(const TourListRoute()),
+                              icon: const Icon(Icons.chevron_right),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ListTile(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 10).r,
+                            title: Text(
+                              S.of(context).exchanges, // Замените на соответствующее свойство
+                              style:
+                                  ts(TS.s14w400).copyWith(color: Colors.black),
+                            ),
+                            trailing: IconButton(
+                              onPressed: () => context.router
+                                  .push(const ExchangeDetailRoute()),
+                              icon: const Icon(Icons.chevron_right),
+                            ),
+                          ),
                         ),
                       ],
                     ),

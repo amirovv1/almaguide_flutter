@@ -41,17 +41,26 @@ class $AssetsPngGen {
   /// File path: assets/png/AlmaGuide.png
   AssetGenImage get almaGuide => const AssetGenImage('assets/png/AlmaGuide.png');
 
+  /// File path: assets/png/android-logo.png
+  AssetGenImage get androidLogo => const AssetGenImage('assets/png/android-logo.png');
+
+  /// File path: assets/png/ios-logo.png
+  AssetGenImage get iosLogo => const AssetGenImage('assets/png/ios-logo.png');
+
   /// File path: assets/png/oyu_card.png
   AssetGenImage get oyuCard => const AssetGenImage('assets/png/oyu_card.png');
 
   /// File path: assets/png/oyu_card_2.png
   AssetGenImage get oyuCard2 => const AssetGenImage('assets/png/oyu_card_2.png');
 
+  /// File path: assets/png/splash.jpg
+  AssetGenImage get splash => const AssetGenImage('assets/png/splash.jpg');
+
   /// File path: assets/png/succes.png
   AssetGenImage get succes => const AssetGenImage('assets/png/succes.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [almaGuide, oyuCard, oyuCard2, succes];
+  List<AssetGenImage> get values => [almaGuide, androidLogo, iosLogo, oyuCard, oyuCard2, splash, succes];
 }
 
 class $AssetsSvgGen {
@@ -152,9 +161,11 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(this._assetName, {this.size = null});
 
   final String _assetName;
+
+  final Size? size;
 
   Image image({
     Key? key,

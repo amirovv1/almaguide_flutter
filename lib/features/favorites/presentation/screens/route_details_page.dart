@@ -1,4 +1,3 @@
-import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
@@ -6,6 +5,7 @@ import 'package:almaguide_flutter/features/favorites/presentation/bloc/route_det
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,11 +61,10 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
               },
               sucess: (value) {
                 return RefreshIndicator.adaptive(
-                  onRefresh: () async {
-                    context.read<HomeCubit>().getFavorites();
-                  },
+                  onRefresh: () async =>
+                      context.read<HomeCubit>().getFavorites(),
                   child: value.attracts.isEmpty
-                      ?  Center(
+                      ? Center(
                           child: Text(S.of(context).empty_list),
                         )
                       : Column(
@@ -90,14 +89,14 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                                         fit: StackFit.expand,
                                         children: [
                                           ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12).r,
-                                            child: Image.asset(
-                                              Assets.example.example1.path,
-                                              fit: BoxFit
-                                                  .cover, // Растягивание изображения на весь контейнер
-                                            ),
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12).r,
+                                              child: CachedNetworkImage(
+                                                imageUrl: value.attracts[index]
+                                                        .image ??
+                                                    '',
+                                                fit: BoxFit.cover,
+                                              )),
                                           Positioned(
                                               top: 0,
                                               right: 0,
@@ -145,12 +144,12 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                                       .makeRoute(id: widget.routeId);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.white, backgroundColor: Colors.blue, // Цвет текста на кнопке
-                                  elevation:
-                                      4, 
+                                  foregroundColor: Colors.white,
+                                  backgroundColor:
+                                      Colors.blue, // Цвет текста на кнопке
+                                  elevation: 4,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        8), 
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                                 child: Text(

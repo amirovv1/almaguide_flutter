@@ -17,7 +17,6 @@ class StoriesThumbnail extends StatefulWidget {
 class _StoriesThumbnailState extends State<StoriesThumbnail> {
   @override
   Widget build(BuildContext context) {
-    print('ssilka-${widget.url}');
     return InkWell(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(builder: (ctx) {

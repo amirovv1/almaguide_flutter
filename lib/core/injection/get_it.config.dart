@@ -13,6 +13,7 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../features/categories/bloc/categories_details_cubit.dart' as _i25;
 import '../../features/categories/bloc/categories_main_cubit.dart' as _i24;
+import '../../features/categories/bloc/exchanges_cubit.dart' as _i26;
 import '../../features/categories/bloc/payment_cubit.dart' as _i14;
 import '../../features/categories/bloc/review_cubit.dart' as _i16;
 import '../../features/categories/bloc/tour_detail_cubit.dart' as _i19;
@@ -25,7 +26,7 @@ import '../../features/favorites/domain/favorites_repository.dart' as _i9;
 import '../../features/favorites/presentation/bloc/route_details_cubit.dart'
     as _i17;
 import '../../features/home/bloc/attraction_details_cubit.dart' as _i22;
-import '../../features/home/bloc/home_cubit.dart' as _i26;
+import '../../features/home/bloc/home_cubit.dart' as _i27;
 import '../../features/home/data/home_remote_ds.dart' as _i10;
 import '../../features/home/domain/home_repository.dart' as _i11;
 import '../../features/profile/bloc/auth_cubit/auth_cubit.dart' as _i23;
@@ -93,8 +94,12 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i7.CategoriesRepository>(),
           gh<_i11.HomeRepository>(),
         ));
-    gh.singleton<_i26.HomeCubit>(
-        () => _i26.HomeCubit(gh<_i11.HomeRepository>()));
+    gh.singleton<_i26.ExchangesCubit>(() => _i26.ExchangesCubit(
+          gh<_i7.CategoriesRepository>(),
+          gh<_i11.HomeRepository>(),
+        ));
+    gh.singleton<_i27.HomeCubit>(
+        () => _i27.HomeCubit(gh<_i11.HomeRepository>()));
     return this;
   }
 }

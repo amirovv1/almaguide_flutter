@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Төтенше жағдайдағы байланыстар"),
         "empty_list": MessageLookupByLibrary.simpleMessage("Тізім бос"),
         "error": MessageLookupByLibrary.simpleMessage("Қате"),
+        "exchanges": MessageLookupByLibrary.simpleMessage("Валюта бағамдары"),
         "exit": MessageLookupByLibrary.simpleMessage("Шығу"),
         "exit_from_app": MessageLookupByLibrary.simpleMessage(
             "Аккаунттан шығуды растайсыз ба?"),
@@ -96,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Профиль фотосы (міндетті емес)"),
         "push_notification":
             MessageLookupByLibrary.simpleMessage("Push-хабарламалар"),
+        "rating_filter": MessageLookupByLibrary.simpleMessage("Рейтинг"),
         "rating_sorting":
             MessageLookupByLibrary.simpleMessage("Рейтинг бойынша"),
         "recomendation": MessageLookupByLibrary.simpleMessage("Ұсыныстар"),

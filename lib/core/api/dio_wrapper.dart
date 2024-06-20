@@ -19,7 +19,7 @@ class DioWrapper {
           receiveTimeout: const Duration(seconds: 10)),
     )..interceptors.addAll(
         [
-          ChuckerDioInterceptor(),
+          //ChuckerDioInterceptor(),
 
           PrettyDioLogger(
             request: true,
@@ -39,7 +39,6 @@ class DioWrapper {
                 String? token = prefs.getString('access');
 
                 if (token != null) {
-                  log('TOKEN-$token');
                   options.headers = {
                     "Accept-Language": locale,
                     "Authorization": "Bearer $token"

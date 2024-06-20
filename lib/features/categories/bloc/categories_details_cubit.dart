@@ -22,7 +22,6 @@ class CategoriesDetailsCubit extends Cubit<CategoriesDetailsState> {
 
   Future<void> initCategories(
       {int? category, int? subCat, int? avgRate, String? ordering}) async {
-    print('salam');
     emit(const _CategoriesDetailsLoading());
     final attrResult = await homeRepo.getAttractsByCategories(
         categoryId: category,

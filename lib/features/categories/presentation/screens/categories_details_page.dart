@@ -128,7 +128,6 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
             sucess: (attractions, subs) {
               final success = attractions;
               return ListView.separated(
-                
                 shrinkWrap: true,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 20).r,
@@ -243,10 +242,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      setState(() {});
-                                      // context
-                                      //     .read<LanguageCubit>()
-                                      //     .changeLang(e.languageCode);
+                                      context.router.pop();
                                     },
                                     child: Container(
                                       width: 24.r,
@@ -286,7 +282,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
   }
 
   void showFilterModal(BuildContext context) {
-      final List<int> values = List.generate(5, (index) => 5 - index);
+    void handleCardTap(int value) {
+      context.router.pop();
+    }
+
+    final List<int> values = List.generate(5, (index) => 5 - index);
 
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
@@ -296,65 +296,78 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
         context: context,
         builder: (context) {
           return Container(
-            height: 1.sh / 2.5,
+            height: 1.sh / 3,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(12).r),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16).r,
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 10.r,
-                    ),
-                    Center(
-                      child: Container(
-                        width: 40.w,
-                        height: 4.h,
-                        decoration: BoxDecoration(
-                            color: AppColors.textGrey,
-                            borderRadius: BorderRadius.circular(16.r)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.r,
-                    ),
-                    Text(
-                      S.of(context).filter,
-                      style: ts(TS.s24w700).copyWith(color: Colors.black),
-                    ),
-                    SizedBox(
-                      height: 20.r,
-                    ),
-                   ListView.builder(
-                    
-        scrollDirection: Axis.horizontal,
-        itemCount: values.length,
-        itemBuilder: (context, index) {
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Container(
-              width: 100,
-              height: 20,
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.star,
-                    color: Colors.yellow,
+                  SizedBox(
+                    height: 10.r,
+                  ),
+                  Center(
+                    child: Container(
+                      width: 40.w,
+                      height: 4.h,
+                      decoration: BoxDecoration(
+                          color: AppColors.textGrey,
+                          borderRadius: BorderRadius.circular(16.r)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.r,
                   ),
                   Text(
-                    values[index].toString(),
-                    style: const TextStyle(fontSize: 20),
+                    S.of(context).filter,
+                    style: ts(TS.s24w700).copyWith(color: Colors.black),
                   ),
+                  SizedBox(
+                    height: 20.r,
+                  ),
+                  Text(
+                    S.of(context).rating_filter,
+                    style: ts(TS.s16w700).copyWith(color: Colors.black),
+                  ),
+                  SizedBox(
+                    height: 10.r,
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: values.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => handleCardTap(index),
+                          child: Card(
+                            margin: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16)),
+                              width: 50.w,
+                              height: 36.h, // Set a fixed width for each card
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Text(values[index].toString(),
+                                      style: const TextStyle(fontSize: 24)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  )
                 ],
               ),
-            ),
-          );
-        },
-      ),
-                  ]),
             ),
           );
         });

@@ -1,6 +1,7 @@
 import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/core/errors/server_errors.dart';
 import 'package:almaguide_flutter/features/categories/data/categories_remote_ds.dart';
+import 'package:almaguide_flutter/features/categories/domain/models/exchange_dto.dart';
 import 'package:almaguide_flutter/features/favorites/domain/models/tour_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/category_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
@@ -17,6 +18,8 @@ abstract class CategoriesRepository {
       {required int tourId, required String review, required int rate});
         Future<Either<Failure, void>> payTour({required int id});
   Future<Either<Failure, List<TourDto>>> getMyTours();
+    Future<Either<Failure, List<Currency>>> getExchanges();
+
 
 }
 
@@ -111,6 +114,16 @@ class CategoriesRepositoryImpl extends CategoriesRepository {
   Future<Either<Failure, List<TourDto>>> getMyTours() async{
     try {
       final result = await remoteDS.getMyTours();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<Currency>>> getExchanges()async {
+     try {
+      final result = await remoteDS.getExchanges();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

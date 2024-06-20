@@ -12,6 +12,7 @@ import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/h
 import 'package:almaguide_flutter/features/profile/presentation/widgets/profile_bottom_sheet.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +82,9 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                         children: [
                           Stack(
                             children: [
-                              Image.asset(Assets.example.image.path),
+                              CachedNetworkImage(
+                                  imageUrl: attractionDto?.image ?? '',
+                                  fit: BoxFit.cover),
                               Positioned(
                                 bottom: 0,
                                 left: 0,
