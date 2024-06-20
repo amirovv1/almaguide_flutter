@@ -15,7 +15,7 @@ abstract class CategoriesRepository {
   Future<Either<Failure, TourDto>> getTourById({required int id});
   Future<Either<Failure, List<ReviewDto>>> getReviewTour({required int id});
   Future<Either<Failure, void>> sendReview(
-      {required int tourId, required String review, required int rate});
+      {required int tourId, required String review, required int rate, required bool isAttract});
         Future<Either<Failure, void>> payTour({required int id});
   Future<Either<Failure, List<TourDto>>> getMyTours();
     Future<Either<Failure, List<Currency>>> getExchanges();
@@ -89,10 +89,10 @@ class CategoriesRepositoryImpl extends CategoriesRepository {
 
   @override
   Future<Either<Failure, void>> sendReview(
-      {required int tourId, required String review, required int rate}) async {
+      {required int tourId, required String review, required int rate, required bool isAttract}) async {
     try {
       final result =
-          await remoteDS.sendReview(tourId: tourId, review: review, rate: rate);
+          await remoteDS.sendReview(tourId: tourId, review: review, rate: rate, isAttract: isAttract);
 
       return Right(result);
     } on ServerException catch (e) {

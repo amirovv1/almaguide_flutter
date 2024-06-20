@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Для выполнения этой функции нужна авторизация"),
         "back_to_home":
             MessageLookupByLibrary.simpleMessage("Вернуться на главную"),
+        "buy_tour": MessageLookupByLibrary.simpleMessage("Купить тур"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Туристический call-центр"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),

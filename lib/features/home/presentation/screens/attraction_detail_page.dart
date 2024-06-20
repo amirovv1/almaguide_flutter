@@ -50,7 +50,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         actions: [
           LikeButton(
             active: isFav,
-            attractionId: 1,
+            attractionId: widget.attractId,
           )
         ],
       ),

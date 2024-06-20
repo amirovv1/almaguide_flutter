@@ -46,7 +46,7 @@ class _LauncherAppScreenState extends State<LauncherAppScreen> {
               onTap: (int value) {
                 if (value == 2) {
                   checkAuthorizationAndExecute(context, () {
-                    tabsRouter.setActiveIndex;
+                    tabsRouter.setActiveIndex(value);
                   });
                 } else {
                   tabsRouter.setActiveIndex(value);

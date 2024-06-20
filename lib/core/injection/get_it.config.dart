@@ -72,8 +72,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i14.PaymentCubit(gh<_i7.CategoriesRepository>()));
     gh.singleton<_i15.ProfileCubit>(
         () => _i15.ProfileCubit(gh<_i5.AuthRepository>()));
-    gh.singleton<_i16.ReviewsCubit>(
-        () => _i16.ReviewsCubit(gh<_i7.CategoriesRepository>()));
+    gh.singleton<_i16.ReviewsCubit>(() => _i16.ReviewsCubit(
+          gh<_i7.CategoriesRepository>(),
+          gh<_i11.HomeRepository>(),
+        ));
     gh.singleton<_i17.RouteDetailsCubit>(
         () => _i17.RouteDetailsCubit(gh<_i9.FavoritesRepository>()));
     gh.singleton<_i18.SignUpCubit>(

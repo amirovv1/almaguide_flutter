@@ -839,6 +839,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Купить тур`
+  String get buy_tour {
+    return Intl.message(
+      'Купить тур',
+      name: 'buy_tour',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

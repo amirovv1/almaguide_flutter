@@ -57,7 +57,7 @@ class _TourDetailScreenState extends State<TourDetailsScreen> {
                   _showAccepBuy(context, tour!);
                 });
               },
-              buttonText: 'Купить тур',
+              buttonText: S.of(context).buy_tour,
               isActive: true)),
       body: BlocConsumer<TourDetailsCubit, TourDetailsState>(
         listener: (context, state) {
@@ -282,7 +282,8 @@ class ReviewWidget extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {
                           isAttract
-                              ? () {}
+                              ? context.router.push(TourReviewRoute(
+                                  tourId: itemId, isAttract: isAttract))
                               : context.router.push(TourReviewRoute(
                                   tourId: itemId, isAttract: isAttract));
                         },
@@ -397,11 +398,9 @@ class ReviewWidget extends StatelessWidget {
           height: 32.h,
           child: ElevatedButton(
             onPressed: () {
-              if (isAttract) {
-              } else {
                 context.router
-                    .push(TourReviewRoute(tourId: itemId, isAttract: false));
-              }
+                    .push(TourReviewRoute(tourId: itemId, isAttract: isAttract));
+              
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.green,

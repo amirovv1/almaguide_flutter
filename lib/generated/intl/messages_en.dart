@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "auth_need_description": MessageLookupByLibrary.simpleMessage(
             "Authorization is required to perform this function"),
         "back_to_home": MessageLookupByLibrary.simpleMessage("Back to Home"),
+        "buy_tour": MessageLookupByLibrary.simpleMessage("Купить тур"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Tourist Call Center"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),

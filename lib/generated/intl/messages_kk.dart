@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Бұл функцияны орындау үшін авторизация қажет"),
         "back_to_home":
             MessageLookupByLibrary.simpleMessage("Басты бетке оралу"),
+        "buy_tour": MessageLookupByLibrary.simpleMessage("Купить тур"),
         "call_center":
             MessageLookupByLibrary.simpleMessage("Туристік call-орталық"),
         "cancel": MessageLookupByLibrary.simpleMessage("Бас тарту"),

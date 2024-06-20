@@ -1,5 +1,6 @@
 import 'package:almaguide_flutter/core/errors/failure.dart';
 import 'package:almaguide_flutter/features/categories/domain/categories_repository.dart';
+import 'package:almaguide_flutter/features/home/domain/home_repository.dart';
 import 'package:almaguide_flutter/features/home/domain/models/review_dto.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
@@ -11,13 +12,17 @@ part 'review_cubit.freezed.dart';
 @singleton
 class ReviewsCubit extends Cubit<ReviewsState> {
   final CategoriesRepository repo;
+  final HomeRepository homeRepo;
 
-  ReviewsCubit(this.repo) : super(const ReviewsState.initialState());
+  ReviewsCubit(this.repo, this.homeRepo)
+      : super(const ReviewsState.initialState());
   List<ReviewDto> _reviews = [];
 
   Future<void> initCategories(bool isAttract, int itemId) async {
     emit(const _ReviewsLoading());
-    final attrResult = await repo.getReviewTour(id: itemId);
+    final attrResult = isAttract
+        ? await homeRepo.getAttractReviews(id: itemId)
+        : await repo.getReviewTour(id: itemId);
 
     attrResult.fold((l) {
       emit(_ReviewsError(message: mapFailureToMessage(l)));
@@ -29,15 +34,19 @@ class ReviewsCubit extends Cubit<ReviewsState> {
   }
 
   Future<void> sendReview(
-      {required int tourId, required String review, required int rate,required bool isAttract}) async {
+      {required int tourId,
+      required String review,
+      required int rate,
+      required bool isAttract}) async {
     emit(const _ReviewsLoading());
-    final attrResult =
-        await repo.sendReview(tourId: tourId, review: review, rate: rate);
+    final attrResult = await repo.sendReview(
+        tourId: tourId, review: review, rate: rate, isAttract: isAttract);
+    await Future.delayed(Duration(seconds: 3));
 
     attrResult.fold((l) {
       emit(_ReviewsError(message: mapFailureToMessage(l)));
-    }, (r) {
-      initCategories(isAttract, tourId);
+    }, (r) async {
+      await initCategories(isAttract, tourId);
     });
   }
 

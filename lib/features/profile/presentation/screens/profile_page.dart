@@ -36,9 +36,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonAnimator: null,
       floatingActionButton: isAuth ? null : const ProfileBottomSheet(),
-      floatingActionButtonLocation:
-          isAuth ? null : FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -78,7 +78,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: CachedNetworkImage(
                                     imageUrl: user.photo ?? '',
                                     placeholder: (context, url) =>
-                                        const CircularProgressIndicator.adaptive(),
+                                        const CircularProgressIndicator
+                                            .adaptive(),
                                     errorWidget: (context, url, error) =>
                                         const Icon(Icons.error),
                                     imageBuilder: (context, imageProvider) =>

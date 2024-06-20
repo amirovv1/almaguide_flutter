@@ -16,8 +16,10 @@ abstract interface class CategoriesRemoteDs {
   Future<List<TourDto>> getTours();
   Future<TourDto> getToursById({required int id});
   Future<List<ReviewDto>> getReviewByTour({required int id});
+    Future<List<ReviewDto>> getReviewByAttract({required int id});
+
   Future<void> sendReview(
-      {required int tourId, required String review, required int rate});
+      {required int tourId, required String review, required int rate, required bool isAttract});
   Future<void> payTour({required int id});
     Future<List<TourDto>> getMyTours();
   Future<List<Currency>> getExchanges();
@@ -129,9 +131,12 @@ class CategoriesRemoteDsImpl extends CategoriesRemoteDs {
 
   @override
   Future<void> sendReview(
-      {required int tourId, required String review, required int rate}) async {
+      {required int tourId, required String review, required int rate, required bool isAttract}) async {
     try {
-      dio.post(EndPoints.reviewTour,
+     isAttract ? 
+     dio.post(EndPoints.reviewAttraction, data: {"attraction": tourId, "review": review, "rate": rate})
+     
+     : dio.post(EndPoints.reviewTour,
           data: {"tour": tourId, "review": review, "rate": rate});
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
@@ -185,6 +190,24 @@ class CategoriesRemoteDsImpl extends CategoriesRemoteDs {
       final List<dynamic> results = response.data as List<dynamic>;
 
       return results.map((json) => Currency.fromJson(json)).toList();
+    } on DioException catch (e) {
+      final error = e.response?.data as Map<String, dynamic>;
+
+      throw ServerException(
+        message: error['detail'].toString(),
+      );
+    }
+  }
+  
+  @override
+  Future<List<ReviewDto>> getReviewByAttract({required int id})async {
+    try {
+      final response = await dio.get(EndPoints.reviewTour,
+          queryParameters: {"tour": id}, data: {"tour": id});
+
+      final List<dynamic> results = response.data['results'] as List<dynamic>;
+
+      return results.map((json) => ReviewDto.fromJson(json)).toList();
     } on DioException catch (e) {
       final error = e.response?.data as Map<String, dynamic>;
 
