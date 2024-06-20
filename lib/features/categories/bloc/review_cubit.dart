@@ -41,7 +41,7 @@ class ReviewsCubit extends Cubit<ReviewsState> {
     emit(const _ReviewsLoading());
     final attrResult = await repo.sendReview(
         tourId: tourId, review: review, rate: rate, isAttract: isAttract);
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
 
     attrResult.fold((l) {
       emit(_ReviewsError(message: mapFailureToMessage(l)));
