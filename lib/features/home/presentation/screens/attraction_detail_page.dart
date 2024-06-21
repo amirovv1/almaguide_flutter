@@ -190,7 +190,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                 ReviewWidget(
                                   reviews: reviews,
                                   isAttract: true,
-                                  itemId: attractionDto?.id ?? 1,
+                                  itemId: attractionDto!.id,
                                 ),
                                 SizedBox(
                                   height: 25.r,

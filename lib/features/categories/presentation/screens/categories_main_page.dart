@@ -70,7 +70,11 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                                       .copyWith(color: Colors.black),
                                 ),
                                 trailing: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context.router.push(CategoryDetailRoute(
+                                        title: category.name ?? '',
+                                        categoryId: category.id));
+                                  },
                                   icon: const Icon(Icons.chevron_right),
                                 ),
                               ),
@@ -104,7 +108,9 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 10).r,
                             title: Text(
-                              S.of(context).exchanges, // Замените на соответствующее свойство
+                              S
+                                  .of(context)
+                                  .exchanges, // Замените на соответствующее свойство
                               style:
                                   ts(TS.s14w400).copyWith(color: Colors.black),
                             ),

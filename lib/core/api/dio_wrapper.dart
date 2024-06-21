@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:almaguide_flutter/core/api/api_helper.dart';
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,7 @@ class DioWrapper {
           receiveTimeout: const Duration(seconds: 10)),
     )..interceptors.addAll(
         [
-          //ChuckerDioInterceptor(),
+          ChuckerDioInterceptor(),
 
           PrettyDioLogger(
             request: true,

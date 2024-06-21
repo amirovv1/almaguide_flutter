@@ -67,99 +67,108 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
                       ? Center(
                           child: Text(S.of(context).empty_list),
                         )
-                      : Column(
-                          children: [
-                            ListView.separated(
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 20)
-                                  .r,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 160.h,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(12).r,
-                                        color: Colors.red,
+                      : SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ListView.separated(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 20)
+                                    .r,
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 160.h,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(12).r,
+                                          color: Colors.red,
+                                        ),
+                                        child: Stack(
+                                          fit: StackFit.expand,
+                                          children: [
+                                            ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12).r,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: value
+                                                          .attracts[index]
+                                                          .image ??
+                                                      '',
+                                                  fit: BoxFit.cover,
+                                                )),
+                                            Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                child: LikeButton(
+                                                  //active: true,
+                                                  attractionId:
+                                                      value.attracts[index].id,
+                                                ))
+                                          ],
+                                        ),
                                       ),
-                                      child: Stack(
-                                        fit: StackFit.expand,
-                                        children: [
-                                          ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(12).r,
-                                              child: CachedNetworkImage(
-                                                imageUrl: value.attracts[index]
-                                                        .image ??
-                                                    '',
-                                                fit: BoxFit.cover,
-                                              )),
-                                          Positioned(
-                                              top: 0,
-                                              right: 0,
-                                              child: LikeButton(
-                                                //active: true,
-                                                attractionId:
-                                                    value.attracts[index].id,
-                                              ))
-                                        ],
+                                      SizedBox(
+                                        height: 15.r,
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 15.r,
-                                    ),
-                                    Text(
-                                      value.attracts[index].name,
-                                      style: ts(TS.s16w600)
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                    SizedBox(
-                                      height: 10.r,
-                                    ),
-                                    Text(
-                                      '${Formatter.convertMetersToKilometers(value.attracts[index].distance ?? 'N')} км',
-                                      style: ts(TS.s14w500).copyWith(
-                                          color: const Color(0xFF1F1F1F)),
-                                    ),
-                                  ],
-                                );
-                              },
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(height: 20.r),
-                              itemCount: value.attracts.length,
-                            ),
-                            SizedBox(height: 20.h),
-                            Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16).r,
-                              height: 48.h,
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context
-                                      .read<RouteDetailsCubit>()
-                                      .makeRoute(id: widget.routeId);
+                                      Text(
+                                        value.attracts[index].name,
+                                        style: ts(TS.s16w600)
+                                            .copyWith(color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        height: 10.r,
+                                      ),
+                                      Text(
+                                        '${Formatter.convertMetersToKilometers(value.attracts[index].distance ?? 'N')} км',
+                                        style: ts(TS.s14w500).copyWith(
+                                            color: const Color(0xFF1F1F1F)),
+                                      ),
+                                    ],
+                                  );
                                 },
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.white,
-                                  backgroundColor:
-                                      Colors.blue, // Цвет текста на кнопке
-                                  elevation: 4,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Text(
-                                  S.of(context).go_to_route,
-                                  style: ts(TS.s16w600)
-                                      .copyWith(color: Colors.white),
-                                ), // Текст на кнопке
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: 20.r),
+                                itemCount: value.attracts.length,
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 20.h),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ).r,
+                                height: 48.h,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context
+                                        .read<RouteDetailsCubit>()
+                                        .makeRoute(id: widget.routeId);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor:
+                                        Colors.blue, // Цвет текста на кнопке
+                                    elevation: 4,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    S.of(context).go_to_route,
+                                    style: ts(TS.s16w600)
+                                        .copyWith(color: Colors.white),
+                                  ), // Текст на кнопке
+                                ),
+                              ),
+                              SizedBox(
+                                height: 50.h,
+                              )
+                            ],
+                          ),
                         ),
                 );
               },

@@ -141,7 +141,7 @@ class HomeRemoteDsImpl extends HomeRemoteDS {
       final response = await dio.get(
         EndPoints.reviewAttraction,
         queryParameters: {
-          'id': id,
+          'attraction': id,
         },
       );
       final Map<String, dynamic> responseBody =
