@@ -3,8 +3,10 @@ import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
+import 'package:almaguide_flutter/features/favorites/presentation/screens/route_details_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
@@ -38,6 +40,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
         .initAttractDetails(attractId: widget.attractId);
     super.initState();
   }
+
+  bool isLoadButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -156,17 +160,32 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                   height: 50.r,
                                   width: 1.sw,
                                   child: CustomButton(
+                                      isLoading: isLoadButton,
                                       isActive: true,
                                       onPressed: () async {
-                                        await context
-                                            .read<AttractionDetailsCubit>()
-                                            .attractRoute()
-                                            .then((value) {
-                                          if (value != null) {
+                                        setState(() {
+                                          isLoadButton = true;
+                                        });
+
+                                        if (attractionDto?.longitude == null ||
+                                            attractionDto?.latitude == null) {
+                                          return;
+                                        } else {
+                                          await buildRouteOnMap(
+                                                  latTo: double.parse(
+                                                      attractionDto!.latitude!),
+                                                  lonTo: double.parse(
+                                                      attractionDto!
+                                                          .longitude!))
+                                              .then((value) {
                                             context.router
                                                 .push(WebViewRoute(url: value));
-                                          }
-                                        });
+                                          }).whenComplete(() {
+                                            setState(() {
+                                              isLoadButton = false;
+                                            });
+                                          });
+                                        }
                                       },
                                       buttonText: S.of(context).make_route),
                                 ),
@@ -368,4 +387,18 @@ class RecomendationWidget extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<String> buildRouteOnMap({
+  required double latTo,
+  required double lonTo,
+}) async {
+  final position = await LocationService().getCurrentLocation();
+  final longFrom = position.longitude;
+  final latFrom = position.latitude;
+
+  final url =
+      'https://yandex.kz/maps/162/almaty/?l=trf%2Ctrfe&ll=$longFrom,$latFrom&mode=routes&rtext=$latFrom,$longFrom~$lonTo,$latTo&rtt=auto&ruri=~~&z=13.98';
+
+  return url;
 }

@@ -21,6 +21,8 @@ _$AttractionDtoImpl _$$AttractionDtoImplFromJson(Map<String, dynamic> json) =>
       similarAttracts: (json['similar_attractions'] as List<dynamic>?)
           ?.map((e) => AttractionDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      longitude: json['longitude'] as String?,
+      latitude: json['latitude'] as String?,
     );
 
 Map<String, dynamic> _$$AttractionDtoImplToJson(_$AttractionDtoImpl instance) =>
@@ -34,4 +36,6 @@ Map<String, dynamic> _$$AttractionDtoImplToJson(_$AttractionDtoImpl instance) =>
       'categoryIcon': instance.categoryIcon,
       'details': instance.details,
       'similar_attractions': instance.similarAttracts,
+      'longitude': instance.longitude,
+      'latitude': instance.latitude,
     };

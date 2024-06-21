@@ -76,13 +76,15 @@ class ProfileBottomSheet extends StatelessWidget {
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String buttonText;
-  final bool isActive; // Параметр для определения активности кнопки
+  final bool isActive;
+  final bool isLoading; // Параметр для определения активности кнопки
 
   const CustomButton({
     Key? key,
     required this.onPressed,
     required this.buttonText,
     required this.isActive,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -96,13 +98,22 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      onPressed: isActive ? onPressed : null,
+      onPressed: isActive
+          ? isLoading
+              ? null
+              : onPressed
+          : null,
       child: Center(
-        child: Text(
-          buttonText,
-          style: ts(TS.s16w600).copyWith(
-              color: Colors.white), // Style adjustments can be made here
-        ),
+        child: isLoading
+            ? SizedBox(
+                height: 24.r,
+                width: 24.r,
+                child: CircularProgressIndicator.adaptive())
+            : Text(
+                buttonText,
+                style: ts(TS.s16w600).copyWith(
+                    color: Colors.white), // Style adjustments can be made here
+              ),
       ),
     );
   }

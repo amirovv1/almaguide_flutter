@@ -1,6 +1,7 @@
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
+import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/bloc/route_details_cubit.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
@@ -9,6 +10,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../home/bloc/home_cubit.dart';
 
@@ -184,3 +186,5 @@ class _RouteDetailScreenState extends State<RouteDetailScreen> {
         ));
   }
 }
+
+
