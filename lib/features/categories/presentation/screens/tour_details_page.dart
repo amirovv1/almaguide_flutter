@@ -344,8 +344,9 @@ class ReviewWidget extends StatelessWidget {
                                     .copyWith(color: Colors.black),
                               ),
                               Text(
-                                DateFormat('dd MMMM yyyy, HH: mm').format(
-                                    DateTime.parse(review.createdAt ?? '')),
+                                DateFormat('dd MMMM yyyy, HH:mm').format(
+                                    DateTime.parse(review.createdAt ?? '')
+                                        .toLocal()),
                                 style: ts(TS.s12w400),
                               ),
                               SizedBox(
@@ -398,9 +399,8 @@ class ReviewWidget extends StatelessWidget {
           height: 32.h,
           child: ElevatedButton(
             onPressed: () {
-                context.router
-                    .push(TourReviewRoute(tourId: itemId, isAttract: isAttract));
-              
+              context.router
+                  .push(TourReviewRoute(tourId: itemId, isAttract: isAttract));
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.green,

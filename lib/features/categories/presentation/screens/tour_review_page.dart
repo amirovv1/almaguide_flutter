@@ -24,7 +24,6 @@ class TourReviewScreen extends StatefulWidget {
 }
 
 class _TourReviewScreenState extends State<TourReviewScreen> {
-
   @override
   void initState() {
     context
@@ -55,7 +54,7 @@ class _TourReviewScreenState extends State<TourReviewScreen> {
                 );
               });
             },
-            child:  Center(
+            child: Center(
               child: Text(S.of(context).make_a_new_review),
             )),
       ),
@@ -133,35 +132,27 @@ class _TourReviewScreenState extends State<TourReviewScreen> {
                                           .copyWith(color: Colors.black),
                                     ),
                                     Text(
-                                      DateFormat('dd MMMM yyyy, HH: mm').format(
-                                          DateTime.parse(
-                                              review.createdAt ?? '')),
+                                      DateFormat('dd MMMM yyyy, HH:mm').format(
+                                          DateTime.parse(review.createdAt ?? '')
+                                              .toLocal()),
                                       style: ts(TS.s12w400),
                                     ),
                                     SizedBox(
                                         height: 16.h,
                                         child: RatingBar.builder(
-                                          initialRating: review.rate
-                                              .toDouble(), // Устанавливает начальный рейтинг
-                                          minRating: 0, // Минимальный рейтинг
-                                          maxRating: 5, // Максимальный рейтинг
-                                          allowHalfRating:
-                                              true, // Разрешает половинные оценки
-                                          itemCount:
-                                              5, // Количество элементов рейтинга (звезды)
+                                          initialRating: review.rate.toDouble(),
+                                          minRating: 0,
+                                          maxRating: 5,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
                                           itemBuilder: (context, _) =>
                                               const Icon(
                                             Icons.star,
                                             color: Colors.amber,
                                           ),
-                                          itemSize: 16
-                                              .r, // Размер элементов рейтинга (звезды)
-                                          ignoreGestures:
-                                              true, // Установите в true, чтобы виджет был только для отображения
-                                          onRatingUpdate: (rating) {
-                                            // Обработчик событий, который будет вызываться при изменении рейтинга
-                                            // В данном случае ничего не делаем, потому что это виджет только для отображения
-                                          },
+                                          itemSize: 16.r,
+                                          ignoreGestures: true,
+                                          onRatingUpdate: (rating) {},
                                         ))
                                   ],
                                 )
@@ -252,8 +243,8 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
             String feedback = _feedbackController.text;
 
             if (feedback.isEmpty) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(S.of(context).feel_field)));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(S.of(context).feel_field)));
             } else {
               context.read<ReviewsCubit>().sendReview(
                   tourId: widget.itemId,
