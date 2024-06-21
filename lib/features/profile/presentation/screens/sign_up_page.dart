@@ -84,125 +84,131 @@ class _SignUpScreenState extends State<SignUpScreen> {
           return state.maybeWhen(initialState: (st) {
             return Padding(
               padding: const EdgeInsets.all(16).r,
-              child: Column(
-                children: [
-                  AppFormField(
-                    controller: nameController,
-                    hintText: S.of(context).name,
-                    mask: '',
-                    maxLength: 30,
-                    inputType: TextInputType.name,
-                  ),
-                  SizedBox(
-                    height: 20.r,
-                  ),
-                  AppFormField(
-                    controller: phoneController,
-                    hintText: S.of(context).number,
-                    mask: '',
-                    maxLength: 30,
-                    inputType: TextInputType.phone,
-                    inputFormatters: [maskFormatter],
-                  ),
-                  SizedBox(
-                    height: 20.r,
-                  ),
-                  AppFormField(
-                    controller: mailController,
-                    hintText: S.of(context).mail,
-                    mask: '',
-                    maxLength: 40,
-                    inputType: TextInputType.emailAddress,
-                    inputFormatters: [emailMaskFormatter],
-                  ),
-                  SizedBox(
-                    height: 20.r,
-                  ),
-                  AppFormField(
-                    controller: passwordController,
-                    hintText: S.of(context).password,
-                    mask: '',
-                    maxLength: 20,
-                    inputType: TextInputType.visiblePassword,
-                    inputFormatters: [passwordMaskFormatter],
-                    isPassword: true,
-                  ),
-                  SizedBox(
-                    height: 20.r,
-                  ),
-                  InkWell(
-                    onTap: () async => await pickImage(),
-                    child: _imageFile != null
-                        ? Center(
-                            child: Container(
-                                width: 200.r,
-                                height: 200.r,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16.r)),
-                                child: Image.file(_imageFile!)),
-                          )
-                        : AppFormField(
-                            isEnable: false,
-                            controller: photo,
-                            hintText: S.of(context).profile_photo_upload,
-                            mask: '',
-                            maxLength: 30,
-                            inputType: TextInputType.visiblePassword,
-                            inputFormatters: [passwordMaskFormatter],
-                            isPassword: true,
-                          ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 85).r,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16).r,
-                          child: SizedBox(
-                              height: 43.h,
-                              child: CustomButton(
-                                  isActive: true,
-                                  onPressed: () {
-                                    context.read<SignUpCubit>().signUp(
-                                        email: mailController.text,
-                                        password: passwordController.text,
-                                        name: nameController.text,
-                                        phone: phoneController.text,
-                                        image: _imageFile != null
-                                            ? XFile(_imageFile!.path)
-                                            : null);
-                                  },
-                                  buttonText: S.of(context).registration)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15).r,
-                          child: RichText(
-                            text: TextSpan(
-                              style: ts(TS.s14w400)
-                                  .copyWith(color: AppColors.textGrey),
-                              children: [
-                                TextSpan(text: S.of(context).have_account),
-                                WidgetSpan(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      context.router
-                                          .popAndPush(const AuthRoute());
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    AppFormField(
+                      controller: nameController,
+                      hintText: S.of(context).name,
+                      mask: '',
+                      maxLength: 30,
+                      inputType: TextInputType.name,
+                    ),
+                    SizedBox(
+                      height: 20.r,
+                    ),
+                    AppFormField(
+                      controller: phoneController,
+                      hintText: S.of(context).number,
+                      mask: '',
+                      maxLength: 30,
+                      inputType: TextInputType.phone,
+                      inputFormatters: [maskFormatter],
+                    ),
+                    SizedBox(
+                      height: 20.r,
+                    ),
+                    AppFormField(
+                      controller: mailController,
+                      hintText: S.of(context).mail,
+                      mask: '',
+                      maxLength: 40,
+                      inputType: TextInputType.emailAddress,
+                      inputFormatters: [emailMaskFormatter],
+                    ),
+                    SizedBox(
+                      height: 20.r,
+                    ),
+                    AppFormField(
+                      controller: passwordController,
+                      hintText: S.of(context).password,
+                      mask: '',
+                      maxLength: 20,
+                      inputType: TextInputType.visiblePassword,
+                      inputFormatters: [passwordMaskFormatter],
+                      isPassword: true,
+                    ),
+                    SizedBox(
+                      height: 20.r,
+                    ),
+                    InkWell(
+                      onTap: () async => await pickImage(),
+                      child: _imageFile != null
+                          ? Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(34.r),
+                                child: Container(
+                                    width: 200.r,
+                                    height: 200.r,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(34.r)),
+                                    child: Image.file(_imageFile!)),
+                              ),
+                            )
+                          : AppFormField(
+                              isEnable: false,
+                              controller: photo,
+                              hintText: S.of(context).profile_photo_upload,
+                              mask: '',
+                              maxLength: 30,
+                              inputType: TextInputType.visiblePassword,
+                              inputFormatters: [passwordMaskFormatter],
+                              isPassword: true,
+                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 85).r,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16).r,
+                            child: SizedBox(
+                                height: 43.h,
+                                child: CustomButton(
+                                    isActive: true,
+                                    onPressed: () {
+                                      context.read<SignUpCubit>().signUp(
+                                          email: mailController.text,
+                                          password: passwordController.text,
+                                          name: nameController.text,
+                                          phone: phoneController.text,
+                                          image: _imageFile != null
+                                              ? XFile(_imageFile!.path)
+                                              : null);
                                     },
-                                    child: Text(
-                                      S.of(context).sign_in,
-                                      style: ts(TS.s14w400).copyWith(
-                                          color: AppColors.buttonBlue),
+                                    buttonText: S.of(context).registration)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15).r,
+                            child: RichText(
+                              text: TextSpan(
+                                style: ts(TS.s14w400)
+                                    .copyWith(color: AppColors.textGrey),
+                                children: [
+                                  TextSpan(text: S.of(context).have_account),
+                                  WidgetSpan(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.router
+                                            .popAndPush(const AuthRoute());
+                                      },
+                                      child: Text(
+                                        S.of(context).sign_in,
+                                        style: ts(TS.s14w400).copyWith(
+                                            color: AppColors.buttonBlue),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }, orElse: () {
