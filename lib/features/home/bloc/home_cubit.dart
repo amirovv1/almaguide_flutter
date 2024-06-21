@@ -28,6 +28,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<StoryDto> _storiesList = [];
   List<AttractionDto> _favoritesList = [];
   List<RouteDto> _routeList = [];
+  List<AttractionDto> _searchList = [];
 
   Future<void> initHome() async {
     emit(const _HomeLoading());
@@ -47,6 +48,7 @@ class HomeCubit extends Cubit<HomeState> {
       _subsList = r;
     });
     emit(_HomeSuccess(
+        attractionsList: _searchList,
         favoriteAttractions: _favoritesList,
         stories: _storiesList,
         attractionDto: _attractionDto,
@@ -65,13 +67,15 @@ class HomeCubit extends Cubit<HomeState> {
       result.fold((l) {
         emit(_HomeError(message: mapFailureToMessage(l)));
       }, (r) {
+        _searchList = r;
         emit(_HomeSuccess(
-            attractionsList: r,
-            favoriteAttractions: _favoritesList,
-            stories: _storiesList,
-            attractionDto: _attractionDto,
-            subsList: _subsList,
-            routes: _routeList));
+          attractionsList: _searchList,
+          favoriteAttractions: _favoritesList,
+          stories: _storiesList,
+          attractionDto: _attractionDto,
+          subsList: _subsList,
+          routes: _routeList,
+        ));
         initHome();
       });
     });
@@ -136,8 +140,7 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await repo.makeRoute();
     result.fold((l) {}, (r) {
       getRoutes();
-            getFavorites();
-
+      getFavorites();
     });
   }
 
