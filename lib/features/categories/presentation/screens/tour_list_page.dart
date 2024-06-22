@@ -1,9 +1,10 @@
-import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/bloc/tour_list_cubit.dart';
+import 'package:almaguide_flutter/features/categories/presentation/screens/categories_details_page.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,14 +49,18 @@ class _TourListScreenState extends State<TourListScreen> {
         builder: (context, state) {
           return RefreshIndicator.adaptive(
               onRefresh: () async {
-                    BlocProvider.of<TourListCubit>(context).initCategories();
-
+                BlocProvider.of<TourListCubit>(context).initCategories();
               },
               child: state.maybeWhen(
                 orElse: () {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
+                   return ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      return const ShimmerWidget();
+                    },
+                    separatorBuilder: (context, index) =>
+                        SizedBox(height: 20.r),
+                    itemCount: 7);
                 },
                 sucess: (tours) {
                   return ListView.separated(
@@ -66,8 +71,8 @@ class _TourListScreenState extends State<TourListScreen> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          context.router.push(
-                              TourDetailsRoute( tourId: tours[index].id));
+                          context.router
+                              .push(TourDetailsRoute(tourId: tours[index].id));
                         },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,19 +81,17 @@ class _TourListScreenState extends State<TourListScreen> {
                               height: 160.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12).r,
-                                color: Colors.red,
+                                color: Colors.white,
                               ),
                               child: Stack(
                                 fit: StackFit.expand,
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(12).r,
-                                    child: Image.asset(
-                                      Assets.example.example1.path,
-                                      fit: BoxFit
-                                          .cover, // Растягивание изображения на весь контейнер
-                                    ),
-                                  ),
+                                      borderRadius: BorderRadius.circular(12).r,
+                                      child: CachedNetworkImage(
+                                        imageUrl: tours[index].image ?? '',
+                                        fit: BoxFit.cover,
+                                      )),
                                 ],
                               ),
                             ),
@@ -104,7 +107,7 @@ class _TourListScreenState extends State<TourListScreen> {
                               height: 10.r,
                             ),
                             Text(
-                             '${ tours[index].price.toStringAsFixed(0)} ₸',
+                              '${tours[index].price.toStringAsFixed(0)} ₸',
                               style: ts(TS.s14w500)
                                   .copyWith(color: const Color(0xFF1F1F1F)),
                             ),

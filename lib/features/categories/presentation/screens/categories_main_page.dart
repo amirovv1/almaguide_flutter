@@ -1,3 +1,4 @@
+import 'package:almaguide_flutter/core/helpers/extensions.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/bloc/categories_main_cubit.dart';
@@ -122,7 +123,7 @@ class _CategoriesMainScreenState extends State<CategoriesMainScreen> {
                           ),
                         ),
                       ],
-                    ),
+                    ).withStaggeredAnimations(),
                   ),
                 );
               },

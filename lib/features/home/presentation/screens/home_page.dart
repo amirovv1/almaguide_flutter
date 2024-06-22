@@ -1,4 +1,5 @@
 import 'package:almaguide_flutter/core/gen/assets.gen.dart';
+import 'package:almaguide_flutter/core/helpers/extensions.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/home/bloc/home_cubit.dart';
 import 'package:almaguide_flutter/features/home/presentation/widgets/home_page/home_list_widget.dart';
@@ -144,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           //   height: 50.h,
                           // ),
                         ],
-                      ),
+                      ).withStaggeredAnimations(),
                     ),
                   );
                 },

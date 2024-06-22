@@ -95,7 +95,6 @@ class CategoriesDetailsCubit extends Cubit<CategoriesDetailsState> {
   }
 
   void filterAttractionsByRating(int ratingFilter) {
-    print('ratinf- ${ratingFilter}');
     emit(const _CategoriesDetailsLoading());
 
     double minRating = ratingFilter.toDouble();

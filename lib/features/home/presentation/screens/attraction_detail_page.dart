@@ -6,7 +6,6 @@ import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/core/services/location_service.dart';
 import 'package:almaguide_flutter/features/categories/presentation/screens/tour_details_page.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
-import 'package:almaguide_flutter/features/favorites/presentation/screens/route_details_page.dart';
 import 'package:almaguide_flutter/features/home/bloc/attraction_details_cubit.dart';
 import 'package:almaguide_flutter/features/home/domain/models/attraction_dto.dart';
 import 'package:almaguide_flutter/features/home/domain/models/details_dto.dart';
@@ -175,7 +174,7 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                                   latTo: double.parse(
                                                       attractionDto!.latitude!),
                                                   lonTo: double.parse(
-                                                      attractionDto!
+                                                      attractionDto
                                                           .longitude!))
                                               .then((value) {
                                             context.router
@@ -220,8 +219,8 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                   style: ts(TS.s18w600)
                                       .copyWith(color: Colors.black),
                                 ),
-                                if (attractionDto?.details != null &&
-                                    attractionDto!.details!.isNotEmpty)
+                                if (attractionDto.details != null &&
+                                    attractionDto.details!.isNotEmpty)
                                   ...attractionDto.details!
                                       .map(
                                         (e) => DetailsWidget(detail: e),

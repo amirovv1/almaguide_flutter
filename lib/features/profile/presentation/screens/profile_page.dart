@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:almaguide_flutter/core/helpers/auth_helper.dart';
+import 'package:almaguide_flutter/core/helpers/extensions.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
 import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/profile/bloc/profile_cubit/profile_cubit.dart';
@@ -241,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     )
                 ],
-              ),
+              ).withStaggeredAnimations(),
             );
           }), orElse: () {
             return const Center(child: CircularProgressIndicator.adaptive());

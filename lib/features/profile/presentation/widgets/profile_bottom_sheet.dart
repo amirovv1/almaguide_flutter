@@ -108,7 +108,7 @@ class CustomButton extends StatelessWidget {
             ? SizedBox(
                 height: 24.r,
                 width: 24.r,
-                child: CircularProgressIndicator.adaptive())
+                child: const CircularProgressIndicator.adaptive())
             : Text(
                 buttonText,
                 style: ts(TS.s16w600).copyWith(

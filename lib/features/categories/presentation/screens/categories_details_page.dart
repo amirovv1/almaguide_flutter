@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shimmer/shimmer.dart';
 
 @RoutePage()
@@ -138,7 +137,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                 return ListView.separated(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemBuilder: (context, index) {
-                      return ShimmerWidget();
+                      return const ShimmerWidget();
                     },
                     separatorBuilder: (context, index) =>
                         SizedBox(height: 20.r),
@@ -150,7 +149,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     ? ListView.separated(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         itemBuilder: (context, index) {
-                          return ShimmerWidget();
+                          return const ShimmerWidget();
                         },
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 20.r),
@@ -424,6 +423,8 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
 }
 
 class ShimmerWidget extends StatelessWidget {
+  const ShimmerWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

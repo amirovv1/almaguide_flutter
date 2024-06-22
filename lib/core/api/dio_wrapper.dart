@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:almaguide_flutter/core/api/api_helper.dart';
-import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,8 +18,6 @@ class DioWrapper {
           receiveTimeout: const Duration(seconds: 10)),
     )..interceptors.addAll(
         [
-          ChuckerDioInterceptor(),
-
           PrettyDioLogger(
             request: true,
             requestHeader: true,
@@ -29,7 +26,6 @@ class DioWrapper {
             responseHeader: true,
             compact: true,
           ),
-          // ChuckerDioInterceptor(),
           InterceptorsWrapper(
             onRequest: (options, handler) async {
               try {
@@ -55,31 +51,6 @@ class DioWrapper {
               return handler.next(response);
             },
             onError: (DioException e, ErrorInterceptorHandler handler) async {
-              // if (e.response != null) {
-              //   if (e.response!.statusCode == 401) {
-              //     await getIt<AuthRepository>().refresh();
-
-              //     SharedPreferences prefs =
-              //         await SharedPreferences.getInstance();
-              //     String locale = prefs.getString('lang') ?? 'ru';
-
-              //     String? token = await tokenSaver.getAccessToken();
-              //     String? typeToken = await tokenSaver.getTypeToken();
-              //     log('TOKEN----- ${token ?? 'TOKEN NULL'}');
-              //     log(' TYPE-----${typeToken ?? 'TYPE NULL'}');
-              //     if (token != null) {
-              //       try {
-              //         e.requestOptions.headers = {
-              //           "Accept-Language": locale,
-              //           "Authorization": "$typeToken $token"
-              //         };
-              //         //  return handler.resolve(await dio.fetch(e.requestOptions));
-              //       } catch (error) {
-              //         return handler.next(e);
-              //       }
-              //     }
-              //   }
-              // }
               return handler.next(e);
             },
           )
