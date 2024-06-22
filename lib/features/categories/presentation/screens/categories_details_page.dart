@@ -9,6 +9,7 @@ import 'package:almaguide_flutter/features/categories/bloc/categories_details_cu
 import 'package:almaguide_flutter/features/categories/presentation/widgets/category_details_widgets/order_modal.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
 import 'package:almaguide_flutter/features/home/domain/models/subcategory_dto.dart';
+import 'package:almaguide_flutter/features/profile/presentation/widgets/snack_bar_status.dart';
 import 'package:almaguide_flutter/generated/l10n.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shimmer/shimmer.dart';
 
 @RoutePage()
 class CategoryDetailScreen extends StatefulWidget {
@@ -129,81 +131,107 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
       ),
       body: BlocConsumer<CategoriesDetailsCubit, CategoriesDetailsState>(
         builder: (context, state) {
-          return state.maybeWhen(
-            orElse: () {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            },
-            sucess: (attractions, subs, orderType) {
-              final success = attractions;
-              return ListView.separated(
-                shrinkWrap: true,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20).r,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      context.router.push(AttractionDetailRoute(
-                          attractId: attractions[index].id));
+          return AnimatedSwitcher(
+            duration: const Duration(seconds: 1),
+            child: state.maybeWhen(
+              orElse: () {
+                return ListView.separated(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      return ShimmerWidget();
                     },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 160.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12).r,
-                            color: Colors.white,
-                          ),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(12).r,
-                                  child: CachedNetworkImage(
-                                    imageUrl: success[index].image ?? '',
-                                    fit: BoxFit.cover,
-                                  )),
-                              Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: LikeButton(
-                                    //active: true,
-                                    attractionId: success[index].id,
-                                  ))
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.r,
-                        ),
-                        Text(
-                          success[index].name,
-                          style: ts(TS.s16w600).copyWith(color: Colors.black),
-                        ),
-                        SizedBox(
-                          height: 10.r,
-                        ),
-                        Text(
-                          '${Formatter.convertMetersToKilometers(success[index].distance ?? 'N')} км',
-                          style: ts(TS.s14w500)
-                              .copyWith(color: const Color(0xFF1F1F1F)),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 20.r),
-                itemCount: success.length,
-              );
-            },
+                    separatorBuilder: (context, index) =>
+                        SizedBox(height: 20.r),
+                    itemCount: 7);
+              },
+              sucess: (attractions, subs, orderType) {
+                final success = attractions;
+                return success.isEmpty
+                    ? ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemBuilder: (context, index) {
+                          return ShimmerWidget();
+                        },
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 20.r),
+                        itemCount: 7)
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 20)
+                            .r,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              context.router.push(AttractionDetailRoute(
+                                  attractId: attractions[index].id));
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 160.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12).r,
+                                    color: Colors.white,
+                                  ),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(12).r,
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                                success[index].image ?? '',
+                                            fit: BoxFit.cover,
+                                          )),
+                                      Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: LikeButton(
+                                            //active: true,
+                                            attractionId: success[index].id,
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15.r,
+                                ),
+                                Text(
+                                  success[index].name,
+                                  style: ts(TS.s16w600)
+                                      .copyWith(color: Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 10.r,
+                                ),
+                                Text(
+                                  '${Formatter.convertMetersToKilometers(success[index].distance ?? 'N')} км',
+                                  style: ts(TS.s14w500)
+                                      .copyWith(color: const Color(0xFF1F1F1F)),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 20.r),
+                        itemCount: success.length,
+                      );
+              },
+            ),
           );
         },
         listener: (BuildContext context, CategoriesDetailsState state) {
           state.whenOrNull(
             sucess: (attractions, subc, order) {
               subs = subc;
+
+              if (attractions.isEmpty) {
+                SnackBarNotifier().showError(context, S.of(context).empty_list);
+              }
               setState(() {});
             },
           );
@@ -392,5 +420,80 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
             ),
           );
         });
+  }
+}
+
+class ShimmerWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            height: 160.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12).r,
+              color: Colors.white,
+            ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12).r,
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12).r,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 15.r,
+        ),
+        Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            width: 200.w,
+            height: 20.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12).r,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10.r,
+        ),
+        Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            width: 100.w,
+            height: 20.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12).r,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
