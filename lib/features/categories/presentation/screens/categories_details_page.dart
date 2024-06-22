@@ -4,6 +4,7 @@ import 'package:almaguide_flutter/core/gen/assets.gen.dart';
 import 'package:almaguide_flutter/core/helpers/colors_helper.dart';
 import 'package:almaguide_flutter/core/helpers/formatter.dart';
 import 'package:almaguide_flutter/core/helpers/textstyle_helper.dart';
+import 'package:almaguide_flutter/core/router/app_router.dart';
 import 'package:almaguide_flutter/features/categories/bloc/categories_details_cubit.dart';
 import 'package:almaguide_flutter/features/categories/presentation/widgets/category_details_widgets/order_modal.dart';
 import 'package:almaguide_flutter/features/favorites/presentation/screens/favorites_page.dart';
@@ -141,50 +142,56 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 20).r,
                 itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 160.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12).r,
-                          color: Colors.red,
+                  return InkWell(
+                    onTap: () {
+                      context.router.push(AttractionDetailRoute(
+                          attractId: attractions[index].id));
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 160.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12).r,
+                            color: Colors.white,
+                          ),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  child: CachedNetworkImage(
+                                    imageUrl: success[index].image ?? '',
+                                    fit: BoxFit.cover,
+                                  )),
+                              Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: LikeButton(
+                                    //active: true,
+                                    attractionId: success[index].id,
+                                  ))
+                            ],
+                          ),
                         ),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(12).r,
-                                child: CachedNetworkImage(
-                                  imageUrl: success[index].image ?? '',
-                                  fit: BoxFit.cover,
-                                )),
-                            Positioned(
-                                top: 0,
-                                right: 0,
-                                child: LikeButton(
-                                  //active: true,
-                                  attractionId: success[index].id,
-                                ))
-                          ],
+                        SizedBox(
+                          height: 15.r,
                         ),
-                      ),
-                      SizedBox(
-                        height: 15.r,
-                      ),
-                      Text(
-                        success[index].name,
-                        style: ts(TS.s16w600).copyWith(color: Colors.black),
-                      ),
-                      SizedBox(
-                        height: 10.r,
-                      ),
-                      Text(
-                        '${Formatter.convertMetersToKilometers(success[index].distance ?? 'N')} км',
-                        style: ts(TS.s14w500)
-                            .copyWith(color: const Color(0xFF1F1F1F)),
-                      ),
-                    ],
+                        Text(
+                          success[index].name,
+                          style: ts(TS.s16w600).copyWith(color: Colors.black),
+                        ),
+                        SizedBox(
+                          height: 10.r,
+                        ),
+                        Text(
+                          '${Formatter.convertMetersToKilometers(success[index].distance ?? 'N')} км',
+                          style: ts(TS.s14w500)
+                              .copyWith(color: const Color(0xFF1F1F1F)),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) => SizedBox(height: 20.r),
