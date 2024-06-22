@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:injectable/injectable.dart';
 
 @RoutePage()
 class CategoryDetailScreen extends StatefulWidget {
@@ -97,13 +98,21 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                             },
                             itemCount: subs.length),
                       )),
-                  Expanded(
-                      flex: 1,
-                      child: IconButton(
-                          onPressed: () {
-                            showOrderMethod(context);
-                          },
-                          icon: SvgPicture.asset(Assets.svg.sort24))),
+                  BlocBuilder<CategoriesDetailsCubit, CategoriesDetailsState>(
+                    builder: (context, state) {
+                      return Expanded(
+                          flex: 1,
+                          child: IconButton(
+                              onPressed: () {
+                                state.whenOrNull(
+                                  sucess: (attractions, subs, orderType) {
+                                    showOrderMethod(context, orderType);
+                                  },
+                                );
+                              },
+                              icon: SvgPicture.asset(Assets.svg.sort24)));
+                    },
+                  ),
                   Expanded(
                       flex: 1,
                       child: IconButton(
@@ -125,7 +134,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                 child: CircularProgressIndicator.adaptive(),
               );
             },
-            sucess: (attractions, subs) {
+            sucess: (attractions, subs, orderType) {
               final success = attractions;
               return ListView.separated(
                 shrinkWrap: true,
@@ -186,7 +195,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
         },
         listener: (BuildContext context, CategoriesDetailsState state) {
           state.whenOrNull(
-            sucess: (attractions, subc) {
+            sucess: (attractions, subc, order) {
               subs = subc;
               setState(() {});
             },
@@ -196,7 +205,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     );
   }
 
-  void showOrderMethod(BuildContext context) {
+  void showOrderMethod(BuildContext context, OrderModal selectedOrder) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: const Radius.circular(16).r),
@@ -235,13 +244,16 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     SizedBox(
                       height: 20.r,
                     ),
-                    ...Order.values
+                    ...OrderModal.values
                         .map((e) => Container(
                               margin: const EdgeInsets.only(bottom: 30).r,
                               child: Row(
                                 children: [
                                   InkWell(
                                     onTap: () {
+                                      context
+                                          .read<CategoriesDetailsCubit>()
+                                          .sortAttractions(e);
                                       context.router.pop();
                                     },
                                     child: Container(
@@ -250,7 +262,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                                       decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: AppColors.selectGrey),
-                                      child: 'ewq' == 'ewqqw'
+                                      child: e == selectedOrder
                                           ? Center(
                                               child: Container(
                                                 width: 14.r,
@@ -283,6 +295,8 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
 
   void showFilterModal(BuildContext context) {
     void handleCardTap(int value) {
+      context.read<CategoriesDetailsCubit>().filterAttractionsByRating(value);
+
       context.router.pop();
     }
 
@@ -341,7 +355,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                       itemCount: values.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () => handleCardTap(index),
+                          onTap: () => handleCardTap(values[index]),
                           child: Card(
                             margin: const EdgeInsets.all(8.0),
                             child: Container(

@@ -21,7 +21,7 @@ class CustomCard extends StatelessWidget {
       },
       child: Container(
         width: 150.w,
-        height: 150.h,
+        height: 170.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16).r,
           color: AppColors.greenCard, // Adjust color here
@@ -71,7 +71,7 @@ class CustomCard extends StatelessWidget {
                 ],
               ),
             ),
-             //Positioned(right: 5, top: 5, child: LikeButton(attractionId: attract.id,)),
+            //Positioned(right: 5, top: 5, child: LikeButton(attractionId: attract.id,)),
           ],
         ),
       ),

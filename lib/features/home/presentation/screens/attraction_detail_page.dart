@@ -197,12 +197,13 @@ class _AttractionDetailScreenState extends State<AttractionDetailScreen> {
                                     description:
                                         attractionDto?.description ?? '',
                                   ),
-                                if (attractionDto?.similarAttracts != null)
+                                if (attractionDto?.similarAttractions != null &&
+                                    attractionDto!.similarAttractions!.isNotEmpty)
                                   RecomendationWidget(
                                     attracts:
-                                        attractionDto?.similarAttracts ?? [],
+                                        attractionDto.similarAttractions ?? [],
                                   ),
-                                if (attractionDto?.similarAttracts != null)
+                                if (attractionDto?.similarAttractions != null)
                                   SizedBox(
                                     height: 10.r,
                                   ),

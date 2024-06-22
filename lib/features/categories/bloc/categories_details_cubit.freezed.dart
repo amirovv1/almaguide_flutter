@@ -21,8 +21,8 @@ mixin _$CategoriesDetailsState {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)
+    required TResult Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,8 +31,8 @@ mixin _$CategoriesDetailsState {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult? Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)?
         sucess,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,8 +41,8 @@ mixin _$CategoriesDetailsState {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult Function(List<AttractionDto> attractions, List<SubcategoryDto> subs,
+            OrderModal orderType)?
         sucess,
     required TResult orElse(),
   }) =>
@@ -134,8 +134,8 @@ class _$InitialPageImpl implements _InitialPage {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)
+    required TResult Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)
         sucess,
   }) {
     return initialState();
@@ -147,8 +147,8 @@ class _$InitialPageImpl implements _InitialPage {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult? Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)?
         sucess,
   }) {
     return initialState?.call();
@@ -160,8 +160,8 @@ class _$InitialPageImpl implements _InitialPage {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult Function(List<AttractionDto> attractions, List<SubcategoryDto> subs,
+            OrderModal orderType)?
         sucess,
     required TResult orElse(),
   }) {
@@ -258,8 +258,8 @@ class _$CategoriesDetailsLoadingImpl implements _CategoriesDetailsLoading {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)
+    required TResult Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)
         sucess,
   }) {
     return loadingState();
@@ -271,8 +271,8 @@ class _$CategoriesDetailsLoadingImpl implements _CategoriesDetailsLoading {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult? Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)?
         sucess,
   }) {
     return loadingState?.call();
@@ -284,8 +284,8 @@ class _$CategoriesDetailsLoadingImpl implements _CategoriesDetailsLoading {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult Function(List<AttractionDto> attractions, List<SubcategoryDto> subs,
+            OrderModal orderType)?
         sucess,
     required TResult orElse(),
   }) {
@@ -409,8 +409,8 @@ class _$CategoriesDetailsErrorImpl implements _CategoriesDetailsError {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)
+    required TResult Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)
         sucess,
   }) {
     return errorState(message);
@@ -422,8 +422,8 @@ class _$CategoriesDetailsErrorImpl implements _CategoriesDetailsError {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult? Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)?
         sucess,
   }) {
     return errorState?.call(message);
@@ -435,8 +435,8 @@ class _$CategoriesDetailsErrorImpl implements _CategoriesDetailsError {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult Function(List<AttractionDto> attractions, List<SubcategoryDto> subs,
+            OrderModal orderType)?
         sucess,
     required TResult orElse(),
   }) {
@@ -501,7 +501,10 @@ abstract class _$$CategoriesDetailsSuccessImplCopyWith<$Res> {
           $Res Function(_$CategoriesDetailsSuccessImpl) then) =
       __$$CategoriesDetailsSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AttractionDto> attractions, List<SubcategoryDto> subs});
+  $Res call(
+      {List<AttractionDto> attractions,
+      List<SubcategoryDto> subs,
+      OrderModal orderType});
 }
 
 /// @nodoc
@@ -519,6 +522,7 @@ class __$$CategoriesDetailsSuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? attractions = null,
     Object? subs = null,
+    Object? orderType = null,
   }) {
     return _then(_$CategoriesDetailsSuccessImpl(
       attractions: null == attractions
@@ -529,6 +533,10 @@ class __$$CategoriesDetailsSuccessImplCopyWithImpl<$Res>
           ? _value._subs
           : subs // ignore: cast_nullable_to_non_nullable
               as List<SubcategoryDto>,
+      orderType: null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as OrderModal,
     ));
   }
 }
@@ -538,7 +546,8 @@ class __$$CategoriesDetailsSuccessImplCopyWithImpl<$Res>
 class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
   const _$CategoriesDetailsSuccessImpl(
       {final List<AttractionDto> attractions = const [],
-      final List<SubcategoryDto> subs = const []})
+      final List<SubcategoryDto> subs = const [],
+      this.orderType = OrderModal.name})
       : _attractions = attractions,
         _subs = subs;
 
@@ -561,8 +570,12 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
   }
 
   @override
+  @JsonKey()
+  final OrderModal orderType;
+
+  @override
   String toString() {
-    return 'CategoriesDetailsState.sucess(attractions: $attractions, subs: $subs)';
+    return 'CategoriesDetailsState.sucess(attractions: $attractions, subs: $subs, orderType: $orderType)';
   }
 
   @override
@@ -572,14 +585,17 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
             other is _$CategoriesDetailsSuccessImpl &&
             const DeepCollectionEquality()
                 .equals(other._attractions, _attractions) &&
-            const DeepCollectionEquality().equals(other._subs, _subs));
+            const DeepCollectionEquality().equals(other._subs, _subs) &&
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_attractions),
-      const DeepCollectionEquality().hash(_subs));
+      const DeepCollectionEquality().hash(_subs),
+      orderType);
 
   @JsonKey(ignore: true)
   @override
@@ -594,11 +610,11 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
     required TResult Function() initialState,
     required TResult Function() loadingState,
     required TResult Function(String message) errorState,
-    required TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)
+    required TResult Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)
         sucess,
   }) {
-    return sucess(attractions, subs);
+    return sucess(attractions, subs, orderType);
   }
 
   @override
@@ -607,11 +623,11 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
     TResult? Function(String message)? errorState,
-    TResult? Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult? Function(List<AttractionDto> attractions,
+            List<SubcategoryDto> subs, OrderModal orderType)?
         sucess,
   }) {
-    return sucess?.call(attractions, subs);
+    return sucess?.call(attractions, subs, orderType);
   }
 
   @override
@@ -620,13 +636,13 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
     TResult Function()? initialState,
     TResult Function()? loadingState,
     TResult Function(String message)? errorState,
-    TResult Function(
-            List<AttractionDto> attractions, List<SubcategoryDto> subs)?
+    TResult Function(List<AttractionDto> attractions, List<SubcategoryDto> subs,
+            OrderModal orderType)?
         sucess,
     required TResult orElse(),
   }) {
     if (sucess != null) {
-      return sucess(attractions, subs);
+      return sucess(attractions, subs, orderType);
     }
     return orElse();
   }
@@ -672,10 +688,12 @@ class _$CategoriesDetailsSuccessImpl implements _CategoriesDetailsSuccess {
 abstract class _CategoriesDetailsSuccess implements CategoriesDetailsState {
   const factory _CategoriesDetailsSuccess(
       {final List<AttractionDto> attractions,
-      final List<SubcategoryDto> subs}) = _$CategoriesDetailsSuccessImpl;
+      final List<SubcategoryDto> subs,
+      final OrderModal orderType}) = _$CategoriesDetailsSuccessImpl;
 
   List<AttractionDto> get attractions;
   List<SubcategoryDto> get subs;
+  OrderModal get orderType;
   @JsonKey(ignore: true)
   _$$CategoriesDetailsSuccessImplCopyWith<_$CategoriesDetailsSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;

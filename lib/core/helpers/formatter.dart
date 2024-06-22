@@ -40,13 +40,13 @@ class Formatter {
     return kilometers.toInt().toString();
   }
 
-  static String sortFormat(Order order, BuildContext context) {
+  static String sortFormat(OrderModal order, BuildContext context) {
     switch (order) {
-      case Order.name:
+      case OrderModal.name:
         return S.of(context).name_sorting;
-      case Order.avgRate:
+      case OrderModal.avgRate:
         return S.of(context).rating_sorting;
-      case Order.distance:
+      case OrderModal.distance:
         return S.of(context).distance_sorting;
       default:
         return "Unknown";

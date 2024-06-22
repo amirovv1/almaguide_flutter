@@ -27,14 +27,16 @@ mixin _$AttractionDto {
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_favourite')
   bool? get isFavourite => throw _privateConstructorUsedError;
-  @JsonValue('category_icon')
+  @JsonKey(name: 'category_icon')
   String? get categoryIcon => throw _privateConstructorUsedError;
   List<DetailsDto>? get details => throw _privateConstructorUsedError;
   @JsonKey(name: 'similar_attractions')
-  List<AttractionDto>? get similarAttracts =>
+  List<AttractionDto>? get similarAttractions =>
       throw _privateConstructorUsedError;
   String? get longitude => throw _privateConstructorUsedError;
   String? get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avg_rate')
+  String? get avgRate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,12 +57,13 @@ abstract class $AttractionDtoCopyWith<$Res> {
       String? distance,
       String? description,
       @JsonKey(name: 'is_favourite') bool? isFavourite,
-      @JsonValue('category_icon') String? categoryIcon,
+      @JsonKey(name: 'category_icon') String? categoryIcon,
       List<DetailsDto>? details,
       @JsonKey(name: 'similar_attractions')
-      List<AttractionDto>? similarAttracts,
+      List<AttractionDto>? similarAttractions,
       String? longitude,
-      String? latitude});
+      String? latitude,
+      @JsonKey(name: 'avg_rate') String? avgRate});
 }
 
 /// @nodoc
@@ -84,9 +87,10 @@ class _$AttractionDtoCopyWithImpl<$Res, $Val extends AttractionDto>
     Object? isFavourite = freezed,
     Object? categoryIcon = freezed,
     Object? details = freezed,
-    Object? similarAttracts = freezed,
+    Object? similarAttractions = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
+    Object? avgRate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -121,9 +125,9 @@ class _$AttractionDtoCopyWithImpl<$Res, $Val extends AttractionDto>
           ? _value.details
           : details // ignore: cast_nullable_to_non_nullable
               as List<DetailsDto>?,
-      similarAttracts: freezed == similarAttracts
-          ? _value.similarAttracts
-          : similarAttracts // ignore: cast_nullable_to_non_nullable
+      similarAttractions: freezed == similarAttractions
+          ? _value.similarAttractions
+          : similarAttractions // ignore: cast_nullable_to_non_nullable
               as List<AttractionDto>?,
       longitude: freezed == longitude
           ? _value.longitude
@@ -132,6 +136,10 @@ class _$AttractionDtoCopyWithImpl<$Res, $Val extends AttractionDto>
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avgRate: freezed == avgRate
+          ? _value.avgRate
+          : avgRate // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -152,12 +160,13 @@ abstract class _$$AttractionDtoImplCopyWith<$Res>
       String? distance,
       String? description,
       @JsonKey(name: 'is_favourite') bool? isFavourite,
-      @JsonValue('category_icon') String? categoryIcon,
+      @JsonKey(name: 'category_icon') String? categoryIcon,
       List<DetailsDto>? details,
       @JsonKey(name: 'similar_attractions')
-      List<AttractionDto>? similarAttracts,
+      List<AttractionDto>? similarAttractions,
       String? longitude,
-      String? latitude});
+      String? latitude,
+      @JsonKey(name: 'avg_rate') String? avgRate});
 }
 
 /// @nodoc
@@ -179,9 +188,10 @@ class __$$AttractionDtoImplCopyWithImpl<$Res>
     Object? isFavourite = freezed,
     Object? categoryIcon = freezed,
     Object? details = freezed,
-    Object? similarAttracts = freezed,
+    Object? similarAttractions = freezed,
     Object? longitude = freezed,
     Object? latitude = freezed,
+    Object? avgRate = freezed,
   }) {
     return _then(_$AttractionDtoImpl(
       id: null == id
@@ -216,9 +226,9 @@ class __$$AttractionDtoImplCopyWithImpl<$Res>
           ? _value._details
           : details // ignore: cast_nullable_to_non_nullable
               as List<DetailsDto>?,
-      similarAttracts: freezed == similarAttracts
-          ? _value._similarAttracts
-          : similarAttracts // ignore: cast_nullable_to_non_nullable
+      similarAttractions: freezed == similarAttractions
+          ? _value._similarAttractions
+          : similarAttractions // ignore: cast_nullable_to_non_nullable
               as List<AttractionDto>?,
       longitude: freezed == longitude
           ? _value.longitude
@@ -228,13 +238,17 @@ class __$$AttractionDtoImplCopyWithImpl<$Res>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as String?,
+      avgRate: freezed == avgRate
+          ? _value.avgRate
+          : avgRate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AttractionDtoImpl implements _AttractionDto {
+class _$AttractionDtoImpl extends _AttractionDto {
   const _$AttractionDtoImpl(
       {required this.id,
       required this.name,
@@ -242,14 +256,16 @@ class _$AttractionDtoImpl implements _AttractionDto {
       this.distance,
       this.description,
       @JsonKey(name: 'is_favourite') this.isFavourite,
-      @JsonValue('category_icon') this.categoryIcon,
+      @JsonKey(name: 'category_icon') this.categoryIcon,
       final List<DetailsDto>? details,
       @JsonKey(name: 'similar_attractions')
-      final List<AttractionDto>? similarAttracts,
+      final List<AttractionDto>? similarAttractions,
       this.longitude,
-      this.latitude})
+      this.latitude,
+      @JsonKey(name: 'avg_rate') this.avgRate})
       : _details = details,
-        _similarAttracts = similarAttracts;
+        _similarAttractions = similarAttractions,
+        super._();
 
   factory _$AttractionDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AttractionDtoImplFromJson(json);
@@ -268,7 +284,7 @@ class _$AttractionDtoImpl implements _AttractionDto {
   @JsonKey(name: 'is_favourite')
   final bool? isFavourite;
   @override
-  @JsonValue('category_icon')
+  @JsonKey(name: 'category_icon')
   final String? categoryIcon;
   final List<DetailsDto>? _details;
   @override
@@ -280,13 +296,14 @@ class _$AttractionDtoImpl implements _AttractionDto {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<AttractionDto>? _similarAttracts;
+  final List<AttractionDto>? _similarAttractions;
   @override
   @JsonKey(name: 'similar_attractions')
-  List<AttractionDto>? get similarAttracts {
-    final value = _similarAttracts;
+  List<AttractionDto>? get similarAttractions {
+    final value = _similarAttractions;
     if (value == null) return null;
-    if (_similarAttracts is EqualUnmodifiableListView) return _similarAttracts;
+    if (_similarAttractions is EqualUnmodifiableListView)
+      return _similarAttractions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -295,10 +312,13 @@ class _$AttractionDtoImpl implements _AttractionDto {
   final String? longitude;
   @override
   final String? latitude;
+  @override
+  @JsonKey(name: 'avg_rate')
+  final String? avgRate;
 
   @override
   String toString() {
-    return 'AttractionDto(id: $id, name: $name, image: $image, distance: $distance, description: $description, isFavourite: $isFavourite, categoryIcon: $categoryIcon, details: $details, similarAttracts: $similarAttracts, longitude: $longitude, latitude: $latitude)';
+    return 'AttractionDto(id: $id, name: $name, image: $image, distance: $distance, description: $description, isFavourite: $isFavourite, categoryIcon: $categoryIcon, details: $details, similarAttractions: $similarAttractions, longitude: $longitude, latitude: $latitude, avgRate: $avgRate)';
   }
 
   @override
@@ -319,11 +339,12 @@ class _$AttractionDtoImpl implements _AttractionDto {
                 other.categoryIcon == categoryIcon) &&
             const DeepCollectionEquality().equals(other._details, _details) &&
             const DeepCollectionEquality()
-                .equals(other._similarAttracts, _similarAttracts) &&
+                .equals(other._similarAttractions, _similarAttractions) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
-                other.latitude == latitude));
+                other.latitude == latitude) &&
+            (identical(other.avgRate, avgRate) || other.avgRate == avgRate));
   }
 
   @JsonKey(ignore: true)
@@ -338,9 +359,10 @@ class _$AttractionDtoImpl implements _AttractionDto {
       isFavourite,
       categoryIcon,
       const DeepCollectionEquality().hash(_details),
-      const DeepCollectionEquality().hash(_similarAttracts),
+      const DeepCollectionEquality().hash(_similarAttractions),
       longitude,
-      latitude);
+      latitude,
+      avgRate);
 
   @JsonKey(ignore: true)
   @override
@@ -356,7 +378,7 @@ class _$AttractionDtoImpl implements _AttractionDto {
   }
 }
 
-abstract class _AttractionDto implements AttractionDto {
+abstract class _AttractionDto extends AttractionDto {
   const factory _AttractionDto(
       {required final int id,
       required final String name,
@@ -364,12 +386,14 @@ abstract class _AttractionDto implements AttractionDto {
       final String? distance,
       final String? description,
       @JsonKey(name: 'is_favourite') final bool? isFavourite,
-      @JsonValue('category_icon') final String? categoryIcon,
+      @JsonKey(name: 'category_icon') final String? categoryIcon,
       final List<DetailsDto>? details,
       @JsonKey(name: 'similar_attractions')
-      final List<AttractionDto>? similarAttracts,
+      final List<AttractionDto>? similarAttractions,
       final String? longitude,
-      final String? latitude}) = _$AttractionDtoImpl;
+      final String? latitude,
+      @JsonKey(name: 'avg_rate') final String? avgRate}) = _$AttractionDtoImpl;
+  const _AttractionDto._() : super._();
 
   factory _AttractionDto.fromJson(Map<String, dynamic> json) =
       _$AttractionDtoImpl.fromJson;
@@ -388,17 +412,20 @@ abstract class _AttractionDto implements AttractionDto {
   @JsonKey(name: 'is_favourite')
   bool? get isFavourite;
   @override
-  @JsonValue('category_icon')
+  @JsonKey(name: 'category_icon')
   String? get categoryIcon;
   @override
   List<DetailsDto>? get details;
   @override
   @JsonKey(name: 'similar_attractions')
-  List<AttractionDto>? get similarAttracts;
+  List<AttractionDto>? get similarAttractions;
   @override
   String? get longitude;
   @override
   String? get latitude;
+  @override
+  @JsonKey(name: 'avg_rate')
+  String? get avgRate;
   @override
   @JsonKey(ignore: true)
   _$$AttractionDtoImplCopyWith<_$AttractionDtoImpl> get copyWith =>

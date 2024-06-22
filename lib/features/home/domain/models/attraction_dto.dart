@@ -8,20 +8,25 @@ part 'attraction_dto.g.dart';
 
 @freezed
 class AttractionDto with _$AttractionDto {
-  const factory AttractionDto(
-      {required int id,
-      required String name,
-      final String? image,
-      final String? distance,
-      final String? description,
-      @JsonKey(name: 'is_favourite') final bool? isFavourite,
-      @JsonValue('category_icon') final String? categoryIcon,
-      final List<DetailsDto>? details,
-      @JsonKey(name: 'similar_attractions')
-      final List<AttractionDto>? similarAttracts,
-      final String? longitude,
-      final String? latitude}) = _AttractionDto;
+  const AttractionDto._(); // Private constructor for Freezed to allow adding methods
 
-  factory AttractionDto.fromJson(Map<String, dynamic> json) =>
-      _$AttractionDtoFromJson(json);
+  const factory AttractionDto({
+    required int id,
+    required String name,
+    String? image,
+    String? distance,
+    String? description,
+    @JsonKey(name: 'is_favourite') bool? isFavourite,
+    @JsonKey(name: 'category_icon') String? categoryIcon,
+    List<DetailsDto>? details,
+    @JsonKey(name: 'similar_attractions') List<AttractionDto>? similarAttractions,
+    String? longitude,
+    String? latitude,
+    @JsonKey(name: 'avg_rate') String? avgRate,
+  }) = _AttractionDto;
+
+  double? get avgRateAsDouble => avgRate != null ? double.tryParse(avgRate!) : null;
+  double? get distanceAsDouble => distance != null ? double.tryParse(distance!) : null;
+
+  factory AttractionDto.fromJson(Map<String, dynamic> json) => _$AttractionDtoFromJson(json);
 }

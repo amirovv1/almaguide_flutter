@@ -1,13 +1,6 @@
-
-
-
-
-
-
-enum Order{
+enum OrderModal {
   name,
   avgRate,
 
-    distance,
-
+  distance,
 }
